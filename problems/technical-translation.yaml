@@ -1,0 +1,51 @@
+id: technical-translation
+title: 技術翻訳
+# 出典: GitLab "Postmortem of database outage of January 31" (2017-02-10)
+#   https://about.gitlab.com/blog/2017/02/10/postmortem-of-database-outage-of-january-31/
+#   訳しにくい箇所を中心に抜粋・再構成した抄録（[...] は中略を示す）。原文は約4,200語、本文は約690語。
+prompt: |
+  以下の文章を日本語に訳してください。翻訳結果だけ出力すること
+  ---
+  Postmortem of database outage of January 31
+
+  On January 31st 2017, we experienced a major service outage for one of our products, the online service GitLab.com. The outage was caused by an accidental removal of data from our primary database server. This incident caused the GitLab.com service to be unavailable for many hours. We also lost some production data that we were eventually unable to recover.
+
+  [...]
+
+  Losing production data is unacceptable. To ensure this does not happen again we're working on multiple improvements to our operations & recovery procedures for GitLab.com.
+
+  Timeline
+
+  ± 23:00 UTC: Due to the increased load, our PostgreSQL secondary's replication process started to lag behind. The replication failed as WAL segments needed by the secondary were already removed from the primary. As GitLab.com was not using WAL archiving, the secondary had to be re-synchronised manually. This involves removing the existing data directory on the secondary, and running pg_basebackup to copy over the database from the primary to the secondary. One of the engineers went to the secondary and wiped the data directory, then ran pg_basebackup. Unfortunately pg_basebackup would hang, producing no meaningful output, despite the --verbose option being set.
+
+  ± 23:30 UTC: one of the engineers thinks that perhaps pg_basebackup created some files in the PostgreSQL data directory of the secondary during the previous attempts to run it. While normally pg_basebackup prints an error when this is the case, the engineer in question wasn't too sure what was going on. It would later be revealed by another engineer (who wasn't around at the time) that this is normal behaviour: pg_basebackup will wait for the primary to start sending over replication data and it will sit and wait silently until that time. Unfortunately this was not clearly documented in our engineering runbooks nor in the official pg_basebackup document.
+
+  Trying to restore the replication process, an engineer proceeds to wipe the PostgreSQL database directory, errantly thinking they were doing so on the secondary. Unfortunately this process was executed on the primary instead. The engineer terminated the process a second or two after noticing their mistake, but at this point around 300 GB of data had already been removed.
+
+  Hoping they could restore the database the engineers involved went to look for the database backups, and asked for help on Slack. Unfortunately the process of both finding and using backups failed completely.
+
+  Broken recovery procedures
+
+  Database backups using pg_dump
+
+  When we went to look for the pg_dump backups we found out they were not there. The S3 bucket was empty, and there was no recent backup to be found anywhere. Upon closer inspection we found out that the backup procedure was using pg_dump 9.2, while our database is running PostgreSQL 9.6 (for Postgres, 9.x releases are considered major). A difference in major versions results in pg_dump producing an error, terminating the backup procedure.
+
+  [...]
+
+  While notifications are enabled for any cronjobs that error, these notifications are sent by email. For GitLab.com we use DMARC. Unfortunately DMARC was not enabled for the cronjob emails, resulting in them being rejected by the receiver. This means we were never aware of the backups failing, until it was too late.
+
+  Azure disk snapshots
+
+  While enabled for the NFS servers, these snapshots were not enabled for any of the database servers as we assumed that our other backup procedures were sufficient enough.
+
+  Root cause analysis
+
+  To analyse the root cause of these problems we'll use a technique called "The 5 Whys". We'll break up the incident into 2 main problems: GitLab.com being down, and it taking a long time to restore GitLab.com.
+
+  Problem 2: restoring GitLab.com took over 18 hours.
+
+  Why could we not use the standard backup procedure?
+  - The standard backup procedure uses pg_dump to perform a logical backup of the database. This procedure failed silently because it was using PostgreSQL 9.2, while GitLab.com runs on PostgreSQL 9.6.
+
+  Why did the backup procedure fail silently?
+  - Notifications were sent upon failure, but because of the Emails being rejected there was no indication of failure. The sender was an automated process with no other means to report any errors.

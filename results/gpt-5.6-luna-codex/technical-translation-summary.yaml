@@ -1,0 +1,15 @@
+version: 1
+problem_id: technical-translation-summary
+model: gpt-5.6-luna
+agent: codex
+reasoning_effort: medium
+generated_at: 2026-09-11T14:54:44.503Z
+score: 10
+comment: これでわかるとおもってるのか
+evaluated_at: 2026-09-11T14:56:30.686Z
+response: |-
+  Gitの大規模ホスティングが難しい本質は、データがSHA-1で識別されるDAGと、ランダムアクセスを強いるpackfileで構成されている点にある。オブジェクト単位で分散すると、依存関係をたどるたびにネットワーク往復が発生し、クローン性能が悪化する。分散ファイルシステムも、packfile内のデルタ圧縮されたデータをランダムに読むため、ネットワーク越しでは遅く不安定になる。
+
+  GitHubなどで普及したSpokesは、NVMe上の通常のGitリポジトリを複製し、3PCで参照更新を合意する方式だ。整合性は高いが、巨大なモノレポには複製数が足りず、小規模リポジトリには3台構成が過剰で、運用負荷も大きい。
+
+  CursorのContinuityは、S3互換ストレージ上のWAL（Write-Ahead Log）を唯一の正とする。pushをWALへ永続化してから参照更新し、各レプリカはWALから追随するため、任意数のレプリカを一貫性を保ったまま増減できる。UDP通知が失われても、ETag付きGETでS3と照合できる。ローカルでは従来のGitとNVMeを使い、圧縮処理は主系だけが実行して結果を共有することで、可用性・性能・復旧性を両立している。

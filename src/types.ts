@@ -32,16 +32,18 @@ export interface Answer {
   response: string;
 }
 
+export interface Evaluation {
+  score: number;
+  comment: string;
+  evaluated_at: string;
+}
+
+export interface EvaluatedResult extends Answer, Evaluation {}
+
+export type Result = Answer | EvaluatedResult;
+
 export interface AnswerEntry {
   answerRef: string;
   problem: Problem;
   answer: Answer;
-}
-
-export interface Evaluation {
-  version: number;
-  problem_id: string;
-  score: number;
-  comment: string;
-  evaluated_at: string;
 }

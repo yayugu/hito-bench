@@ -1,0 +1,19 @@
+version: 1
+problem_id: technical-translation-summary
+model: sonnet
+agent: claude
+reasoning_effort: high
+generated_at: 2026-09-11T14:54:59.585Z
+score: 50
+comment: |-
+  まあ読める
+  "真実の源泉"
+evaluated_at: 2026-09-11T14:57:46.327Z
+response: |-
+  ## 要約
+
+  Gitは分散VCSだが、企業利用では実質「中央集権的ホスティング」が必要で、これがスケーリングを困難にしている。原因はGitがpackfile(バイナリ圧縮フォーマット)を基本単位とし、オブジェクトがDAG構造で相互参照されるため、分散KVSやDHT化(Google/JGitの試み)、NFS/GFS/DRBDによるファイルシステム分散化はいずれも性能問題で失敗した。
+
+  GitHubが開発した**Spokes**は、packfileレベルでレプリケーションしつつ3相コミット(3PC)で全レプリカを常時一貫性維持する方式で業界標準化したが、3PCはノード数増加でレイテンシが劣化し、レプリカごとの死活監視・ルーティングテーブル管理が運用負荷になる欠点があった。
+
+  CursorのContinuityはS3上のWrite-Ahead Logを真実の源泉とし、ローカルNVMeはただのキャッシュとして扱う。ランデブーハッシュでレプリカ配置を柔軟化し、コンセンサスや固定プライマリを不要にし、UDPゴシップ+S3の条件付きGET(ETag)で「壊れても正しく、健全なら速い」設計を実現。compactionもプライマリのみが行いレプリカはS3から取得するだけ、という点が技術的に興味深い。

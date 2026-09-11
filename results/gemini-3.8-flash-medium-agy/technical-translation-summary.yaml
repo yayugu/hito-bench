@@ -1,0 +1,27 @@
+version: 1
+problem_id: technical-translation-summary
+model: gemini-3.8-flash-medium
+agent: agy
+reasoning_effort: medium
+generated_at: 2026-09-11T14:55:16.494Z
+score: 55
+comment: |-
+  構造が不自然
+  GPT-5とかこんなしゃべりかただったよね
+  まあわかりやすいかも？
+evaluated_at: 2026-09-11T14:58:51.557Z
+response: |-
+  Gitのスケーリング課題と、Cursorが開発したGitストレージシステム「Continuity」の技術的なブレイクスルーの要約です。
+
+  ---
+
+  ### 技術的な面白さの要約（約500字）
+
+  GitはDAG探索やパックファイル内のデルタ構造上、分散KVSや分散FSではランダムアクセスが多発しスケールしません。従来のデファクトであるGitHubのSpokes（ローカルNVMe＋3相コミット）も、合意プロトコルのレイテンシ限界や「ディスク実体が正本（運用負荷大）」という制約を抱えていました。
+
+  これらを解決したContinuityのコア技術は**「S3上の先行書き込みログ（WAL）を唯一の真実（Source of Truth）にする」**という逆転の発想です。
+
+  * **サーバーの完全ステートレス化**: 各ノードのGitリポジトリは単なるキャッシュ（Cattle）扱いとし、消失時はWALから即時復元。巨大なルーティングDBも不要に。
+  * **S3 CASによる合意の簡素化**: 複雑な分散合意プロトコルを排し、S3の原子的CAS（Compare-and-Swap）を利用してプッシュを直列化。
+  * **UDPゴシップ＋ETagによる強一貫性**: 更新通知は非信頼なUDPで行い、レプリカはS3へのConditional GET（ETag照合、約10ms）で差分を即座に検証・同期し、読み取りの完全な一貫性を両立。
+  * **重いRepackの集約**: プライマリのみがCPU負荷の高いコンパクションを行い、レプリカはS3から生成済みパックをDLする設計でCPU消費を帯域幅へオフロード。

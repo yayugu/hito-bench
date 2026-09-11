@@ -1,7 +1,15 @@
 import { readdir } from "node:fs/promises";
 import { basename, join } from "node:path";
 import { parse } from "yaml";
-import type { AdapterName, Answer, BenchmarkConfig, Problem, RunnerConfig } from "./types";
+import type {
+  AdapterName,
+  Answer,
+  BenchmarkConfig,
+  EvaluatedResult,
+  Problem,
+  Result,
+  RunnerConfig,
+} from "./types";
 
 const SAFE_ID = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
 const ADAPTERS = new Set<AdapterName>([
@@ -128,11 +136,11 @@ export async function loadProblems(directory: string): Promise<Problem[]> {
   return problems;
 }
 
-export async function loadAnswer(path: string): Promise<Answer> {
+export async function loadResult(path: string): Promise<Result> {
   const raw = object(await parseYamlFile(path), path);
   const adapter = string(raw.agent, `${path}: agent`) as AdapterName;
   if (!ADAPTERS.has(adapter)) throw new Error(`${path}: unknown agent ${adapter}`);
-  return {
+  const answer: Answer = {
     version: Number(raw.version),
     problem_id: safeId(raw.problem_id, `${path}: problem_id`),
     model: string(raw.model, `${path}: model`),
@@ -143,4 +151,26 @@ export async function loadAnswer(path: string): Promise<Answer> {
     generated_at: string(raw.generated_at, `${path}: generated_at`),
     response: string(raw.response, `${path}: response`),
   };
+
+  const evaluationFields = [raw.score, raw.comment, raw.evaluated_at];
+  const hasEvaluation = evaluationFields.some((value) => value !== undefined);
+  if (!hasEvaluation) return answer;
+  if (evaluationFields.some((value) => value === undefined)) {
+    throw new Error(`${path}: score, comment, and evaluated_at must be specified together`);
+  }
+  if (typeof raw.score !== "number" || !Number.isFinite(raw.score)) {
+    throw new Error(`${path}: score must be a finite number`);
+  }
+  if (typeof raw.comment !== "string") throw new Error(`${path}: comment must be a string`);
+
+  return {
+    ...answer,
+    score: raw.score,
+    comment: raw.comment,
+    evaluated_at: string(raw.evaluated_at, `${path}: evaluated_at`),
+  };
+}
+
+export function isEvaluated(result: Result): result is EvaluatedResult {
+  return "score" in result;
 }

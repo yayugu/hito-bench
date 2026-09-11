@@ -26,7 +26,7 @@ function parseArgs(args: string[]): Options {
     else if (arg === "--problem" && args[index + 1]) options.problemIds.add(args[++index]);
     else if (arg === "--config" && args[index + 1]) options.config = args[++index];
     else if (arg === "--help" || arg === "-h") {
-      console.log(`Usage: bun run generate [options]\n\n  --runner ID   Run one runner (repeatable)\n  --problem ID  Run one problem (repeatable)\n  --force       Replace existing answers\n  --config FILE Config path (default: benchmark.yaml)`);
+      console.log(`Usage: bun run generate [options]\n\n  --runner ID   Run one runner (repeatable)\n  --problem ID  Run one problem (repeatable)\n  --force       Replace existing results\n  --config FILE Config path (default: benchmark.yaml)`);
       process.exit(0);
     } else throw new Error(`Unknown or incomplete option: ${arg}`);
   }
@@ -58,10 +58,10 @@ await mkdir(workspaceRoot, { recursive: true });
 
 let failures = 0;
 for (const runner of runners) {
-  const answerDirectory = join(root, "answers", runner.id);
-  await mkdir(answerDirectory, { recursive: true });
+  const resultDirectory = join(root, "results", runner.id);
+  await mkdir(resultDirectory, { recursive: true });
   for (const problem of problems) {
-    const outputPath = join(answerDirectory, `${problem.id}.yaml`);
+    const outputPath = join(resultDirectory, `${problem.id}.yaml`);
     if (!options.force && (await Bun.file(outputPath).exists())) {
       console.log(`skip  ${runner.id} / ${problem.id} (already exists)`);
       continue;

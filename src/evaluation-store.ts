@@ -1,8 +1,8 @@
 import { mkdir, readdir, rename } from "node:fs/promises";
 import { basename, dirname, join, relative } from "node:path";
-import { parse, stringify } from "yaml";
-import { loadAnswer, loadProblems } from "./config";
-import type { AnswerEntry, Evaluation } from "./types";
+import { stringify } from "yaml";
+import { isEvaluated, loadProblems, loadResult } from "./config";
+import type { AnswerEntry, EvaluatedResult } from "./types";
 
 interface BlindItem {
   token: string;
@@ -26,30 +26,31 @@ export class EvaluationStore {
   private queue: string[] = [];
   private total = 0;
 
-  private constructor(private readonly evaluationsDirectory: string) {}
+  private constructor(private readonly resultsDirectory: string) {}
 
   static async create(root: string): Promise<EvaluationStore> {
-    const store = new EvaluationStore(join(root, "evaluations"));
-    await mkdir(store.evaluationsDirectory, { recursive: true });
-    await store.loadCompleted();
+    const store = new EvaluationStore(join(root, "results"));
+    await mkdir(store.resultsDirectory, { recursive: true });
 
     const problems = await loadProblems(join(root, "problems"));
     const problemById = new Map(problems.map((problem) => [problem.id, problem]));
-    const answersRoot = join(root, "answers");
-    const runnerDirectories = await readdir(answersRoot, { withFileTypes: true });
+    const runnerDirectories = await readdir(store.resultsDirectory, { withFileTypes: true });
     const entries: AnswerEntry[] = [];
     for (const directory of runnerDirectories.filter((entry) => entry.isDirectory())) {
-      const directoryPath = join(answersRoot, directory.name);
+      const directoryPath = join(store.resultsDirectory, directory.name);
       const files = (await readdir(directoryPath)).filter((name) => /\.ya?ml$/i.test(name)).sort();
       for (const file of files) {
         const path = join(directoryPath, file);
-        const answerRef = relative(answersRoot, path);
-        if (store.completedRefs.has(answerRef)) continue;
-        const answer = await loadAnswer(path);
+        const answerRef = relative(store.resultsDirectory, path);
+        const answer = await loadResult(path);
         const problem = problemById.get(answer.problem_id);
         if (!problem) throw new Error(`${path}: unknown problem ${answer.problem_id}`);
         if (basename(file).replace(/\.ya?ml$/i, "") !== answer.problem_id) {
           throw new Error(`${path}: problem_id must match filename`);
+        }
+        if (isEvaluated(answer)) {
+          store.completedRefs.add(answerRef);
+          continue;
         }
         entries.push({ answerRef, answer, problem });
       }
@@ -62,21 +63,6 @@ export class EvaluationStore {
     }
     store.total = store.completedRefs.size + entries.length;
     return store;
-  }
-
-  private async loadCompleted(): Promise<void> {
-    const directories = await readdir(this.evaluationsDirectory, { withFileTypes: true });
-    for (const directory of directories.filter((entry) => entry.isDirectory())) {
-      const directoryPath = join(this.evaluationsDirectory, directory.name);
-      const files = (await readdir(directoryPath)).filter((name) => /\.ya?ml$/i.test(name));
-      for (const file of files) {
-        const path = join(directoryPath, file);
-        const value = parse(await Bun.file(path).text()) as Partial<Evaluation>;
-        if (value.version === 1 && typeof value.problem_id === "string") {
-          this.completedRefs.add(join(directory.name, file));
-        }
-      }
-    }
   }
 
   next(clientId: string): BlindItem | null {
@@ -101,19 +87,19 @@ export class EvaluationStore {
     if (!Number.isFinite(score)) throw new Error("Score must be a finite number");
     if (comment.length > 20_000) throw new Error("Comment is too long");
 
-    const evaluation: Evaluation = {
-      version: 1,
-      problem_id: entry.problem.id,
+    const { response, ...answer } = entry.answer;
+    const result: EvaluatedResult = {
+      ...answer,
       score,
       comment,
       evaluated_at: new Date().toISOString(),
+      response,
     };
-    const evaluationDirectory = join(this.evaluationsDirectory, dirname(entry.answerRef));
-    await mkdir(evaluationDirectory, { recursive: true });
     const file = basename(entry.answerRef);
-    const finalPath = join(evaluationDirectory, file);
-    const temporaryPath = join(evaluationDirectory, `.${file}.tmp`);
-    await Bun.write(temporaryPath, stringify(evaluation, { lineWidth: 0, blockQuote: "literal" }));
+    const resultDirectory = join(this.resultsDirectory, dirname(entry.answerRef));
+    const finalPath = join(resultDirectory, file);
+    const temporaryPath = join(resultDirectory, `.${file}.tmp`);
+    await Bun.write(temporaryPath, stringify(result, { lineWidth: 0, blockQuote: "literal" }));
     await rename(temporaryPath, finalPath);
 
     this.completedRefs.add(entry.answerRef);
