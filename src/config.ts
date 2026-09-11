@@ -10,6 +10,11 @@ const ADAPTERS = new Set<AdapterName>([
   "agy",
   "openai-compatible",
 ]);
+const REASONING_EFFORTS: Partial<Record<AdapterName, Set<string>>> = {
+  codex: new Set(["none", "minimal", "low", "medium", "high", "xhigh", "max", "ultra"]),
+  claude: new Set(["low", "medium", "high", "xhigh", "max"]),
+  agy: new Set(["low", "medium", "high"]),
+};
 
 function object(value: unknown, label: string): Record<string, unknown> {
   if (!value || typeof value !== "object" || Array.isArray(value)) {
@@ -31,6 +36,15 @@ function safeId(value: unknown, label: string): string {
     throw new Error(`${label} may contain only letters, numbers, dot, dash, and underscore`);
   }
   return id;
+}
+
+function reasoningEffort(value: unknown, adapter: AdapterName, label: string): string {
+  const effort = string(value, label);
+  const supported = REASONING_EFFORTS[adapter];
+  if (supported && !supported.has(effort)) {
+    throw new Error(`${label} must be one of ${[...supported].join(", ")} for adapter ${adapter}`);
+  }
+  return effort;
 }
 
 async function parseYamlFile(path: string): Promise<unknown> {
@@ -63,6 +77,11 @@ export async function loadConfig(path: string): Promise<BenchmarkConfig> {
       id: safeId(value.id, `runners[${index}].id`),
       adapter,
       model: string(value.model, `runners[${index}].model`),
+      reasoning_effort: reasoningEffort(
+        value.reasoning_effort,
+        adapter,
+        `runners[${index}].reasoning_effort`,
+      ),
       enabled: value.enabled === undefined ? true : Boolean(value.enabled),
     };
     if (value.timeout_seconds !== undefined) {
@@ -118,6 +137,9 @@ export async function loadAnswer(path: string): Promise<Answer> {
     problem_id: safeId(raw.problem_id, `${path}: problem_id`),
     model: string(raw.model, `${path}: model`),
     agent: adapter,
+    ...(raw.reasoning_effort === undefined
+      ? {}
+      : { reasoning_effort: string(raw.reasoning_effort, `${path}: reasoning_effort`) }),
     generated_at: string(raw.generated_at, `${path}: generated_at`),
     response: string(raw.response, `${path}: response`),
   };

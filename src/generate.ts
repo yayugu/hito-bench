@@ -75,6 +75,7 @@ for (const runner of runners) {
         problem_id: problem.id,
         model: runner.model,
         agent: runner.adapter,
+        reasoning_effort: runner.reasoning_effort,
         generated_at: new Date().toISOString(),
         response,
       };

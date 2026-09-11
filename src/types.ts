@@ -10,6 +10,7 @@ export interface RunnerConfig {
   id: string;
   adapter: AdapterName;
   model: string;
+  reasoning_effort: string;
   enabled?: boolean;
   timeout_seconds?: number;
   endpoint?: string;
@@ -26,6 +27,7 @@ export interface Answer {
   problem_id: string;
   model: string;
   agent: AdapterName;
+  reasoning_effort?: string;
   generated_at: string;
   response: string;
 }
