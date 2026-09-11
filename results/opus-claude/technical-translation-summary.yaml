@@ -1,0 +1,19 @@
+version: 1
+problem_id: technical-translation-summary
+model: opus
+agent: claude
+reasoning_effort: high
+generated_at: 2026-09-11T15:11:29.190Z
+score: 20
+comment: |-
+  文体が変。日本語として不自然すぎる
+  ワードを拾っただけで構成も稚拙
+evaluated_at: 2026-09-11T15:17:18.421Z
+response: |-
+  **Gitホスティングの難しさとCursorの「Continuity」**
+
+  Gitは分散型設計ゆえに、サーバ側もクライアントと同じ「ただのリポジトリ」でしかなく、大規模ホスティングは難題になる。オブジェクトをDHTに置く案（Google/JGit）は、DAGを1ホップずつ辿る必要があり往復遅延で破綻。GitHubが試したNFS/GFS/DRBDなどの分散FSも失敗した。原因はpackfile: オブジェクトは圧縮・差分化されてパック内にランダム配置されるため、論理的なDAG走査に加えて物理的なランダムアクセスが発生し、ネットワーク越しでは致命的に遅い。
+
+  GitHubのSpokesは「packfileレベルで複製し、実体はNVMe上の通常のGitリポジトリとして保持、全レプリカを強整合に保つ」設計。packfileは非同期にファンアウトし、小さなreference transactionだけを3相コミット（3PC）で同期する点が巧妙（コミットはrefが更新されるまで可視化されないため）。ただし3PCは最遅ノードに律速され、レプリカ数を増やすとpushスループットが落ちる。さらに全リポジトリが3レプリカ固定で、ディスク上の実体が真実の源のため、配置表・チェックサム管理という運用負荷が生じる。
+
+  CursorのContinuityは真実の源をS3上のWAL(write-ahead log)に置く。pushはWALエントリとして永続化後に初めて可視化され、線形化される。更新はS3のCASで調停するためリーダー選出も不要、配置はrendezvous hashingで決め、無ければWALから再構成すればよい。レプリケーションはUDPゴシップ＋ETag条件付きGET（304なら最新と確認、10ms未満）で、パケット欠落しても整合性は崩れない。compactionはプライマリのみが行い、レプリカは圧縮済みpackをS3から取得してCPUを帯域に交換する。結果、レプリカ1〜100台まで自在にスケールし、読み取りは線形にスケール、pushはS3 Standardで約120/s、Express One Zoneで300/s超。

@@ -1,0 +1,15 @@
+version: 1
+problem_id: technical-translation-summary
+model: gpt-5.6-sol
+agent: codex
+reasoning_effort: medium
+generated_at: 2026-09-11T15:10:05.720Z
+score: 90
+comment: |-
+  要約の中で意味がとおっている
+  正しく本質を抜き出せている
+evaluated_at: 2026-09-11T15:19:25.921Z
+response: |-
+  Gitの大規模ホスティングが難しい核心は、データがpackfile内に圧縮・差分化され、DAGの探索に伴ってランダムアクセスが頻発する点にある。分散KVSやネットワークファイルシステムでは往復通信が増え、性能が崩れる。GitHubのSpokesは、通常のGitリポジトリをNVMe上に複製し、参照更新だけを3相コミットで同期することで強整合性を実現したが、複製数を増やすほど最遅ノードが書き込み性能を制限し、少数アクセスのリポジトリにも最低3複製が必要だった。
+
+  CursorのContinuityは、S3上のWAL（先行書き込みログ）を唯一の正本とし、ローカルGitリポジトリを「温かいキャッシュ」として扱う。pushはpackfileをWALへ永続化し、参照更新をCASで線形化。各ノードはUDPで更新通知を受けるが、読み出し時にはS3のETagで最新性を検証するため、通知が失われても整合性は崩れない。さらにcompactionを一度だけ実行し、生成済みpackfileを全複製が取得することで、CPU負荷を帯域消費へ置き換える。これにより巨大モノレポは多数の複製、休眠リポジトリは複製ゼロまで伸縮でき、強整合性と水平スケールを両立している。
