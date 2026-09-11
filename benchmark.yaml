@@ -1,0 +1,28 @@
+version: 1
+runners:
+  - id: gpt-5.6-luna-codex
+    adapter: codex
+    model: gpt-5.6-luna
+    enabled: true
+    timeout_seconds: 600
+
+  - id: sonnet-claude
+    adapter: claude
+    model: sonnet
+    enabled: true
+    timeout_seconds: 600
+
+  - id: gemini-3.8-flash-medium-agy
+    adapter: agy
+    model: gemini-3.8-flash-medium
+    enabled: true
+    timeout_seconds: 600
+
+  # endpoint と API key の環境変数を設定してから enabled: true にする。
+  - id: example-model-rest
+    adapter: openai-compatible
+    model: example-model
+    endpoint: ${OPENAI_COMPAT_ENDPOINT}
+    api_key_env: OPENAI_COMPAT_API_KEY
+    enabled: false
+    timeout_seconds: 600

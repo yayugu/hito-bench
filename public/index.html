@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hito Bench</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <span class="eyebrow">HITO BENCH</span>
+        <span id="progress" aria-live="polite"></span>
+      </header>
+
+      <section id="loading" class="state">読み込み中…</section>
+      <section id="complete" class="state" hidden>
+        <h1>評価が完了しました</h1>
+        <p>採点する回答はもうありません。</p>
+      </section>
+
+      <form id="evaluation" hidden>
+        <section class="problem">
+          <div class="label">問題</div>
+          <h1 id="title"></h1>
+          <p id="prompt"></p>
+        </section>
+
+        <section class="answer" aria-labelledby="answer-label">
+          <div id="answer-label" class="label">回答</div>
+          <div id="response"></div>
+        </section>
+
+        <section class="score-card">
+          <label for="score">点数 <span>100点を目安に自由採点</span></label>
+          <div class="score-input">
+            <input id="score" name="score" type="number" step="any" inputmode="decimal" required autofocus />
+            <span>点</span>
+          </div>
+
+          <label for="comment">コメント <span>任意</span></label>
+          <textarea id="comment" name="comment" rows="5" placeholder="良かった点、気になった表現など"></textarea>
+
+          <p id="error" role="alert" hidden></p>
+          <button type="submit">採点して次へ</button>
+        </section>
+      </form>
+    </main>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
