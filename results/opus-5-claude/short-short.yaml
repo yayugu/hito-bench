@@ -1,5 +1,5 @@
 version: 1
-problem_id: amazon-short-short
+problem_id: short-short
 model: opus
 agent: claude
 reasoning_effort: high

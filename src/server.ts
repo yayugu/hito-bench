@@ -29,7 +29,7 @@ const server = Bun.serve({
     if (request.method === "GET" && url.pathname === "/api/next") {
       const clientId = url.searchParams.get("client");
       if (!validClientId(clientId)) return json({ error: "Invalid client id" }, 400);
-      return json({ item: store.next(clientId) });
+      return json({ item: await store.next(clientId) });
     }
 
     if (request.method === "POST" && url.pathname === "/api/evaluations") {

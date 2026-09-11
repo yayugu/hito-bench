@@ -23,7 +23,17 @@
         <section class="problem">
           <div class="label">問題</div>
           <h1 id="title"></h1>
-          <p id="prompt"></p>
+          <div id="prompt-container" class="prompt-container">
+            <p id="prompt"></p>
+            <button
+              id="prompt-toggle"
+              class="prompt-toggle"
+              type="button"
+              aria-controls="prompt"
+              aria-expanded="false"
+              hidden
+            >問題文をすべて表示</button>
+          </div>
         </section>
 
         <section class="answer" aria-labelledby="answer-label">
@@ -42,7 +52,7 @@
           <textarea id="comment" name="comment" rows="5" placeholder="良かった点、気になった表現など"></textarea>
 
           <p id="error" role="alert" hidden></p>
-          <button type="submit">採点して次へ</button>
+          <button class="submit-button" type="submit">採点して次へ</button>
         </section>
       </form>
     </main>

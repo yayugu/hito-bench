@@ -3,6 +3,8 @@ const loading = document.querySelector("#loading");
 const complete = document.querySelector("#complete");
 const title = document.querySelector("#title");
 const prompt = document.querySelector("#prompt");
+const promptContainer = document.querySelector("#prompt-container");
+const promptToggle = document.querySelector("#prompt-toggle");
 const response = document.querySelector("#response");
 const progress = document.querySelector("#progress");
 const score = document.querySelector("#score");
@@ -18,6 +20,27 @@ if (!clientId) {
 }
 
 let currentToken = null;
+
+function configurePromptCollapse() {
+  promptContainer.classList.remove("is-collapsed");
+  promptToggle.hidden = true;
+  promptToggle.setAttribute("aria-expanded", "false");
+  promptToggle.textContent = "問題文をすべて表示";
+
+  requestAnimationFrame(() => {
+    const lineHeight = Number.parseFloat(getComputedStyle(prompt).lineHeight);
+    if (Number.isFinite(lineHeight) && prompt.scrollHeight > lineHeight * 5 + 1) {
+      promptContainer.classList.add("is-collapsed");
+      promptToggle.hidden = false;
+    }
+  });
+}
+
+promptToggle.addEventListener("click", () => {
+  const collapsed = promptContainer.classList.toggle("is-collapsed");
+  promptToggle.setAttribute("aria-expanded", String(!collapsed));
+  promptToggle.textContent = collapsed ? "問題文をすべて表示" : "問題文を折りたたむ";
+});
 
 async function loadNext() {
   loading.hidden = false;
@@ -43,6 +66,7 @@ async function loadNext() {
   score.value = "";
   comment.value = "";
   form.hidden = false;
+  configurePromptCollapse();
   score.focus();
 }
 

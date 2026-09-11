@@ -8,7 +8,7 @@ runners:
     enabled: true
     timeout_seconds: 600
 
-  - id: sonnet-claude
+  - id: sonnet-5-claude
     adapter: claude
     model: sonnet
     reasoning_effort: high
@@ -30,7 +30,7 @@ runners:
     enabled: true
     timeout_seconds: 600
 
-  - id: opus-claude
+  - id: opus-5-claude
     adapter: claude
     model: opus
     reasoning_effort: high
