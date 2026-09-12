@@ -22,6 +22,37 @@ runners:
     enabled: true
     timeout_seconds: 600
 
+  - id: glm-5.3-flash-openrouter
+    adapter: openai-compatible
+    model: z-ai/glm-5.3-flash
+    reasoning_effort: medium
+    endpoint: https://openrouter.ai/api/v1/chat/completions
+    api_key_env: OPENROUTER_API_KEY
+    provider: z-ai/fp8
+    enabled: true
+    timeout_seconds: 600
+
+  - id: deepseek-v4.1-flash-openrouter
+    adapter: openai-compatible
+    model: deepseek/deepseek-v4.1-flash
+    reasoning_effort: medium
+    endpoint: https://openrouter.ai/api/v1/chat/completions
+    api_key_env: OPENROUTER_API_KEY
+    provider: deepseek
+    enabled: true
+    timeout_seconds: 600
+
+  - id: muse-spark-1.3-openrouter
+    adapter: openai-compatible
+    model: meta/muse-spark-1.3
+    request_model: meta/muse-spark-1.3-contributor
+    reasoning_effort: medium
+    endpoint: https://openrouter.ai/api/v1/chat/completions
+    api_key_env: OPENROUTER_API_KEY
+    provider: meta
+    enabled: true
+    timeout_seconds: 600
+
   # High
   - id: gpt-5.6-sol-codex
     adapter: codex

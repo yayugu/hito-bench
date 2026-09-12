@@ -10,11 +10,13 @@ export interface RunnerConfig {
   id: string;
   adapter: AdapterName;
   model: string;
+  request_model?: string;
   reasoning_effort: string;
   enabled?: boolean;
   timeout_seconds?: number;
   endpoint?: string;
   api_key_env?: string;
+  provider?: string;
 }
 
 export interface BenchmarkConfig {

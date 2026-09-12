@@ -1,0 +1,10 @@
+version: 1
+problem_id: technical-translation-summary
+model: deepseek/deepseek-v4.1-flash
+agent: openai-compatible
+reasoning_effort: medium
+generated_at: 2026-09-12T07:30:56.685Z
+response: |-
+  大規模Gitホスティングの難しさは、分散VCSなのに実運用は中央集権で、packfileとDAGのランダム参照がスケールを阻む点にある。既存Spokesは各リポジトリをNVMe上の実体として複製し、packfileと参照トランザクションを分け、3PCで多数決同期。強整合だが、レプリカ数に比例してpush遅延が増え、全コピーが真実なので運用が重い。
+
+  CursorのContinuityは発想を逆転。S3上のWALを唯一の真実とし、push packfileをWALに永続化してから参照を公開。pushはCASで線形化し、任意ノードがprimaryになれる。レプリカはUDPゴシップで更新通知を受け、S3のETag付き条件付GETで整合性を検証。読取は常に強整合で、劣化時も正しく、健全時は高速。コンパクションはprimaryのみが実行し、結果をWAL経由で伝播。これにより巨大モノレポは多数レプリカ、使い捨てリポジトリは実質1コピーで運用でき、読みは線形スケール。S3を真実に置くことで外部DB・ルーティング表・合意形成を排除したのが技術的核心。

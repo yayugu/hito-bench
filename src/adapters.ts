@@ -69,9 +69,12 @@ async function runRest(runner: RunnerConfig, prompt: string, timeoutMs: number):
     method: "POST",
     headers,
     body: JSON.stringify({
-      model: runner.model,
+      model: runner.request_model ?? runner.model,
       reasoning_effort: runner.reasoning_effort,
       messages: [{ role: "user", content: prompt }],
+      ...(runner.provider
+        ? { provider: { only: [runner.provider], allow_fallbacks: false } }
+        : {}),
     }),
     signal: AbortSignal.timeout(timeoutMs),
   });

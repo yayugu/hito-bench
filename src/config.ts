@@ -101,6 +101,12 @@ export async function loadConfig(path: string): Promise<BenchmarkConfig> {
     }
     if (typeof value.endpoint === "string") runner.endpoint = expandEnvironment(value.endpoint);
     if (typeof value.api_key_env === "string") runner.api_key_env = value.api_key_env;
+    if (typeof value.request_model === "string") {
+      runner.request_model = string(value.request_model, `runners[${index}].request_model`);
+    }
+    if (typeof value.provider === "string") {
+      runner.provider = string(value.provider, `runners[${index}].provider`);
+    }
     return runner;
   });
 
