@@ -12,7 +12,6 @@ export interface RunnerConfig {
   model: string;
   request_model?: string;
   reasoning_effort: string;
-  enabled?: boolean;
   timeout_seconds?: number;
   endpoint?: string;
   api_key_env?: string;

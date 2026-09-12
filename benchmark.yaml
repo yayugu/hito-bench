@@ -5,44 +5,39 @@ runners:
     adapter: codex
     model: gpt-5.6-luna
     reasoning_effort: medium
-    enabled: true
     timeout_seconds: 600
 
   - id: sonnet-5-claude
     adapter: claude
     model: sonnet
     reasoning_effort: high
-    enabled: true
     timeout_seconds: 600
 
   - id: gemini-3.8-flash-medium-agy
     adapter: agy
     model: gemini-3.8-flash-medium
     reasoning_effort: medium
-    enabled: true
     timeout_seconds: 600
 
-  - id: glm-5.3-flash-openrouter
+  - id: glm-5.3-flash
     adapter: openai-compatible
     model: z-ai/glm-5.3-flash
     reasoning_effort: medium
     endpoint: https://openrouter.ai/api/v1/chat/completions
     api_key_env: OPENROUTER_API_KEY
     provider: z-ai/fp8
-    enabled: true
     timeout_seconds: 600
 
-  - id: deepseek-v4.1-flash-openrouter
+  - id: deepseek-v4.1-flash
     adapter: openai-compatible
     model: deepseek/deepseek-v4.1-flash
     reasoning_effort: medium
     endpoint: https://openrouter.ai/api/v1/chat/completions
     api_key_env: OPENROUTER_API_KEY
     provider: deepseek
-    enabled: true
     timeout_seconds: 600
 
-  - id: muse-spark-1.3-openrouter
+  - id: muse-spark-1.3
     adapter: openai-compatible
     model: meta/muse-spark-1.3
     request_model: meta/muse-spark-1.3-contributor
@@ -50,7 +45,6 @@ runners:
     endpoint: https://openrouter.ai/api/v1/chat/completions
     api_key_env: OPENROUTER_API_KEY
     provider: meta
-    enabled: true
     timeout_seconds: 600
 
   # High
@@ -58,22 +52,18 @@ runners:
     adapter: codex
     model: gpt-5.6-sol
     reasoning_effort: medium
-    enabled: true
     timeout_seconds: 600
 
   - id: opus-5-claude
     adapter: claude
     model: opus
     reasoning_effort: high
-    enabled: true
     timeout_seconds: 600
 
-  # endpoint と API key の環境変数を設定してから enabled: true にする。
-  - id: example-model-rest
-    adapter: openai-compatible
-    model: example-model
-    reasoning_effort: medium
-    endpoint: ${OPENAI_COMPAT_ENDPOINT}
-    api_key_env: OPENAI_COMPAT_API_KEY
-    enabled: false
-    timeout_seconds: 600
+  # - id: example-model-rest
+  #   adapter: openai-compatible
+  #   model: example-model
+  #   reasoning_effort: medium
+  #   endpoint: ${OPENAI_COMPAT_ENDPOINT}
+  #   api_key_env: OPENAI_COMPAT_API_KEY
+  #   timeout_seconds: 600

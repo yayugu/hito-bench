@@ -13,7 +13,7 @@ describe("openai-compatible adapter", () => {
       },
     });
     const runner: RunnerConfig = {
-      id: "muse-spark-1.3-openrouter",
+      id: "muse-spark-1.3",
       adapter: "openai-compatible",
       model: "meta/muse-spark-1.3",
       request_model: "meta/muse-spark-1.3-contributor",

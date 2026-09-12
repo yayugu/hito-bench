@@ -37,8 +37,8 @@ const root = resolve(import.meta.dir, "..");
 const options = parseArgs(process.argv.slice(2));
 const config = await loadConfig(resolve(root, options.config));
 const allProblems = await loadProblems(join(root, "problems"));
-const runners = config.runners.filter((runner) =>
-  options.runnerIds.size > 0 ? options.runnerIds.has(runner.id) : runner.enabled !== false,
+const runners = config.runners.filter(
+  (runner) => options.runnerIds.size === 0 || options.runnerIds.has(runner.id),
 );
 const problems = allProblems.filter((problem) =>
   options.problemIds.size > 0 ? options.problemIds.has(problem.id) : true,

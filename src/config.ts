@@ -90,7 +90,6 @@ export async function loadConfig(path: string): Promise<BenchmarkConfig> {
         adapter,
         `runners[${index}].reasoning_effort`,
       ),
-      enabled: value.enabled === undefined ? true : Boolean(value.enabled),
     };
     if (value.timeout_seconds !== undefined) {
       const timeout = Number(value.timeout_seconds);
@@ -114,8 +113,8 @@ export async function loadConfig(path: string): Promise<BenchmarkConfig> {
   for (const runner of runners) {
     if (ids.has(runner.id)) throw new Error(`Duplicate runner id: ${runner.id}`);
     ids.add(runner.id);
-    if (runner.adapter === "openai-compatible" && runner.enabled && !runner.endpoint) {
-      throw new Error(`${runner.id}: endpoint is required when enabled`);
+    if (runner.adapter === "openai-compatible" && !runner.endpoint) {
+      throw new Error(`${runner.id}: endpoint is required`);
     }
   }
   return { version: 1, runners };
