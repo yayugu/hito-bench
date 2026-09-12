@@ -1,0 +1,14 @@
+version: 1
+problem_id: technical-translation-summary
+model: gemini-3.8-flash
+reasoning_effort: medium
+generated_at: 2026-09-12T15:08:49.619Z
+response: |-
+  Gitの大規模ホスティングでは、DAG構造とパックファイルのランダムアクセスの性質上、従来の分散ファイルシステムやKVSが機能せず、GitHubのSpokesのように三相コミット（3PC）でローカル同期する手法が主流でした。しかし、3PCはレプリカ増加による遅延悪化や、厳密なメタデータDB管理（Pets型運用）が課題でした。
+
+  Cursorの「Continuity」は、**S3上のWrite-Ahead Log（WAL）を唯一の真実（Source of Truth）とするステートレス設計**でこれを打破しました。ローカルNVMe上のGitリポジトリは単なるキャッシュとして扱い、オンデマンドで復元可能です。
+
+  技術的要点は次の通りです：
+  - **コンセンサスの排除**: Pushの線形化はS3のAtomic CASで行い、ノード間の複雑な合意形成や特定Primaryへの依存を解消。
+  - **UDP＋ETagによる整合性**: レプリカへの通知にUDPゴシップを使いつつ、読み取り時にS3のETag（条件付きGET、10ms以下）で最新性を超低遅延に検証し、完全な一貫性を保証。
+  - **コンパクションの集約**: 高負荷なGitリパック処理を1台に集約してWALに流し、他レプリカはS3からDLすることでCPU負荷を帯域にオフロード。
