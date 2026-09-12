@@ -1,7 +1,6 @@
 version: 1
 problem_id: technical-translation-summary
 model: deepseek/deepseek-v4.1-flash
-agent: openai-compatible
 reasoning_effort: medium
 generated_at: 2026-09-12T07:30:56.685Z
 response: |-

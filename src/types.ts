@@ -27,7 +27,7 @@ export interface Answer {
   version: number;
   problem_id: string;
   model: string;
-  agent: AdapterName;
+  agent?: AdapterName;
   reasoning_effort?: string;
   generated_at: string;
   response: string;

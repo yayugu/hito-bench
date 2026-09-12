@@ -1,0 +1,6 @@
+version: 1
+problem_id: technical-translation-summary
+model: qwen/qwen3.8-27b
+reasoning_effort: medium
+generated_at: 2026-09-12T13:56:55.742Z
+response: Gitのスケール問題はpackfile設計に固有。packfileは圧縮・Δ形式でオブジェクトがランダム配置され、DAGの逐次走査（commit→tree→blob、親pointerを逐次取得）と相まって、ネットワークFSや分散KV storeではround tripが爆発し致命的に遅くなる。GitHubのSpokesは、pushを「packfile（大）＋リファレンストランザクション（小）」に分離し、小さい方だけに3PCコンセンサスを適用。NVMe上の正規Gitリポジトリを完全一致レプリカとして維持する。一方CursorのContinuityは、S3上のWALを唯一のソースオブトゥースとし、レプリカをステートレスな「温かいキャッシュ」化する。pushはWALに永続化後にのみACKし線形化を保証。UDPゴシップで追記を通知し、リード時はETAG付き条件付きGET（304＝最新）で整合性を検証するため、UDP欠損でも正しく動作する。コンパクションはプライマリのみ実行し、レプリカはS3から完成品を取得してCPUを節約。100レプリカで読み取り線形スケール、S3 Expressでは300 push/s超。「劣化時は常に正しい、健全時は常に速い」が設計の核心。

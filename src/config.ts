@@ -143,13 +143,14 @@ export async function loadProblems(directory: string): Promise<Problem[]> {
 
 export async function loadResult(path: string): Promise<Result> {
   const raw = object(await parseYamlFile(path), path);
-  const adapter = string(raw.agent, `${path}: agent`) as AdapterName;
-  if (!ADAPTERS.has(adapter)) throw new Error(`${path}: unknown agent ${adapter}`);
+  const agent =
+    raw.agent === undefined ? undefined : (string(raw.agent, `${path}: agent`) as AdapterName);
+  if (agent && !ADAPTERS.has(agent)) throw new Error(`${path}: unknown agent ${agent}`);
   const answer: Answer = {
     version: Number(raw.version),
     problem_id: safeId(raw.problem_id, `${path}: problem_id`),
     model: string(raw.model, `${path}: model`),
-    agent: adapter,
+    ...(agent === undefined ? {} : { agent }),
     ...(raw.reasoning_effort === undefined
       ? {}
       : { reasoning_effort: string(raw.reasoning_effort, `${path}: reasoning_effort`) }),

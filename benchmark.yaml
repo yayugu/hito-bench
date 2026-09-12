@@ -1,22 +1,22 @@
 version: 1
 runners:
   # Local 向け
-  - id: gemma-4-31b-it-free
+  - id: gemma-4-31b-it
     adapter: openai-compatible
-    model: google/gemma-4-31b-it:free
+    model: google/gemma-4-31b-it
     reasoning_effort: medium
     endpoint: https://openrouter.ai/api/v1/chat/completions
     api_key_env: OPENROUTER_API_KEY
-    provider: google-ai-studio
+    provider: venice/bf16
     timeout_seconds: 600
 
-  - id: gemma-4-26b-a4b-it-free
+  - id: gemma-4-26b-a4b-it
     adapter: openai-compatible
-    model: google/gemma-4-26b-a4b-it:free
+    model: google/gemma-4-26b-a4b-it
     reasoning_effort: medium
     endpoint: https://openrouter.ai/api/v1/chat/completions
     api_key_env: OPENROUTER_API_KEY
-    provider: google-ai-studio
+    provider: google-vertex/global
     timeout_seconds: 600
 
   - id: qwen3.8-27b
@@ -41,10 +41,12 @@ runners:
     reasoning_effort: high
     timeout_seconds: 600
 
-  - id: gemini-3.8-flash-medium-agy
-    adapter: agy
-    model: gemini-3.8-flash-medium
+  - id: gemini-3.8-flash-medium
+    adapter: openai-compatible
+    model: gemini-3.8-flash
     reasoning_effort: medium
+    endpoint: https://generativelanguage.googleapis.com/v1beta/openai/chat/completions
+    api_key_env: GEMINI_API_KEY
     timeout_seconds: 600
 
   - id: glm-5.3-flash
@@ -75,23 +77,23 @@ runners:
     provider: meta
     timeout_seconds: 600
 
-  - id: hy4-preview
-    adapter: openai-compatible
-    model: tencent/hy4-preview
-    reasoning_effort: medium
-    endpoint: https://openrouter.ai/api/v1/chat/completions
-    api_key_env: OPENROUTER_API_KEY
-    provider: tencent/fp8
-    timeout_seconds: 600
+  # - id: hy4-preview
+  #   adapter: openai-compatible
+  #   model: tencent/hy4-preview
+  #   reasoning_effort: medium
+  #   endpoint: https://openrouter.ai/api/v1/chat/completions
+  #   api_key_env: OPENROUTER_API_KEY
+  #   provider: tencent/fp8
+  #   timeout_seconds: 600
 
-  - id: mimo-v2.5
-    adapter: openai-compatible
-    model: xiaomi/mimo-v2.5
-    reasoning_effort: medium
-    endpoint: https://openrouter.ai/api/v1/chat/completions
-    api_key_env: OPENROUTER_API_KEY
-    provider: xiaomi/fp8
-    timeout_seconds: 600
+  # - id: mimo-v2.5
+  #   adapter: openai-compatible
+  #   model: xiaomi/mimo-v2.5
+  #   reasoning_effort: medium
+  #   endpoint: https://openrouter.ai/api/v1/chat/completions
+  #   api_key_env: OPENROUTER_API_KEY
+  #   provider: xiaomi/fp8
+  #   timeout_seconds: 600
 
   # High
   - id: gpt-5.6-sol-codex
@@ -114,6 +116,13 @@ runners:
   #   api_key_env: OPENROUTER_API_KEY
   #   provider: moonshotai/mxfp4
   #   timeout_seconds: 600
+
+  # Frontier
+  - id: gpt-6-astra-codex
+    adapter: codex
+    model: gpt-6-astra
+    reasoning_effort: medium
+    timeout_seconds: 600
 
   # - id: example-model-rest
   #   adapter: openai-compatible

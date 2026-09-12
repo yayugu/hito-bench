@@ -1,7 +1,6 @@
 version: 1
 problem_id: technical-translation-summary
 model: z-ai/glm-5.3-flash
-agent: openai-compatible
 reasoning_effort: medium
 generated_at: 2026-09-12T07:29:22.093Z
 response: |-

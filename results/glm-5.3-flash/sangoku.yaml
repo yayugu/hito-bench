@@ -1,7 +1,6 @@
 version: 1
 problem_id: sangoku
 model: z-ai/glm-5.3-flash
-agent: openai-compatible
 reasoning_effort: medium
 generated_at: 2026-09-12T07:28:53.884Z
 response: |-
