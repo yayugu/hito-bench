@@ -1,5 +1,33 @@
 version: 1
 runners:
+  # Local 向け
+  - id: gemma-4-31b-it-free
+    adapter: openai-compatible
+    model: google/gemma-4-31b-it:free
+    reasoning_effort: medium
+    endpoint: https://openrouter.ai/api/v1/chat/completions
+    api_key_env: OPENROUTER_API_KEY
+    provider: google-ai-studio
+    timeout_seconds: 600
+
+  - id: gemma-4-26b-a4b-it-free
+    adapter: openai-compatible
+    model: google/gemma-4-26b-a4b-it:free
+    reasoning_effort: medium
+    endpoint: https://openrouter.ai/api/v1/chat/completions
+    api_key_env: OPENROUTER_API_KEY
+    provider: google-ai-studio
+    timeout_seconds: 600
+
+  - id: qwen3.8-27b
+    adapter: openai-compatible
+    model: qwen/qwen3.8-27b
+    reasoning_effort: medium
+    endpoint: https://openrouter.ai/api/v1/chat/completions
+    api_key_env: OPENROUTER_API_KEY
+    provider: alibaba
+    timeout_seconds: 600
+
   # Low
   - id: gpt-5.6-luna-codex
     adapter: codex
@@ -47,6 +75,24 @@ runners:
     provider: meta
     timeout_seconds: 600
 
+  - id: hy4-preview
+    adapter: openai-compatible
+    model: tencent/hy4-preview
+    reasoning_effort: medium
+    endpoint: https://openrouter.ai/api/v1/chat/completions
+    api_key_env: OPENROUTER_API_KEY
+    provider: tencent/fp8
+    timeout_seconds: 600
+
+  - id: mimo-v2.5
+    adapter: openai-compatible
+    model: xiaomi/mimo-v2.5
+    reasoning_effort: medium
+    endpoint: https://openrouter.ai/api/v1/chat/completions
+    api_key_env: OPENROUTER_API_KEY
+    provider: xiaomi/fp8
+    timeout_seconds: 600
+
   # High
   - id: gpt-5.6-sol-codex
     adapter: codex
@@ -59,6 +105,15 @@ runners:
     model: opus
     reasoning_effort: high
     timeout_seconds: 600
+
+  # - id: kimi-k3
+  #   adapter: openai-compatible
+  #   model: moonshotai/kimi-k3
+  #   reasoning_effort: medium
+  #   endpoint: https://openrouter.ai/api/v1/chat/completions
+  #   api_key_env: OPENROUTER_API_KEY
+  #   provider: moonshotai/mxfp4
+  #   timeout_seconds: 600
 
   # - id: example-model-rest
   #   adapter: openai-compatible
