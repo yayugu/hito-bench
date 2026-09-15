@@ -1,12 +1,9 @@
 version: 1
 problem_id: technical-translation
-model: opus-5
+model: opus
 agent: claude
 reasoning_effort: high
 generated_at: 2026-09-11T15:11:59.672Z
-score: 60
-comment: 微妙
-evaluated_at: 2026-09-11T15:18:08.561Z
 response: |-
   1月31日のデータベース障害のポストモーテム
 

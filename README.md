@@ -1,4 +1,4 @@
-# Hito Bench
+# 自然な日本語LLMベンチマーク HitoBench
 
 ### これは何？
 

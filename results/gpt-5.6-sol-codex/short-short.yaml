@@ -4,11 +4,6 @@ model: gpt-5.6-sol
 agent: codex
 reasoning_effort: medium
 generated_at: 2026-09-11T15:09:57.006Z
-score: 60
-comment: |-
-  尺がショートショート
-  オチはよくわからん
-evaluated_at: 2026-09-11T15:13:01.122Z
 response: |-
   ### 『置き配』
 

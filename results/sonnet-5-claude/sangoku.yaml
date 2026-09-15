@@ -1,6 +1,6 @@
 version: 1
 problem_id: sangoku
-model: sonnet-5
+model: sonnet
 agent: claude
 reasoning_effort: high
 generated_at: 2026-09-15T13:14:38.451Z

@@ -37,7 +37,7 @@ runners:
 
   - id: sonnet-5-claude
     adapter: claude
-    model: sonnet-5
+    model: sonnet
     reasoning_effort: high
     timeout_seconds: 600
 
@@ -104,7 +104,7 @@ runners:
 
   - id: opus-5-claude
     adapter: claude
-    model: opus-5
+    model: opus
     reasoning_effort: high
     timeout_seconds: 600
 
@@ -126,7 +126,7 @@ runners:
 
   - id: fable-5.1-claude
     adapter: claude
-    model: fable-5.1
+    model: fable
     reasoning_effort: high
     timeout_seconds: 600
 

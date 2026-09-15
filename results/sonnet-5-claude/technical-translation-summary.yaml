@@ -1,14 +1,9 @@
 version: 1
 problem_id: technical-translation-summary
-model: sonnet-5
+model: sonnet
 agent: claude
 reasoning_effort: high
 generated_at: 2026-09-11T14:54:59.585Z
-score: 50
-comment: |-
-  まあ読める
-  "真実の源泉"
-evaluated_at: 2026-09-11T14:57:46.327Z
 response: |-
   ## 要約
 

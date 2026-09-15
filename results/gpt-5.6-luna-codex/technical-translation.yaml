@@ -4,9 +4,6 @@ model: gpt-5.6-luna
 agent: codex
 reasoning_effort: medium
 generated_at: 2026-09-11T14:33:23.727Z
-score: 80
-comment: 良い
-evaluated_at: 2026-09-11T14:38:28.996Z
 response: |-
   1月31日のデータベース障害に関する事後分析
 

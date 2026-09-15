@@ -1,6 +1,6 @@
 version: 1
 problem_id: sangoku
-model: opus-5
+model: opus
 agent: claude
 reasoning_effort: high
 generated_at: 2026-09-15T13:34:23.096Z

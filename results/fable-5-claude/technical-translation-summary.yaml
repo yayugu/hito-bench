@@ -1,6 +1,6 @@
 version: 1
 problem_id: technical-translation-summary
-model: fable-5
+model: fable
 agent: claude
 reasoning_effort: high
 generated_at: 2026-09-15T13:38:37.472Z

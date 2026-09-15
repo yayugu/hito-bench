@@ -1,14 +1,9 @@
 version: 1
 problem_id: short-short
-model: opus-5
+model: opus
 agent: claude
 reasoning_effort: high
 generated_at: 2026-09-11T15:11:09.694Z
-score: 90
-comment: |-
-  ちゃんとオチが理解できる
-  星新一に寄りすぎているが作品としてなりたっている
-evaluated_at: 2026-09-11T15:16:12.321Z
 response: |-
   # アマゾン
 

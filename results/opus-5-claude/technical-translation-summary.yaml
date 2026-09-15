@@ -1,14 +1,9 @@
 version: 1
 problem_id: technical-translation-summary
-model: opus-5
+model: opus
 agent: claude
 reasoning_effort: high
 generated_at: 2026-09-11T15:11:29.190Z
-score: 20
-comment: |-
-  文体が変。日本語として不自然すぎる
-  ワードを拾っただけで構成も稚拙
-evaluated_at: 2026-09-11T15:17:18.421Z
 response: |-
   **Gitホスティングの難しさとCursorの「Continuity」**
 

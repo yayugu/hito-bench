@@ -1,12 +1,9 @@
 version: 1
 problem_id: technical-translation
-model: sonnet-5
+model: sonnet
 agent: claude
 reasoning_effort: high
 generated_at: 2026-09-11T14:33:46.604Z
-score: 50
-comment: ""
-evaluated_at: 2026-09-11T14:37:45.622Z
 response: |-
   1月31日のデータベース障害の事後検証
 
