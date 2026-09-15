@@ -1,0 +1,7 @@
+version: 1
+problem_id: novel-romance
+model: fable
+agent: claude
+reasoning_effort: high
+generated_at: 2026-09-15T14:56:35.240Z
+response: まず作業ディレクトリに既存の原稿があるか確認して、文体や設定に合わせて34話を書きます。
