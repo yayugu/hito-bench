@@ -1,6 +1,6 @@
 version: 1
 problem_id: short-short
-model: sonnet
+model: sonnet-5
 agent: claude
 generated_at: 2026-09-11T13:29:51.123Z
 score: 20

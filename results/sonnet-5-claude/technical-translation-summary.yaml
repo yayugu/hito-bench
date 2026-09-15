@@ -1,6 +1,6 @@
 version: 1
 problem_id: technical-translation-summary
-model: sonnet
+model: sonnet-5
 agent: claude
 reasoning_effort: high
 generated_at: 2026-09-11T14:54:59.585Z

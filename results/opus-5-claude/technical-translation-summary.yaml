@@ -1,6 +1,6 @@
 version: 1
 problem_id: technical-translation-summary
-model: opus
+model: opus-5
 agent: claude
 reasoning_effort: high
 generated_at: 2026-09-11T15:11:29.190Z

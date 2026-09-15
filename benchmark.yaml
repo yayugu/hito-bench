@@ -10,14 +10,14 @@ runners:
     provider: venice/bf16
     timeout_seconds: 600
 
-  - id: gemma-4-26b-a4b-it
-    adapter: openai-compatible
-    model: google/gemma-4-26b-a4b-it
-    reasoning_effort: medium
-    endpoint: https://openrouter.ai/api/v1/chat/completions
-    api_key_env: OPENROUTER_API_KEY
-    provider: google-vertex/global
-    timeout_seconds: 600
+  # - id: gemma-4-26b-a4b-it
+  #   adapter: openai-compatible
+  #   model: google/gemma-4-26b-a4b-it
+  #   reasoning_effort: medium
+  #   endpoint: https://openrouter.ai/api/v1/chat/completions
+  #   api_key_env: OPENROUTER_API_KEY
+  #   provider: google-vertex/global
+  #   timeout_seconds: 600
 
   - id: qwen3.8-27b
     adapter: openai-compatible
@@ -37,7 +37,7 @@ runners:
 
   - id: sonnet-5-claude
     adapter: claude
-    model: sonnet
+    model: sonnet-5
     reasoning_effort: high
     timeout_seconds: 600
 
@@ -77,23 +77,23 @@ runners:
     provider: meta
     timeout_seconds: 600
 
-  # - id: hy4-preview
-  #   adapter: openai-compatible
-  #   model: tencent/hy4-preview
-  #   reasoning_effort: medium
-  #   endpoint: https://openrouter.ai/api/v1/chat/completions
-  #   api_key_env: OPENROUTER_API_KEY
-  #   provider: tencent/fp8
-  #   timeout_seconds: 600
+  - id: hy4-preview
+    adapter: openai-compatible
+    model: tencent/hy4-preview
+    reasoning_effort: medium
+    endpoint: https://openrouter.ai/api/v1/chat/completions
+    api_key_env: OPENROUTER_API_KEY
+    provider: tencent/fp8
+    timeout_seconds: 600
 
-  # - id: mimo-v2.5
-  #   adapter: openai-compatible
-  #   model: xiaomi/mimo-v2.5
-  #   reasoning_effort: medium
-  #   endpoint: https://openrouter.ai/api/v1/chat/completions
-  #   api_key_env: OPENROUTER_API_KEY
-  #   provider: xiaomi/fp8
-  #   timeout_seconds: 600
+  - id: mimo-v2.5
+    adapter: openai-compatible
+    model: xiaomi/mimo-v2.5
+    reasoning_effort: medium
+    endpoint: https://openrouter.ai/api/v1/chat/completions
+    api_key_env: OPENROUTER_API_KEY
+    provider: xiaomi/fp8
+    timeout_seconds: 600
 
   # High
   - id: gpt-5.6-sol-codex
@@ -104,24 +104,30 @@ runners:
 
   - id: opus-5-claude
     adapter: claude
-    model: opus
+    model: opus-5
     reasoning_effort: high
     timeout_seconds: 600
 
-  # - id: kimi-k3
-  #   adapter: openai-compatible
-  #   model: moonshotai/kimi-k3
-  #   reasoning_effort: medium
-  #   endpoint: https://openrouter.ai/api/v1/chat/completions
-  #   api_key_env: OPENROUTER_API_KEY
-  #   provider: moonshotai/mxfp4
-  #   timeout_seconds: 600
+  - id: kimi-k3
+    adapter: openai-compatible
+    model: moonshotai/kimi-k3
+    reasoning_effort: medium
+    endpoint: https://openrouter.ai/api/v1/chat/completions
+    api_key_env: OPENROUTER_API_KEY
+    provider: moonshotai/mxfp4
+    timeout_seconds: 600
 
   # Frontier
   - id: gpt-6-astra-codex
     adapter: codex
     model: gpt-6-astra
     reasoning_effort: medium
+    timeout_seconds: 600
+
+  - id: fable-5.1-claude
+    adapter: claude
+    model: fable-5.1
+    reasoning_effort: high
     timeout_seconds: 600
 
   # - id: example-model-rest

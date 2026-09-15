@@ -3,6 +3,47 @@ title: 技術翻訳
 # 出典: GitLab "Postmortem of database outage of January 31" (2017-02-10)
 #   https://about.gitlab.com/blog/2017/02/10/postmortem-of-database-outage-of-january-31/
 #   訳しにくい箇所を中心に抜粋・再構成した抄録（[...] は中略を示す）。原文は約4,200語、本文は約690語。
+kijun: |-
+  長いので、不適切になりやすい箇所ごとにわけて配点方式とした
+
+  読みやすさの体感
+  0: 昔のMicrosoftのリファレンスのような絶望的な機械翻訳
+  50: 日本語母語話者が書いたように見える
+
+  > The outage was caused by an accidental removal of data from our primary database server.
+  NG: 偶発的な削除
+  OK: 誤って削除した
+  10点: 致命的な誤訳
+
+  > One of the engineers went to the secondary ...
+  NG: エンジニアの一人がセカンダリに行き/移動して...
+  OK: エンジニアの一人がセカンダリに接続して/アクセスして
+  5点
+  
+  > pg_basebackup will wait for the primary to start sending over replication data and it will sit and wait silently until that time. 
+  NG: それは静かに/黙って
+  OK: 何も出力せずに
+  5点
+
+  > While notifications are enabled for any cronjobs that error, these notifications are sent by email.
+  NG: cronジョブでエラーが発生した場合の通知は有効になっていましたが、通知はメールで送信されます。
+  OK: cronジョブでエラーが発生した場合の通知は有効になっていましたが、その手段はメールでした。
+  5点: 逆接が極端に不自然になりやすい
+
+  > Why did the backup procedure fail silently?
+  NG: なぜバックアップ手順は静か/密かに失敗したのか?
+  OK: なぜバックアップ処理の失敗が通知されなかったのか
+  5点: procedure: 処理
+  10点: silently: 通知されることなく
+  5点:「通知されずに失敗」ではなく「失敗が通知されない」という表現になっている
+
+  > We'll break up the incident into 2 main problems: GitLab.com being down, and it taking a long time to restore GitLab.com.
+  この":"は日本語では存在しない用法なので、消してあること
+  10点
+  
+  減点:
+    - 中国語の文字が混入している
+
 prompt: |
   以下の文章を日本語に訳してください。翻訳結果だけ出力すること
   ---
