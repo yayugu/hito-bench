@@ -3,12 +3,15 @@ problem_id: sangoku
 model: tencent/hy4-preview
 reasoning_effort: medium
 generated_at: 2026-09-15T13:21:38.520Z
-score: 65
+score: 75
 comment: |-
   エンターテイメントであることを理解している
 
   > 青龍偃月刀（せいりゅうえんげつとう）
   ふりがながある（加点）
+
+  > 赫赫たる閃き
+  よめないけど、かっこいいのでよし
 
   !が多すぎて稚拙
 evaluated_at: 2026-09-15T15:43:29.771Z

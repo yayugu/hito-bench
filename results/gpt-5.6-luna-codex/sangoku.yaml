@@ -4,9 +4,9 @@ model: gpt-5.6-luna
 agent: codex
 reasoning_effort: medium
 generated_at: 2026-09-15T13:14:13.923Z
-score: 25
+score: 30
 comment: |-
-  エンターテインメント性がない
+  エンターテインメント性があまりない
 
   読みやすい（加点）
 evaluated_at: 2026-09-15T15:46:20.675Z
