@@ -3,10 +3,13 @@ problem_id: short-short
 model: google/gemma-4-31b-it
 reasoning_effort: medium
 generated_at: 2026-09-12T13:54:38.081Z
-score: 50
+score: 45
 comment: |-
   意味は通る
   「ショッピングサイト+南アメリカの密林」のありきたりすぎる組み合わせ
+
+  > ...予測配送でお届けします
+  展開が不自然で説明的すぎる
 evaluated_at: 2026-09-16T07:40:46.737Z
 response: |-
   「完璧なサバイバル」
