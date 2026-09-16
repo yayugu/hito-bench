@@ -6,6 +6,7 @@
   "scripts": {
     "generate": "bun run src/generate.ts",
     "serve": "bun run src/server.ts",
+    "build:site": "bun run site/build.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

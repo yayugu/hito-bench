@@ -1,0 +1,197 @@
+# HitoBench — モデル価格表（手動メンテ）
+#
+# ここは事前に取得した価格を書き置きしておくファイル。ビルド時にネットへは出ない。
+#
+# 取得方針:
+#   - 大手三社（Anthropic / OpenAI / Google）は各社の公式 API 料金
+#   - それ以外は OpenRouter の、benchmark.yaml で指定している provider の
+#     長期 effective price（期間限定の割引・プロモを含まない定価）
+#
+# unit: USD / 1M tokens
+# fetched_at: 2026-09-16
+
+version: 1
+fetched_at: "2026-09-16"
+currency: USD
+unit: per_1m_tokens
+
+# 1回答あたりのコスト推定に使う係数。
+# トークン数はログに残していないので、実際の入出力テキストの文字数から推定する。
+# ASCII はおおよそ 4 文字 / token、日本語などの非 ASCII は 1 文字 ≒ 0.9 token。
+token_estimate:
+  ascii_chars_per_token: 4.0
+  wide_tokens_per_char: 0.9
+  # reasoning / thinking トークンは記録していないため推定に含まれない（＝下振れ）。
+  includes_reasoning: false
+
+models:
+  # ---- Anthropic (公式 API 料金) ----
+  - id: fable-5.1-claude
+    label: Claude Fable 5.1
+    creator: Anthropic
+    price_source: anthropic
+    source_url: https://claude.com/pricing
+    input: 10.00
+    output: 50.00
+
+  - id: fable-5-claude
+    label: Claude Fable 5
+    creator: Anthropic
+    price_source: anthropic
+    source_url: https://claude.com/pricing
+    input: 10.00
+    output: 50.00
+
+  - id: opus-5-claude
+    label: Claude Opus 5
+    creator: Anthropic
+    price_source: anthropic
+    source_url: https://claude.com/pricing
+    input: 5.00
+    output: 25.00
+
+  - id: sonnet-5-claude
+    label: Claude Sonnet 5
+    creator: Anthropic
+    price_source: anthropic
+    source_url: https://claude.com/pricing
+    input: 2.00
+    output: 10.00
+
+  # ---- OpenAI (公式 API 料金 / short context の standard tier) ----
+  - id: gpt-6-astra-codex
+    label: GPT-6 Astra
+    creator: OpenAI
+    price_source: openai
+    source_url: https://developers.openai.com/api/docs/pricing
+    input: 10.00
+    output: 50.00
+
+  - id: gpt-5.6-sol-codex
+    label: GPT-5.6 Sol
+    creator: OpenAI
+    price_source: openai
+    source_url: https://developers.openai.com/api/docs/pricing
+    input: 4.00
+    output: 20.00
+    note: 2026-11-21 まではプロモ価格あり
+
+  - id: gpt-5.6-luna-codex
+    label: GPT-5.6 Luna
+    creator: OpenAI
+    price_source: openai
+    source_url: https://developers.openai.com/api/docs/pricing
+    input: 0.20
+    output: 1.20
+
+  # ---- Google (公式 API 料金) ----
+  - id: gemini-3.8-flash-medium
+    label: Gemini 3.8 Flash
+    creator: Google
+    price_source: google
+    source_url: https://ai.google.dev/gemini-api/docs/pricing
+    input: 0.75
+    output: 3.75
+    note: 2026-12-31 までの価格。2027-01-01 以降は $1.50 / $7.50
+
+  - id: gemini-3.8-flash-medium-agy
+    label: Gemini 3.8 Flash (agy)
+    creator: Google
+    price_source: google
+    source_url: https://ai.google.dev/gemini-api/docs/pricing
+    input: 0.75
+    output: 3.75
+    note: 2026-12-31 までの価格。2027-01-01 以降は $1.50 / $7.50
+
+  # ---- OpenRouter (benchmark.yaml で指定した provider の定価) ----
+  - id: kimi-k3
+    label: Kimi K3
+    creator: Moonshot AI
+    price_source: openrouter
+    openrouter_slug: moonshotai/kimi-k3
+    openrouter_provider: moonshotai/mxfp4
+    source_url: https://openrouter.ai/moonshotai/kimi-k3
+    input: 3.00
+    output: 15.00
+
+  - id: hy4-preview
+    label: Hy4 Preview
+    creator: Tencent
+    price_source: openrouter
+    openrouter_slug: tencent/hy4-preview
+    openrouter_provider: tencent/fp8
+    source_url: https://openrouter.ai/tencent/hy4-preview
+    input: 0.834
+    output: 2.501
+
+  - id: qwen3.8-27b
+    label: Qwen3.8 27B
+    creator: Alibaba
+    price_source: openrouter
+    openrouter_slug: qwen/qwen3.8-27b
+    openrouter_provider: alibaba
+    source_url: https://openrouter.ai/qwen/qwen3.8-27b
+    input: 0.425
+    output: 2.55
+
+  - id: deepseek-v4.1-flash
+    label: DeepSeek V4.1 Flash
+    creator: DeepSeek
+    price_source: openrouter
+    openrouter_slug: deepseek/deepseek-v4.1-flash
+    openrouter_provider: deepseek
+    source_url: https://openrouter.ai/deepseek/deepseek-v4.1-flash
+    input: 0.15
+    output: 0.60
+    note: off-peak 定価。UTC 01-04 / 06-10 の平日ピーク帯は $0.30 / $1.20
+
+  - id: glm-5.3-flash
+    label: GLM 5.3 Flash
+    creator: Z.ai
+    price_source: openrouter
+    openrouter_slug: z-ai/glm-5.3-flash
+    openrouter_provider: z-ai/fp8
+    source_url: https://openrouter.ai/z-ai/glm-5.3-flash
+    input: 0.15
+    output: 0.50
+
+  - id: gemma-4-26b-a4b-it
+    label: Gemma 4 26B A4B
+    creator: Google
+    price_source: openrouter
+    openrouter_slug: google/gemma-4-26b-a4b-it
+    openrouter_provider: google-vertex/global
+    source_url: https://openrouter.ai/google/gemma-4-26b-a4b-it
+    input: 0.15
+    output: 0.60
+
+  - id: gemma-4-31b-it
+    label: Gemma 4 31B
+    creator: Google
+    price_source: openrouter
+    openrouter_slug: google/gemma-4-31b-it
+    openrouter_provider: venice/bf16
+    source_url: https://openrouter.ai/google/gemma-4-31b-it
+    input: 0.12
+    output: 0.36
+
+  - id: mimo-v2.5
+    label: MiMo V2.5
+    creator: Xiaomi
+    price_source: openrouter
+    openrouter_slug: xiaomi/mimo-v2.5
+    openrouter_provider: xiaomi/fp8
+    source_url: https://openrouter.ai/xiaomi/mimo-v2.5
+    input: 0.14
+    output: 0.28
+
+  - id: muse-spark-1.3
+    label: Muse Spark 1.3
+    creator: Meta
+    price_source: openrouter
+    openrouter_slug: meta/muse-spark-1.3-contributor
+    openrouter_provider: meta
+    source_url: https://openrouter.ai/meta/muse-spark-1.3-contributor
+    input: 0.10
+    output: 0.20
+    note: benchmark.yaml が request_model に指定している contributor 版の価格

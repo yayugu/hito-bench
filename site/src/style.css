@@ -1,0 +1,434 @@
+:root {
+  color-scheme: light;
+
+  /* surfaces & ink (dataviz reference palette) */
+  --page: #f9f9f7;
+  --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --grid: #e1e0d9;
+  --border: rgba(11, 11, 11, 0.1);
+
+  /* アクセント・注釈用。棒と点の色は会社ごとに colors.ts から入る */
+  --accent: #3b7ded;
+  --annotation: #52514e; /* パレート最適ライン */
+  --zone: #1baf7a; /* コスパ良いゾーンの塗り */
+
+  --font: system-ui, -apple-system, "Segoe UI", "Hiragino Kaku Gothic ProN",
+    "Noto Sans JP", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--text-primary);
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.7;
+  -webkit-text-size-adjust: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration-color: var(--border);
+  text-underline-offset: 2px;
+}
+
+a:hover {
+  text-decoration-color: currentColor;
+}
+
+.wrap {
+  width: min(1040px, 100% - 32px);
+  margin: 0 auto;
+  padding: 40px 0 96px;
+}
+
+/* ---------- header ---------- */
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin: -18px 0 8px;
+  color: var(--text-secondary);
+  font-size: 12.5px;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+}
+
+.swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  flex: none;
+  border-radius: 3px;
+}
+
+.col-model .swatch {
+  margin-right: 8px;
+  vertical-align: baseline;
+}
+
+.site-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 6px 0 10px;
+  font-size: clamp(28px, 5vw, 40px);
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.lede {
+  max-width: 62ch;
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.head-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.btn {
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-1);
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: 13px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  color: var(--text-primary);
+}
+
+/* ---------- sections ---------- */
+
+section {
+  margin-top: 56px;
+}
+
+.sec-head {
+  margin-bottom: 20px;
+}
+
+h2 {
+  margin: 0;
+  font-size: clamp(19px, 3vw, 23px);
+  letter-spacing: -0.02em;
+}
+
+h2 .num {
+  margin-right: 10px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+}
+
+.sec-head p {
+  max-width: 68ch;
+  margin: 6px 0 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.card {
+  padding: 20px 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface-1);
+}
+
+.chart-scroll {
+  overflow-x: auto;
+}
+
+.chart {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  min-width: 660px;
+  margin: 0 auto;
+}
+
+.scatter {
+  min-width: 720px;
+}
+
+/* ---------- svg chart primitives ---------- */
+
+.grid {
+  stroke: var(--grid);
+  stroke-width: 1;
+}
+
+.tick {
+  fill: var(--text-muted);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.axis-title {
+  fill: var(--text-secondary);
+  font-size: 12px;
+}
+
+.bar-hit {
+  fill: transparent;
+}
+
+.bar-row {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.bar-label {
+  font-size: 12.5px;
+  fill: var(--text-secondary);
+}
+
+.bar-value {
+  font-size: 12px;
+  font-weight: 600;
+  fill: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.bar-row:hover .bar-hit,
+.bar-row:focus-visible .bar-hit {
+  fill: color-mix(in oklab, var(--accent) 9%, transparent);
+}
+
+.bar-row:hover .bar-label,
+.bar-row:focus-visible .bar-label {
+  fill: var(--text-primary);
+}
+
+.bar-row:focus-visible,
+.dot-row:focus-visible {
+  outline: none;
+}
+
+/* scatter */
+
+.quadrant rect {
+  fill: color-mix(in oklab, var(--zone) 10%, transparent);
+}
+
+.quadrant text {
+  fill: var(--text-secondary);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.pareto path {
+  fill: none;
+  stroke: var(--annotation);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.pareto-key {
+  stroke-linecap: round;
+}
+
+.pareto text {
+  fill: var(--annotation);
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.dot {
+  stroke: var(--surface-1);
+  stroke-width: 2;
+}
+
+.dot-label {
+  fill: var(--text-secondary);
+  font-size: 11.5px;
+  pointer-events: none;
+}
+
+.leader {
+  stroke: var(--grid);
+  stroke-width: 1;
+}
+
+.dot-row:hover .leader,
+.dot-row:focus-visible .leader {
+  stroke: var(--text-muted);
+}
+
+.dot-row:hover .dot,
+.dot-row:focus-visible .dot {
+  r: 7;
+}
+
+.dot-row:hover .dot-label,
+.dot-row:focus-visible .dot-label {
+  fill: var(--text-primary);
+  font-weight: 600;
+}
+
+/* ---------- tooltip ---------- */
+
+#tip {
+  position: fixed;
+  z-index: 20;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-1);
+  color: var(--text-primary);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.14);
+  font-size: 12.5px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+
+#tip[data-show="1"] {
+  opacity: 1;
+}
+
+/* ---------- table ---------- */
+
+.table-scroll {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface-1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+th,
+td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--grid);
+  text-align: right;
+  white-space: nowrap;
+}
+
+th {
+  position: sticky;
+  top: 0;
+  background: var(--surface-1);
+  color: var(--text-muted);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  vertical-align: bottom;
+}
+
+th a {
+  color: inherit;
+}
+
+tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+tbody tr:hover td {
+  background: color-mix(in oklab, var(--accent) 6%, transparent);
+}
+
+.col-rank {
+  width: 1%;
+  color: var(--text-muted);
+}
+
+.col-model,
+.col-creator {
+  text-align: left;
+}
+
+.col-model {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.col-score {
+  font-weight: 600;
+}
+
+.dim {
+  color: var(--text-muted);
+}
+
+/* ---------- notes / footer ---------- */
+
+.notes {
+  margin-top: 56px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.notes h2 {
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.notes ul {
+  margin: 0;
+  padding-left: 1.3em;
+}
+
+.notes li {
+  margin-bottom: 4px;
+}
+
+.foot {
+  margin-top: 32px;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+@media (max-width: 640px) {
+  .wrap {
+    width: calc(100% - 32px);
+  }
+  body {
+    font-size: 14px;
+  }
+}

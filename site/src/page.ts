@@ -1,0 +1,241 @@
+import type { Dataset } from "./data";
+import { REPO_URL } from "./data";
+import { creatorColor } from "./colors";
+import {
+  esc,
+  fmtCost,
+  overallBarChart,
+  problemBarChart,
+  scatterChart,
+} from "./charts";
+
+const fmtScore = (n: number) => (Number.isInteger(n) ? String(n) : n.toFixed(1));
+
+export function renderPage(data: Dataset, css: string): string {
+  const { problems, models, pricing } = data;
+  const anyIncomplete = models.some((m) => !m.complete);
+
+  // 凡例は「モデル数が多い会社」から並べる
+  const byCreator = new Map<string, number>();
+  for (const m of models) byCreator.set(m.creator, (byCreator.get(m.creator) ?? 0) + 1);
+  const creators = [...byCreator.entries()]
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .map(([c]) => c);
+
+  const problemSections = problems
+    .map(
+      (p, i) => `<section id="problem-${esc(p.id)}">
+  <div class="sec-head">
+    <h2><span class="num">${i + 3}</span><a href="${esc(
+      p.githubUrl,
+    )}" target="_blank" rel="noopener">${esc(p.title)}</a></h2>
+  </div>
+  <div class="card">${problemBarChart(models, p.id)}</div>
+</section>`,
+    )
+    .join("\n");
+
+  return `<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HitoBench</title>
+<meta name="description" content="人間が官能評価で判定する日本語LLMベンチマーク HitoBench の結果">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="data:image/svg+xml,${encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><text y="13" font-size="14">人</text></svg>',
+  )}">
+<style>
+${css}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="site-head">
+  <div>
+    <span class="eyebrow">HITO BENCH</span>
+    <h1>自然な日本語LLMベンチマーク</h1>
+    <p class="lede">人間が官能評価（＝好み）で日本語の表現力と自然さを判定するベンチマークです。${
+      problems.length
+    }問 × ${models.length}モデル。100点を目安にした自由採点で、二重盲検（採点時はモデル名非表示）。</p>
+  </div>
+  <div class="head-actions">
+    <a class="btn" href="${REPO_URL}" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</header>
+
+<div class="legend">
+  ${creators
+    .map(
+      (c) =>
+        `<span class="legend-item"><span class="swatch" style="background:${creatorColor(
+          c,
+        )}"></span>${esc(c)}</span>`,
+    )
+    .join("\n  ")}
+</div>
+
+<section id="overall">
+  <div class="sec-head">
+    <h2><span class="num">1</span>総合スコア</h2>
+  </div>
+  <div class="card">${overallBarChart(models)}</div>
+</section>
+
+<section id="cost">
+  <div class="sec-head">
+    <h2><span class="num">2</span>スコアとコストパフォーマンス</h2>
+  </div>
+  <div class="card">${scatterChart(models)}</div>
+</section>
+
+${problemSections}
+
+<section id="table">
+  <div class="sec-head">
+    <h2><span class="num">${problems.length + 3}</span>全結果</h2>
+  </div>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th class="col-rank">#</th>
+          <th class="col-model">モデル</th>
+          <th class="col-creator">提供元</th>
+          <th class="col-score">総合</th>
+          <th>コスト/問</th>
+          <th>入力 $/1M</th>
+          <th>出力 $/1M</th>
+          <th class="col-creator">価格出典</th>
+          ${problems
+            .map(
+              (p) =>
+                `<th><a href="${esc(p.githubUrl)}" target="_blank" rel="noopener">${esc(
+                  p.title,
+                )}</a></th>`,
+            )
+            .join("\n          ")}
+        </tr>
+      </thead>
+      <tbody>
+        ${models
+          .map(
+            (m, i) => `<tr>
+          <td class="col-rank">${i + 1}</td>
+          <td class="col-model"><span class="swatch" style="background:${creatorColor(
+            m.creator,
+          )}"></span><a href="${esc(m.githubUrl)}" target="_blank" rel="noopener">${esc(
+              m.label,
+            )}</a>${m.complete ? "" : '<span class="dim">*</span>'}</td>
+          <td class="col-creator dim">${esc(m.creator)}</td>
+          <td class="col-score">${fmtScore(m.score)}</td>
+          <td>${fmtCost(m.costPerTask)}</td>
+          <td class="dim">$${m.price.input.toFixed(2)}</td>
+          <td class="dim">$${m.price.output.toFixed(2)}</td>
+          <td class="col-creator dim"><a href="${esc(
+            m.price.source_url,
+          )}" target="_blank" rel="noopener">${esc(
+              sourceLabel(m.price.price_source),
+            )}</a></td>
+          ${problems
+            .map((p) => {
+              const cell = m.cells.get(p.id);
+              if (!cell) return `<td class="dim">–</td>`;
+              return `<td><a href="${esc(
+                cell.githubUrl,
+              )}" target="_blank" rel="noopener">${fmtScore(cell.score)}</a></td>`;
+            })
+            .join("\n          ")}
+        </tr>`,
+          )
+          .join("\n        ")}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="notes">
+  <h2>このページについて</h2>
+  <ul>
+    <li>ここに出しているのは<strong>問題のタイトル</strong>と<strong>各モデルの点数</strong>だけです。問題文・狙い・採点基準・回答本文・講評はすべて <a href="${REPO_URL}" target="_blank" rel="noopener">GitHub のレポジトリ</a> にあります。</li>
+    <li>点数は100点を目安にした自由採点で、採点者は1人（レポジトリのオーナー）です。評価はぶれます。</li>
+    <li>コストは1問あたりの推定額です。実行時のトークン数は記録していないため、実際の入力プロンプトと回答本文の文字数からトークン数を推定して計算しています（ASCII ${
+      pricing.token_estimate.ascii_chars_per_token
+    }文字 = 1 token、それ以外 1文字 = ${
+      pricing.token_estimate.wide_tokens_per_char
+    } token）。<strong>reasoning / thinking トークンは含みません</strong>ので、推論を回すモデルでは実額より安く出ます。</li>
+    <li>単価は大手三社（Anthropic / OpenAI / Google）は各社の公式 API 料金、それ以外は OpenRouter で <code>benchmark.yaml</code> に指定している provider の長期 effective price（期間限定の割引を含まない定価）です。取得日 ${esc(
+      pricing.fetched_at,
+    )}。生データは <a href="${REPO_URL}/blob/main/site/pricing.yaml" target="_blank" rel="noopener"><code>site/pricing.yaml</code></a>。</li>
+    ${
+      anyIncomplete
+        ? `<li><code>*</code> のモデルは一部の問題が未実施です。総合スコアは実施済みの問題だけの平均なので、他モデルと直接は比べられません。</li>`
+        : ""
+    }
+  </ul>
+  <p class="foot">Generated ${esc(data.generatedAt.slice(0, 10))} · <a href="${REPO_URL}" target="_blank" rel="noopener">github.com/yayugu/hito-bench</a></p>
+</div>
+
+</div>
+<div id="tip" role="status"></div>
+<script>
+${clientScript()}
+</script>
+</body>
+</html>
+`;
+}
+
+function sourceLabel(src: string): string {
+  switch (src) {
+    case "anthropic":
+      return "Anthropic";
+    case "openai":
+      return "OpenAI";
+    case "google":
+      return "Google";
+    default:
+      return "OpenRouter";
+  }
+}
+
+function clientScript(): string {
+  return `
+(function () {
+  var tip = document.getElementById("tip");
+
+  function show(text, x, y) {
+    tip.textContent = text;
+    tip.dataset.show = "1";
+    var r = tip.getBoundingClientRect();
+    var left = Math.min(Math.max(8, x + 14), window.innerWidth - r.width - 8);
+    var top = Math.max(8, y - r.height - 12);
+    tip.style.left = left + "px";
+    tip.style.top = top + "px";
+  }
+
+  function hide() {
+    tip.dataset.show = "0";
+  }
+
+  document.addEventListener("pointermove", function (e) {
+    var host = e.target.closest ? e.target.closest("[data-tip]") : null;
+    if (host) show(host.dataset.tip, e.clientX, e.clientY);
+    else hide();
+  });
+
+  document.addEventListener("pointerleave", hide);
+
+  document.addEventListener("focusin", function (e) {
+    var host = e.target.closest ? e.target.closest("[data-tip]") : null;
+    if (!host) return hide();
+    var r = host.getBoundingClientRect();
+    show(host.dataset.tip, r.left + r.width / 2, r.top);
+  });
+  document.addEventListener("focusout", hide);
+
+})();
+`;
+}
