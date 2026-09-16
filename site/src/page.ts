@@ -83,8 +83,6 @@ export function renderPage(data: Dataset, css: string): string {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AIが出力する日本語の自然さを比較 HitoBench</title>
-<meta name="description" content="AIが出力する日本語の自然さを人間の官能評価で比較するベンチマーク HitoBench の結果">
-<meta name="color-scheme" content="light">
 <link rel="icon" href="data:image/svg+xml,${encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><text y="13" font-size="14">人</text></svg>',
   )}">
@@ -99,9 +97,7 @@ ${brandSymbols()}
 <header class="site-head">
   <div>
     <h1>AIが出力する日本語の自然さを比較 HitoBench</h1>
-    <p class="lede">人間が官能評価（＝好み）で日本語の表現力と自然さを判定するベンチマークです。${
-      problems.length
-    }問 × ${models.length}モデル。100点を目安にした自由採点で、二重盲検（採点時はモデル名非表示）。</p>
+    <p class="lede">LLMが生成した日本語の表現力と自然さを判定するベンチマークです。問題やお題を出して人間がていねいに採点しています。採点時はどのモデルの出力かを知らない状態で実施しました。100点満点。</p>
   </div>
   <div class="head-actions">
     <a class="btn" href="${REPO_URL}" target="_blank" rel="noopener">GitHub</a>
@@ -201,22 +197,12 @@ ${problemSections}
 <div class="notes">
   <h2>このページについて</h2>
   <ul>
-    <li>ここに出しているのは<strong>問題のタイトル</strong>と<strong>各モデルの点数</strong>だけです。問題文・狙い・採点基準・回答本文・講評はすべて <a href="${REPO_URL}" target="_blank" rel="noopener">GitHub のレポジトリ</a> にあります。</li>
-    <li>点数は100点を目安にした自由採点で、採点者は1人（レポジトリのオーナー）です。評価はぶれます。</li>
-    <li>全結果の表では、各スコア列の最高点を<span class="chip best">緑</span>、最低点を<span class="chip worst">赤</span>の背景で強調しています（同点はすべて）。</li>
     <li>コストは1問あたりの推定額です。実行時のトークン数は記録していないため、実際の入力プロンプトと回答本文の文字数からトークン数を推定して計算しています（ASCII ${
       pricing.token_estimate.ascii_chars_per_token
     }文字 = 1 token、それ以外 1文字 = ${
       pricing.token_estimate.wide_tokens_per_char
     } token）。<strong>reasoning / thinking トークンは含みません</strong>ので、推論を回すモデルでは実額より安く出ます。</li>
-    <li>単価は大手三社（Anthropic / OpenAI / Google）は各社の公式 API 料金、それ以外は OpenRouter で <code>benchmark.yaml</code> に指定している provider の長期 effective price（期間限定の割引を含まない定価）です。取得日 ${esc(
-      pricing.fetched_at,
-    )}。生データは <a href="${REPO_URL}/blob/main/site/pricing.yaml" target="_blank" rel="noopener"><code>site/pricing.yaml</code></a>。</li>
-    ${
-      anyIncomplete
-        ? `<li><code>*</code> のモデルは一部の問題が未実施です。総合スコアは実施済みの問題だけの平均なので、他モデルと直接は比べられません。</li>`
-        : ""
-    }
+    <li>単価は大手三社（Anthropic / OpenAI / Google）は各社の公式 API 料金、それ以外は OpenRouter で <code>benchmark.yaml</code> に指定している provider の長期 effective price（期間限定の割引を含まない定価）です。</li>
   </ul>
   <p class="foot">Generated ${esc(data.generatedAt.slice(0, 10))} · <a href="${REPO_URL}" target="_blank" rel="noopener">github.com/yayugu/hito-bench</a></p>
 </div>
