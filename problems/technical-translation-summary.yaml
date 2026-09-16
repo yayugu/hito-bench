@@ -1,5 +1,5 @@
 id: technical-translation-summary
-title: 要約
+title: 技術的な英文を要約
 # https://cursor.com/ja/blog/git-at-any-scale
 nerai: LLMは切り捨てることが苦手である。要約を頼んでも総花的で霞が関のポンチ絵になりがち。長く専門的な技術文章から本質的に書かれていることを取り出して、本文を読まなくても要旨が理解できるかを測定する
 kijun: |-
