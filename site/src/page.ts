@@ -36,6 +36,34 @@ export function renderPage(data: Dataset, css: string): string {
     .filter((c) => CREATOR_COLORS[c] === undefined)
     .sort();
 
+  // 表の各スコア列で最高点・最低点を出しておく（同点はすべて強調する）
+  const extremes = new Map<string, { best: number; worst: number }>();
+  const track = (key: string, values: number[]) => {
+    if (values.length > 1) {
+      extremes.set(key, { best: Math.max(...values), worst: Math.min(...values) });
+    }
+  };
+  track(
+    "overall",
+    models.map((m) => m.score),
+  );
+  for (const problem of problems) {
+    track(
+      problem.id,
+      models.flatMap((m) => {
+        const cell = m.cells.get(problem.id);
+        return cell ? [cell.score] : [];
+      }),
+    );
+  }
+  const rank = (key: string, value: number): string => {
+    const e = extremes.get(key);
+    if (!e || e.best === e.worst) return "";
+    if (value === e.best) return " best";
+    if (value === e.worst) return " worst";
+    return "";
+  };
+
   const problemSections = problems
     .map(
       (p, i) => `<section id="problem-${esc(p.id)}">
@@ -144,14 +172,14 @@ ${problemSections}
           )}" target="_blank" rel="noopener">${esc(m.label)}</a>${
               m.complete ? "" : '<span class="dim">*</span>'
             }</td>
-          <td class="col-score">${fmtScore(m.score)}</td>
+          <td class="col-score${rank("overall", m.score)}">${fmtScore(m.score)}</td>
           ${problems
             .map((p) => {
               const cell = m.cells.get(p.id);
               if (!cell) return `<td class="dim">–</td>`;
-              return `<td><a href="${esc(
-                cell.githubUrl,
-              )}" target="_blank" rel="noopener">${fmtScore(cell.score)}</a></td>`;
+              return `<td class="${rank(p.id, cell.score).trim()}">${fmtScore(
+                cell.score,
+              )}</td>`;
             })
             .join("\n          ")}
           <td class="col-price col-price-start">${fmtCost(m.costPerTask)}</td>
@@ -175,6 +203,7 @@ ${problemSections}
   <ul>
     <li>ここに出しているのは<strong>問題のタイトル</strong>と<strong>各モデルの点数</strong>だけです。問題文・狙い・採点基準・回答本文・講評はすべて <a href="${REPO_URL}" target="_blank" rel="noopener">GitHub のレポジトリ</a> にあります。</li>
     <li>点数は100点を目安にした自由採点で、採点者は1人（レポジトリのオーナー）です。評価はぶれます。</li>
+    <li>全結果の表では、各スコア列の最高点を<span class="chip best">緑</span>、最低点を<span class="chip worst">赤</span>の背景で強調しています（同点はすべて）。</li>
     <li>コストは1問あたりの推定額です。実行時のトークン数は記録していないため、実際の入力プロンプトと回答本文の文字数からトークン数を推定して計算しています（ASCII ${
       pricing.token_estimate.ascii_chars_per_token
     }文字 = 1 token、それ以外 1文字 = ${

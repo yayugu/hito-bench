@@ -14,6 +14,8 @@
   --accent: #3b7ded;
   --annotation: #52514e; /* パレート最適ライン */
   --zone: #1baf7a; /* コスパ良いゾーンの塗り */
+  --good: #0ca30c; /* 表の最高点 */
+  --bad: #d03b3b; /* 表の最低点 */
 
   --font: system-ui, -apple-system, "Segoe UI", "Hiragino Kaku Gothic ProN",
     "Noto Sans JP", sans-serif;
@@ -412,6 +414,49 @@ tbody tr:hover td {
 
 .dim {
   color: var(--text-muted);
+}
+
+/* 各スコア列の最高点・最低点。背景の有無と字の太さも変えるので、
+   色だけに意味を持たせていない */
+td.best,
+td.worst {
+  font-weight: 700;
+}
+
+td.best {
+  background: color-mix(in oklab, var(--good) 14%, transparent);
+  color: #05560a;
+}
+
+/* 同点の 0 点がまとまって出る列があるので、最低点は塊に見えないよう控えめに */
+td.worst {
+  background: color-mix(in oklab, var(--bad) 6%, transparent);
+  color: #a83a3a;
+}
+
+tbody tr:hover td.best {
+  background: color-mix(in oklab, var(--good) 22%, transparent);
+}
+
+tbody tr:hover td.worst {
+  background: color-mix(in oklab, var(--bad) 13%, transparent);
+}
+
+/* 注記の中に置く色見本 */
+.chip {
+  padding: 1px 6px;
+  border-radius: 5px;
+  font-weight: 700;
+}
+
+.chip.best {
+  background: color-mix(in oklab, var(--good) 20%, transparent);
+  color: #05560a;
+}
+
+.chip.worst {
+  background: color-mix(in oklab, var(--bad) 12%, transparent);
+  color: #a83a3a;
 }
 
 /* ---------- notes / footer ---------- */
