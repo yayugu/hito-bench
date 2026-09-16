@@ -3,9 +3,9 @@ problem_id: novel-romance
 model: gemini-3.8-flash
 reasoning_effort: medium
 generated_at: 2026-09-16T13:37:57.454Z
-score: 65
+score: 75
 comment: |-
-  ベース 70
+  ベース 80
 
   おにぃ連呼 -5
 evaluated_at: 2026-09-16T13:44:32.222Z
