@@ -3,6 +3,18 @@ problem_id: novel-romance
 model: deepseek/deepseek-v4.1-flash
 reasoning_effort: medium
 generated_at: 2026-09-13T10:17:55.750Z
+score: 40
+comment: |-
+  ベース 60。ぱっと見の雰囲気は悪くない
+
+  > 新幹線の車内で舐めていたキャンディの味だったのかもしれない
+  上京後デートをしている（＝時間が経っている）というプロットを無視している。-5
+
+  "おにぃ"を連呼しすぎている -5
+
+  > 都会の夜は、まだ始まったばかりだった。
+  など全体として田舎と東京の対比を多用しすぎている。-10
+evaluated_at: 2026-09-15T15:09:40.548Z
 response: |-
   # 第三十四話　シャワーのあと
 

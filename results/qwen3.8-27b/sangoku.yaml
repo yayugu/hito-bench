@@ -3,6 +3,13 @@ problem_id: sangoku
 model: qwen/qwen3.8-27b
 reasoning_effort: medium
 generated_at: 2026-09-15T13:13:46.120Z
+score: 50
+comment: |-
+  エンターテインメント性がある程度ある
+
+  > 涿 五虎大将
+  日本の読者に馴染みのない単語・表現
+evaluated_at: 2026-09-15T15:45:25.781Z
 response: |-
   **関羽（カンウ）／前将軍・五虎大将の長**
 

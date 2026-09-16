@@ -41,12 +41,18 @@ runners:
     reasoning_effort: high
     timeout_seconds: 600
 
-  - id: gemini-3.8-flash-medium
-    adapter: openai-compatible
+  # - id: gemini-3.8-flash-medium
+  #   adapter: openai-compatible
+  #   model: gemini-3.8-flash
+  #   reasoning_effort: medium
+  #   endpoint: https://generativelanguage.googleapis.com/v1beta/openai/chat/completions
+  #   api_key_env: GEMINI_API_KEY
+  #   timeout_seconds: 600
+
+  - id: gemini-3.8-flash-medium-agy
+    adapter: agy
     model: gemini-3.8-flash
     reasoning_effort: medium
-    endpoint: https://generativelanguage.googleapis.com/v1beta/openai/chat/completions
-    api_key_env: GEMINI_API_KEY
     timeout_seconds: 600
 
   - id: glm-5.3-flash

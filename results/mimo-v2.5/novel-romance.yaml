@@ -3,6 +3,9 @@ problem_id: novel-romance
 model: xiaomi/mimo-v2.5
 reasoning_effort: medium
 generated_at: 2026-09-15T13:29:07.656Z
+score: 0
+comment: 成り立っていない
+evaluated_at: 2026-09-15T15:15:09.119Z
 response: |-
   # 第34話「シャワーのあとは…」
 

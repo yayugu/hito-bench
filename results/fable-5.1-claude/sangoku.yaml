@@ -4,6 +4,9 @@ model: fable
 agent: claude
 reasoning_effort: high
 generated_at: 2026-09-15T14:56:57.030Z
+score: 20
+comment: エンターテインメント性がない
+evaluated_at: 2026-09-15T15:45:40.938Z
 response: |-
   関羽の紹介テキストを300文字程度で作成します。
 

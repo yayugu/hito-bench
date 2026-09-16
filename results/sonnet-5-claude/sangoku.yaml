@@ -4,6 +4,9 @@ model: sonnet
 agent: claude
 reasoning_effort: high
 generated_at: 2026-09-15T13:14:38.451Z
+score: 20
+comment: エンターテインメント性がない
+evaluated_at: 2026-09-15T15:47:17.213Z
 response: |-
   三国BASARAレボリューション風の紹介テキスト案です（約300文字）。
 

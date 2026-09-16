@@ -3,6 +3,15 @@ problem_id: sangoku
 model: tencent/hy4-preview
 reasoning_effort: medium
 generated_at: 2026-09-15T13:21:38.520Z
+score: 65
+comment: |-
+  エンターテイメントであることを理解している
+
+  > 青龍偃月刀（せいりゅうえんげつとう）
+  ふりがながある（加点）
+
+  !が多すぎて稚拙
+evaluated_at: 2026-09-15T15:43:29.771Z
 response: |-
   『三国BASARAレボリューション』のゲーム内の雰囲気を意識し、派手で熱量の高いバサラ風のテキストに仕上げました。文字数も300文字前後で、義兄弟の契りから最期（神格化）までの生涯を網羅しています。
 

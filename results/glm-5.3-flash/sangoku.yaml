@@ -3,6 +3,12 @@ problem_id: sangoku
 model: z-ai/glm-5.3-flash
 reasoning_effort: medium
 generated_at: 2026-09-15T13:15:58.744Z
+score: 10
+comment: |-
+  エンターテイメント性がない
+
+  single騎千里
+evaluated_at: 2026-09-15T15:39:38.099Z
 response: |-
   # 関羽 紹介テキスト
 

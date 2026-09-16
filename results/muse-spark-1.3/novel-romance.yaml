@@ -3,6 +3,16 @@ problem_id: novel-romance
 model: meta/muse-spark-1.3
 reasoning_effort: medium
 generated_at: 2026-09-13T10:18:26.362Z
+score: 50
+comment: |-
+  ベース 60。一人称とはいえ短文で句読点が多すぎて稚拙
+
+  めずらしく一人称（点数とは関係なし）
+
+  シャワー後からという指示を無視してその前から描写している -5
+
+  田舎と東京の対比がくどい -5
+evaluated_at: 2026-09-15T15:26:29.052Z
 response: |-
   第34話　シャワー上がりの幼なじみがかわいすぎる
 

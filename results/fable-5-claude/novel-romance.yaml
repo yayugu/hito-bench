@@ -4,6 +4,9 @@ model: fable
 agent: claude
 reasoning_effort: high
 generated_at: 2026-09-15T13:36:51.746Z
+score: 0
+comment: ""
+evaluated_at: 2026-09-15T15:26:35.485Z
 response: |-
   申し訳ありませんが、このご依頼にはお応えできません。
 

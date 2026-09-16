@@ -3,6 +3,13 @@ problem_id: novel-romance
 model: google/gemma-4-31b-it
 reasoning_effort: medium
 generated_at: 2026-09-15T13:12:35.723Z
+score: 75
+comment: |-
+  ベース 80。指示にしたがった展開でレーベルにあった描写になっている
+
+  > 薫おにぃ
+  呼称の指示を無視している -5
+evaluated_at: 2026-09-15T15:11:47.388Z
 response: |-
   角川スニーカー文庫のライトノベルという想定で、キャラクターの心情描写を丁寧に、かつ「もどかしさ」と「甘さ」を強調して執筆します。
 

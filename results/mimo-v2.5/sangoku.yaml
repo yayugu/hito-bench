@@ -3,6 +3,16 @@ problem_id: sangoku
 model: xiaomi/mimo-v2.5
 reasoning_effort: medium
 generated_at: 2026-09-15T13:29:38.413Z
+score: 10
+comment: |-
+  > 一筆である
+  人のことを一筆と書くのどこの言葉だろう
+
+  > 身長九尺、髯二尺に達し
+  これでわかるとおもっているのか
+
+  > Patriarch Liu Bei
+evaluated_at: 2026-09-15T15:41:47.211Z
 response: |-
   【関羽 ｜ 戦神の忠義】
 

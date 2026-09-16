@@ -3,6 +3,9 @@ problem_id: novel-romance
 model: qwen/qwen3.8-27b
 reasoning_effort: medium
 generated_at: 2026-09-13T10:20:50.113Z
+score: 30
+comment: 短文や句読点が連続しすぎていて非常に稚拙に見える。意味のない「…………」
+evaluated_at: 2026-09-15T15:31:21.919Z
 response: |-
   # 34話：シャワーのあと
 
