@@ -59,12 +59,19 @@ function symbolId(creator: string): string {
   return `brand-${creator.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
 }
 
-/** SVG チャートの中に置くロゴ。ロゴが無い会社は色付きの小さな四角 */
+/**
+ * SVG チャートの中に置くロゴ。ロゴが無い会社は色付きの小さな四角。
+ *
+ * `inlinePath` を true にすると <use> 参照ではなくパスを直接埋める。
+ * README 用の単体 SVG は <symbol> を持たないうえ、GitHub のサニタイズで
+ * <use> が落ちる可能性があるため。
+ */
 export function brandMarkSvg(
   creator: string,
   x: number,
   y: number,
   size: number,
+  inlinePath = false,
 ): string {
   const color = creatorColor(creator);
   if (!hasBrandIcon(creator)) {
@@ -76,6 +83,12 @@ export function brandMarkSvg(
     ).toFixed(1)}" height="${(size - inset * 2).toFixed(1)}" rx="${r.toFixed(
       1,
     )}" fill="${color}"/>`;
+  }
+  if (inlinePath) {
+    const k = size / 24;
+    return `<path transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(${k.toFixed(
+      4,
+    )})" fill="${color}" d="${BRAND_PATHS[creator]}"/>`;
   }
   return `<use href="#${symbolId(creator)}" x="${x.toFixed(1)}" y="${y.toFixed(
     1,

@@ -1,5 +1,7 @@
 # AIが出力する日本語の自然さを比較 HitoBench
 
+<img src="site/overall-score.svg" alt="HitoBench 総合スコア" width="100%">
+
 ### これは何？
 
 人間が官能評価（＝好み）で判定するLLMのベンチマークです。

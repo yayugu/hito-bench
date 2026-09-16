@@ -3,12 +3,23 @@
 `problems/` と `results/` と `site/pricing.yaml` から、1枚もののHTML（画像も外部JSもなし）を生成します。
 
 ```bash
-bun run build:site            # -> site/dist/index.html
-bun run site/build.ts --out docs   # 出力先を変えたいとき
+bun run build:site            # -> site/dist/index.html と site/overall-score.svg
+bun run site/build.ts --out docs   # ページの出力先を変えたいとき
 ```
 
-出力は完全に自己完結（CSSとJSはインライン）なので、`site/dist/index.html` をそのまま
-GitHub Pages なり任意の静的ホスティングに置けます。`site/dist/` は gitignore 済み。
+出力は2つです。
+
+- `site/dist/index.html` … 結果ページ。完全に自己完結（CSSとJSはインライン）なので、
+  そのまま GitHub Pages なり任意の静的ホスティングに置けます。`site/dist/` は gitignore 済み。
+- `site/overall-score.svg` … 総合スコアのグラフ単体。ルートの README の冒頭に貼っています。
+  **これは gitignore していないので、スコアを更新したらビルドしてコミットしてください。**
+
+### README 用の SVG について
+
+GitHub は README 内の SVG から `<style>` と `class` を落とすため、この SVG は
+スタイルをすべてプレゼンテーション属性でインライン化し、`<use>` 参照もやめて
+ロゴのパスを直接埋め込んでいます（`barChart()` の `standalone` モード）。
+`<style>` や `class` を足すと GitHub 上で真っ黒に崩れるので注意。
 
 ## ページに載せているもの
 

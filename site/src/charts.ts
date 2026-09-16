@@ -40,11 +40,31 @@ interface BarDatum {
   incomplete?: boolean;
 }
 
+/** class ではなく属性で塗るときの見た目（README 用の単体 SVG 向け） */
+const INK = {
+  grid: 'stroke="#e1e0d9" stroke-width="1"',
+  tick: 'fill="#898781" font-size="11"',
+  label: 'fill="#0b0b0b" font-size="14"',
+  valueInside: 'fill="#ffffff" font-size="19" font-weight="700"',
+  valueOutside: 'fill="#0b0b0b" font-size="13" font-weight="700"',
+};
+
+export interface BarChartOptions {
+  valueSuffix?: string;
+  /**
+   * 単体の .svg として書き出すモード。GitHub は README 内の SVG から
+   * <style> と class を落とすので、すべてプレゼンテーション属性で塗り、
+   * リンクとツールチップも外す。
+   */
+  standalone?: boolean;
+}
+
 /**
  * 横棒グラフ。棒の色は提供元の会社ごと（凡例はページ上部に1つ置く）。
  */
-export function barChart(data: BarDatum[], opts: { valueSuffix?: string } = {}): string {
+export function barChart(data: BarDatum[], opts: BarChartOptions = {}): string {
   const suffix = opts.valueSuffix ?? "";
+  const alone = opts.standalone === true;
   const labelW = 232;
   const ICON = 15;
   const iconX = labelW - 11 - ICON; // 棒の手前に揃えたロゴの列
@@ -64,16 +84,16 @@ export function barChart(data: BarDatum[], opts: { valueSuffix?: string } = {}):
   const grid = ticks
     .map(
       (t) =>
-        `<line class="grid" x1="${fmt1(x(t))}" y1="${padTop - 8}" x2="${fmt1(
-          x(t),
-        )}" y2="${padTop + data.length * band}"/>`,
+        `<line ${alone ? INK.grid : 'class="grid"'} x1="${fmt1(x(t))}" y1="${
+          padTop - 8
+        }" x2="${fmt1(x(t))}" y2="${padTop + data.length * band}"/>`,
     )
     .join("");
 
   const axis = ticks
     .map(
       (t) =>
-        `<text class="tick" x="${fmt1(x(t))}" y="${
+        `<text ${alone ? INK.tick : 'class="tick"'} x="${fmt1(x(t))}" y="${
           padTop + data.length * band + 18
         }" text-anchor="middle">${t}</text>`,
     )
@@ -89,26 +109,50 @@ export function barChart(data: BarDatum[], opts: { valueSuffix?: string } = {}):
       const inside = w >= textWidth(valueText, 19) + 24;
       const value = inside
         ? // 参照元と同じく棒の中央に置く
-          `<text class="bar-value inside" x="${fmt1(
+          `<text ${
+            alone ? INK.valueInside : 'class="bar-value inside"'
+          } x="${fmt1(
             labelW + w / 2,
           )}" y="${cy}" text-anchor="middle" dominant-baseline="central">${valueText}</text>`
-        : `<text class="bar-value" x="${fmt1(
+        : `<text ${alone ? INK.valueOutside : 'class="bar-value"'} x="${fmt1(
             labelW + w + 9,
           )}" y="${cy}" dominant-baseline="central">${valueText}</text>`;
-      // 行ぜんたいをリンクにする（ラベルでも棒でもクリックできる）
+      const body = `${brandMarkSvg(d.creator, iconX, cy - ICON / 2, ICON, alone)}
+  <text ${alone ? INK.label : 'class="bar-label"'} x="${textRight}" y="${
+        cy
+      }" text-anchor="end" dominant-baseline="central">${esc(d.label)}${mark}</text>
+  <path ${alone ? "" : 'class="bar" '}fill="${d.color}" d="${roundedBar(
+        labelW,
+        y,
+        w,
+        barH,
+      )}"/>
+  ${value}`;
+      if (alone) return `<g>\n  ${body}\n</g>`;
+      // ページ側は行ぜんたいをリンクにする（ラベルでも棒でもクリックできる）
       return `<a class="bar-row" href="${esc(
         d.href,
       )}" target="_blank" rel="noopener" data-tip="${esc(d.detail)}">
   <rect class="bar-hit" x="0" y="${padTop + i * band}" width="${width}" height="${band}"/>
-  ${brandMarkSvg(d.creator, iconX, cy - ICON / 2, ICON)}
-  <text class="bar-label" x="${textRight}" y="${
-        cy
-      }" text-anchor="end" dominant-baseline="central">${esc(d.label)}${mark}</text>
-  <path class="bar" fill="${d.color}" d="${roundedBar(labelW, y, w, barH)}"/>
-  ${value}
+  ${body}
 </a>`;
     })
     .join("\n");
+
+  if (alone) {
+    const pad = 18;
+    const totalW = width + pad * 2;
+    const totalH = height + pad * 2;
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${totalW} ${totalH}" width="${totalW}" height="${totalH}" font-family="system-ui, -apple-system, 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif" role="img">
+  <rect x="0" y="0" width="${totalW}" height="${totalH}" rx="14" fill="#fcfcfb" stroke="#e5e4de"/>
+  <g transform="translate(${pad} ${pad})">
+${grid}
+${axis}
+${bars}
+  </g>
+</svg>
+`;
+  }
 
   return `<div class="chart-scroll"><svg class="chart" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" role="img">
 ${grid}
@@ -132,7 +176,10 @@ function roundedBar(x: number, y: number, w: number, h: number): string {
   ].join(" ");
 }
 
-export function overallBarChart(models: ModelRow[]): string {
+export function overallBarChart(
+  models: ModelRow[],
+  opts: BarChartOptions = {},
+): string {
   return barChart(
     models.map((m) => ({
       label: m.label,
@@ -143,6 +190,7 @@ export function overallBarChart(models: ModelRow[]): string {
       detail: `${m.label}（${m.creator}） — ${fmtScore(m.score)}点 / ${m.cells.size}問平均`,
       incomplete: !m.complete,
     })),
+    opts,
   );
 }
 
