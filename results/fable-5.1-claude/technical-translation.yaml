@@ -4,10 +4,10 @@ model: fable
 agent: claude
 reasoning_effort: high
 generated_at: 2026-09-15T14:59:34.426Z
-score: 35
+score: 45
 comment: |-
   読みやすさ 20
-  誤訳ポイント部分点 15
+  誤訳ポイント部分点 25
 evaluated_at: 2026-09-16T08:12:33.330Z
 response: |-
   1月31日のデータベース障害に関するポストモーテム

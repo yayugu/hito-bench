@@ -4,10 +4,10 @@ model: gpt-5.6-luna
 agent: codex
 reasoning_effort: medium
 generated_at: 2026-09-11T14:33:23.727Z
-score: 65
+score: 70
 comment: |-
   読みやすさ 40
-  誤訳ポイント部分点 25
+  誤訳ポイント部分点 30
 evaluated_at: 2026-09-16T11:46:46.946Z
 response: |-
   1月31日のデータベース障害に関する事後分析

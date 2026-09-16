@@ -3,10 +3,10 @@ problem_id: technical-translation
 model: moonshotai/kimi-k3
 reasoning_effort: medium
 generated_at: 2026-09-15T13:36:11.048Z
-score: 35
+score: 40
 comment: |-
   読みやすさ 15
-  誤訳ポイント部分点 20
+  誤訳ポイント部分点 25
 evaluated_at: 2026-09-16T11:53:56.320Z
 response: |-
   # 1月31日のデータベース障害のポストモーテム

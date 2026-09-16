@@ -3,10 +3,10 @@ problem_id: technical-translation
 model: google/gemma-4-26b-a4b-it
 reasoning_effort: medium
 generated_at: 2026-09-12T14:41:53.558Z
-score: 40
+score: 45
 comment: |-
   読みやすさ 20
-  誤訳ポイント部分点 20
+  誤訳ポイント部分点 25
 evaluated_at: 2026-09-16T11:53:02.512Z
 response: |-
   1月31日のデータベース障害に関する事後分析報告書

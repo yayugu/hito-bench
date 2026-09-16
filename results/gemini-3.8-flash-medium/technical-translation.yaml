@@ -3,10 +3,10 @@ problem_id: technical-translation
 model: gemini-3.8-flash
 reasoning_effort: medium
 generated_at: 2026-09-12T14:44:37.462Z
-score: 55
+score: 65
 comment: |-
   読みやすさ 30
-  誤訳ポイント部分点 25
+  誤訳ポイント部分点 35
 evaluated_at: 2026-09-16T08:14:41.293Z
 response: |-
   1月31日のデータベース障害に関する事後検証（ポストモーテム）

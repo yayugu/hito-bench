@@ -3,10 +3,10 @@ problem_id: technical-translation
 model: tencent/hy4-preview
 reasoning_effort: medium
 generated_at: 2026-09-15T13:28:05.813Z
-score: 55
+score: 60
 comment: |-
   読みやすさ 20
-  誤訳ポイント部分点 35
+  誤訳ポイント部分点 40
 evaluated_at: 2026-09-16T08:06:02.334Z
 response: |-
   1月31日のデータベース障害に関するポストモーテム
