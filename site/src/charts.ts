@@ -45,16 +45,16 @@ interface BarDatum {
  */
 export function barChart(data: BarDatum[], opts: { valueSuffix?: string } = {}): string {
   const suffix = opts.valueSuffix ?? "";
-  const labelW = 206;
-  const ICON = 13;
-  const iconX = labelW - 10 - ICON; // 棒の手前に揃えたロゴの列
-  const textRight = iconX - 7;
-  const valueW = 56;
-  const band = 30;
-  const barH = 18; // <= 24px
-  const padTop = 26;
-  const padBottom = 30;
-  const plotW = 760;
+  const labelW = 232;
+  const ICON = 15;
+  const iconX = labelW - 11 - ICON; // 棒の手前に揃えたロゴの列
+  const textRight = iconX - 8;
+  const valueW = 46; // 棒が短くて数字が中に入らないときのはみ出し分
+  const band = 44;
+  const barH = 30; // 棒の太さは参照元にあわせ、行間は 14px 空ける
+  const padTop = 28;
+  const padBottom = 32;
+  const plotW = 740;
   const width = labelW + plotW + valueW;
   const height = padTop + data.length * band + padBottom;
 
@@ -85,6 +85,16 @@ export function barChart(data: BarDatum[], opts: { valueSuffix?: string } = {}):
       const w = Math.max((d.value / max) * plotW, 0);
       const mark = d.incomplete ? "*" : "";
       const cy = y + barH / 2;
+      const valueText = `${fmtScore(d.value)}${suffix}`;
+      const inside = w >= textWidth(valueText, 19) + 24;
+      const value = inside
+        ? // 参照元と同じく棒の中央に置く
+          `<text class="bar-value inside" x="${fmt1(
+            labelW + w / 2,
+          )}" y="${cy}" text-anchor="middle" dominant-baseline="central">${valueText}</text>`
+        : `<text class="bar-value" x="${fmt1(
+            labelW + w + 9,
+          )}" y="${cy}" dominant-baseline="central">${valueText}</text>`;
       // 行ぜんたいをリンクにする（ラベルでも棒でもクリックできる）
       return `<a class="bar-row" href="${esc(
         d.href,
@@ -95,9 +105,7 @@ export function barChart(data: BarDatum[], opts: { valueSuffix?: string } = {}):
         cy
       }" text-anchor="end" dominant-baseline="central">${esc(d.label)}${mark}</text>
   <path class="bar" fill="${d.color}" d="${roundedBar(labelW, y, w, barH)}"/>
-  <text class="bar-value" x="${fmt1(labelW + w + 8)}" y="${
-        y + barH / 2
-      }" dominant-baseline="central">${fmtScore(d.value)}${suffix}</text>
+  ${value}
 </a>`;
     })
     .join("\n");
@@ -272,7 +280,7 @@ export function scatterChart(models: ModelRow[]): string {
       const leader =
         Math.abs(lab.y - cy) > 1
           ? `<line class="leader" x1="${fmt1(cx)}" y1="${fmt1(cy)}" x2="${fmt1(
-              lab.anchor === "start" ? lab.x - 3 : lab.x + 3,
+              lab.anchor === "start" ? lab.x - 4 : lab.x + 4,
             )}" y2="${fmt1(lab.y)}"/>`
           : "";
       return `<g class="dot-row${onFront ? " on-front" : ""}" tabindex="0" data-tip="${esc(
@@ -283,7 +291,7 @@ export function scatterChart(models: ModelRow[]): string {
   ${leader}
   <circle class="dot" fill="${creatorColor(m.creator)}" cx="${fmt1(
         cx,
-      )}" cy="${fmt1(cy)}" r="${onFront ? 6 : 5}"/>
+      )}" cy="${fmt1(cy)}" r="${onFront ? 9 : 8}"/>
   <text class="dot-label" x="${fmt1(lab.x)}" y="${fmt1(
         lab.y,
       )}" text-anchor="${lab.anchor}" dominant-baseline="central">${esc(m.label)}</text>
@@ -333,7 +341,7 @@ function placeLabels(
   bounds: { left: number; right: number; top: number; bottom: number },
 ): Map<string, LabelSpot> {
   const H = 13;
-  const GAP = 10;
+  const GAP = 13;
   const taken: { x1: number; y1: number; x2: number; y2: number }[] = [];
   const out = new Map<string, LabelSpot>();
 
@@ -365,9 +373,10 @@ function placeLabels(
     const cx1 = chosen.anchor === "start" ? chosen.x : chosen.x - w;
     taken.push({ x1: cx1, y1: chosen.y - H / 2, x2: cx1 + w, y2: chosen.y + H / 2 });
     // 点そのものも占有扱いにして、ラベルが他の点にかぶらないようにする
-    taken.push({ x1: it.cx - 7, y1: it.cy - 7, x2: it.cx + 7, y2: it.cy + 7 });
+    taken.push({ x1: it.cx - 11, y1: it.cy - 11, x2: it.cx + 11, y2: it.cy + 11 });
     out.set(it.key, chosen);
   }
 
   return out;
 }
+

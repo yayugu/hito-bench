@@ -54,8 +54,8 @@ export function renderPage(data: Dataset, css: string): string {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>HitoBench</title>
-<meta name="description" content="人間が官能評価で判定する日本語LLMベンチマーク HitoBench の結果">
+<title>AIが出力する日本語の自然さを比較 HitoBench</title>
+<meta name="description" content="AIが出力する日本語の自然さを人間の官能評価で比較するベンチマーク HitoBench の結果">
 <meta name="color-scheme" content="light">
 <link rel="icon" href="data:image/svg+xml,${encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><text y="13" font-size="14">人</text></svg>',
@@ -70,8 +70,7 @@ ${brandSymbols()}
 
 <header class="site-head">
   <div>
-    <span class="eyebrow">HITO BENCH</span>
-    <h1>自然な日本語LLMベンチマーク</h1>
+    <h1>AIが出力する日本語の自然さを比較 HitoBench</h1>
     <p class="lede">人間が官能評価（＝好み）で日本語の表現力と自然さを判定するベンチマークです。${
       problems.length
     }問 × ${models.length}モデル。100点を目安にした自由採点で、二重盲検（採点時はモデル名非表示）。</p>
@@ -120,20 +119,19 @@ ${problemSections}
         <tr>
           <th class="col-rank">#</th>
           <th class="col-model">モデル</th>
-          <th class="col-creator">提供元</th>
           <th class="col-score">総合</th>
-          <th>コスト/問</th>
-          <th>入力 $/1M</th>
-          <th>出力 $/1M</th>
-          <th class="col-creator">価格出典</th>
           ${problems
             .map(
               (p) =>
-                `<th><a href="${esc(p.githubUrl)}" target="_blank" rel="noopener">${esc(
-                  p.title,
-                )}</a></th>`,
+                `<th class="col-problem"><a href="${esc(
+                  p.githubUrl,
+                )}" target="_blank" rel="noopener">${esc(p.title)}</a></th>`,
             )
             .join("\n          ")}
+          <th class="col-price col-price-start">コスト/問</th>
+          <th class="col-price">入力 $/1M</th>
+          <th class="col-price">出力 $/1M</th>
+          <th class="col-price col-source">価格出典</th>
         </tr>
       </thead>
       <tbody>
@@ -146,16 +144,7 @@ ${problemSections}
           )}" target="_blank" rel="noopener">${esc(m.label)}</a>${
               m.complete ? "" : '<span class="dim">*</span>'
             }</td>
-          <td class="col-creator dim">${esc(m.creator)}</td>
           <td class="col-score">${fmtScore(m.score)}</td>
-          <td>${fmtCost(m.costPerTask)}</td>
-          <td class="dim">$${m.price.input.toFixed(2)}</td>
-          <td class="dim">$${m.price.output.toFixed(2)}</td>
-          <td class="col-creator dim"><a href="${esc(
-            m.price.source_url,
-          )}" target="_blank" rel="noopener">${esc(
-              sourceLabel(m.price.price_source),
-            )}</a></td>
           ${problems
             .map((p) => {
               const cell = m.cells.get(p.id);
@@ -165,6 +154,14 @@ ${problemSections}
               )}" target="_blank" rel="noopener">${fmtScore(cell.score)}</a></td>`;
             })
             .join("\n          ")}
+          <td class="col-price col-price-start">${fmtCost(m.costPerTask)}</td>
+          <td class="col-price dim">$${m.price.input.toFixed(2)}</td>
+          <td class="col-price dim">$${m.price.output.toFixed(2)}</td>
+          <td class="col-price col-source dim"><a href="${esc(
+            m.price.source_url,
+          )}" target="_blank" rel="noopener">${esc(
+              sourceLabel(m.price.price_source),
+            )}</a></td>
         </tr>`,
           )
           .join("\n        ")}

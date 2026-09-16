@@ -57,4 +57,4 @@ const server = Bun.serve({
   },
 });
 
-console.log(`Hito Bench: http://${server.hostname}:${server.port}`);
+console.log(`HitoBench: http://${server.hostname}:${server.port}`);

@@ -92,23 +92,18 @@ a:hover {
   margin-bottom: 40px;
 }
 
-.eyebrow {
-  color: var(--accent);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
 h1 {
-  margin: 6px 0 10px;
-  font-size: clamp(28px, 5vw, 40px);
-  letter-spacing: -0.03em;
-  line-height: 1.2;
+  /* 日本語と英字を同じサイズ・同じ色・同じ書体で素直に並べる */
+  margin: 0 0 12px;
+  color: var(--text-primary);
+  font-size: clamp(24px, 3.6vw, 31px);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.4;
 }
 
 .lede {
-  max-width: 62ch;
+  max-width: 76ch;
   margin: 0;
   color: var(--text-secondary);
 }
@@ -216,15 +211,24 @@ h2 .num {
 }
 
 .bar-label {
-  font-size: 12.5px;
-  fill: var(--text-secondary);
+  font-size: 14px;
+  fill: var(--text-primary);
 }
 
+/* 棒の外に出す数字（棒が短くて中に入らないとき） */
 .bar-value {
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 700;
   fill: var(--text-primary);
   font-variant-numeric: tabular-nums;
+}
+
+/* 棒の中に入れた数字。どの塗りの上でも 3:1 を満たすよう
+   WCAG の large text 扱いになる 19px bold にしてある */
+.bar-value.inside {
+  font-size: 19px;
+  font-weight: 700;
+  fill: #ffffff;
 }
 
 .bar-row:hover .bar-hit,
@@ -235,6 +239,7 @@ h2 .num {
 .bar-row:hover .bar-label,
 .bar-row:focus-visible .bar-label {
   fill: var(--text-primary);
+  font-weight: 600;
 }
 
 .bar-row:focus-visible,
@@ -380,8 +385,20 @@ tbody tr:hover td {
 }
 
 .col-model,
-.col-creator {
+.col-source {
   text-align: left;
+}
+
+/* 問題名の見出しは折り返して、肝心のスコア列を画面内に収める */
+.col-problem {
+  max-width: 9.5em;
+  white-space: normal;
+  line-height: 1.35;
+}
+
+/* 価格まわりは表の一番うしろ。スコア列との境目に区切りを1本入れる */
+.col-price-start {
+  border-left: 1px solid var(--grid);
 }
 
 .col-model {

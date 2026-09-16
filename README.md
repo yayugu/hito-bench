@@ -1,4 +1,4 @@
-# 自然な日本語LLMベンチマーク HitoBench
+# AIが出力する日本語の自然さを比較 HitoBench
 
 ### これは何？
 
