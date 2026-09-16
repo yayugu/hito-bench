@@ -1,6 +1,11 @@
 import type { Dataset } from "./data";
 import { REPO_URL } from "./data";
-import { creatorColor } from "./colors";
+import {
+  CREATOR_COLORS,
+  brandMarkHtml,
+  brandSymbols,
+  hasBrandIcon,
+} from "./colors";
 import {
   esc,
   fmtCost,
@@ -15,12 +20,21 @@ export function renderPage(data: Dataset, css: string): string {
   const { problems, models, pricing } = data;
   const anyIncomplete = models.some((m) => !m.complete);
 
-  // 凡例は「モデル数が多い会社」から並べる
+  // 凡例はロゴのある会社 -> 色を付けた会社 -> グレーの会社（まとめて「その他」）
   const byCreator = new Map<string, number>();
   for (const m of models) byCreator.set(m.creator, (byCreator.get(m.creator) ?? 0) + 1);
-  const creators = [...byCreator.entries()]
-    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+  const colored = [...byCreator.entries()]
+    .filter(([c]) => CREATOR_COLORS[c] !== undefined)
+    .sort(
+      (a, b) =>
+        Number(hasBrandIcon(b[0])) - Number(hasBrandIcon(a[0])) ||
+        b[1] - a[1] ||
+        a[0].localeCompare(b[0]),
+    )
     .map(([c]) => c);
+  const others = [...byCreator.keys()]
+    .filter((c) => CREATOR_COLORS[c] === undefined)
+    .sort();
 
   const problemSections = problems
     .map(
@@ -51,6 +65,7 @@ ${css}
 </style>
 </head>
 <body>
+${brandSymbols()}
 <div class="wrap">
 
 <header class="site-head">
@@ -67,14 +82,16 @@ ${css}
 </header>
 
 <div class="legend">
-  ${creators
-    .map(
-      (c) =>
-        `<span class="legend-item"><span class="swatch" style="background:${creatorColor(
-          c,
-        )}"></span>${esc(c)}</span>`,
-    )
+  ${colored
+    .map((c) => `<span class="legend-item">${brandMarkHtml(c)}${esc(c)}</span>`)
     .join("\n  ")}
+  ${
+    others.length
+      ? `<span class="legend-item">${brandMarkHtml(others[0])}${esc(
+          others.join(" / "),
+        )}</span>`
+      : ""
+  }
 </div>
 
 <section id="overall">
@@ -124,11 +141,11 @@ ${problemSections}
           .map(
             (m, i) => `<tr>
           <td class="col-rank">${i + 1}</td>
-          <td class="col-model"><span class="swatch" style="background:${creatorColor(
-            m.creator,
-          )}"></span><a href="${esc(m.githubUrl)}" target="_blank" rel="noopener">${esc(
-              m.label,
-            )}</a>${m.complete ? "" : '<span class="dim">*</span>'}</td>
+          <td class="col-model">${brandMarkHtml(m.creator)}<a href="${esc(
+            m.githubUrl,
+          )}" target="_blank" rel="noopener">${esc(m.label)}</a>${
+              m.complete ? "" : '<span class="dim">*</span>'
+            }</td>
           <td class="col-creator dim">${esc(m.creator)}</td>
           <td class="col-score">${fmtScore(m.score)}</td>
           <td>${fmtCost(m.costPerTask)}</td>

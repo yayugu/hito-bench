@@ -1,6 +1,6 @@
 import type { ModelRow } from "./data";
 import { paretoFrontier } from "./data";
-import { creatorColor } from "./colors";
+import { brandMarkSvg, creatorColor } from "./colors";
 
 export function esc(s: string): string {
   return s
@@ -33,6 +33,8 @@ interface BarDatum {
   href: string;
   /** 会社ごとの色 */
   color: string;
+  /** ロゴ・スウォッチを出すための提供元 */
+  creator: string;
   /** ツールチップ用の補足 */
   detail: string;
   incomplete?: boolean;
@@ -43,7 +45,10 @@ interface BarDatum {
  */
 export function barChart(data: BarDatum[], opts: { valueSuffix?: string } = {}): string {
   const suffix = opts.valueSuffix ?? "";
-  const labelW = 188;
+  const labelW = 206;
+  const ICON = 13;
+  const iconX = labelW - 10 - ICON; // 棒の手前に揃えたロゴの列
+  const textRight = iconX - 7;
   const valueW = 56;
   const band = 30;
   const barH = 18; // <= 24px
@@ -79,13 +84,15 @@ export function barChart(data: BarDatum[], opts: { valueSuffix?: string } = {}):
       const y = padTop + i * band + (band - barH) / 2;
       const w = Math.max((d.value / max) * plotW, 0);
       const mark = d.incomplete ? "*" : "";
+      const cy = y + barH / 2;
       // 行ぜんたいをリンクにする（ラベルでも棒でもクリックできる）
       return `<a class="bar-row" href="${esc(
         d.href,
       )}" target="_blank" rel="noopener" data-tip="${esc(d.detail)}">
   <rect class="bar-hit" x="0" y="${padTop + i * band}" width="${width}" height="${band}"/>
-  <text class="bar-label" x="${labelW - 12}" y="${
-        y + barH / 2
+  ${brandMarkSvg(d.creator, iconX, cy - ICON / 2, ICON)}
+  <text class="bar-label" x="${textRight}" y="${
+        cy
       }" text-anchor="end" dominant-baseline="central">${esc(d.label)}${mark}</text>
   <path class="bar" fill="${d.color}" d="${roundedBar(labelW, y, w, barH)}"/>
   <text class="bar-value" x="${fmt1(labelW + w + 8)}" y="${
@@ -124,6 +131,7 @@ export function overallBarChart(models: ModelRow[]): string {
       value: m.score,
       href: m.githubUrl,
       color: creatorColor(m.creator),
+      creator: m.creator,
       detail: `${m.label}（${m.creator}） — ${fmtScore(m.score)}点 / ${m.cells.size}問平均`,
       incomplete: !m.complete,
     })),
@@ -140,6 +148,7 @@ export function problemBarChart(models: ModelRow[], problemId: string): string {
         value: cell.score,
         href: cell.githubUrl,
         color: creatorColor(m.creator),
+        creator: m.creator,
         detail: `${m.label}（${m.creator}） — ${fmtScore(cell.score)}点`,
       };
     })
@@ -308,11 +317,11 @@ interface LabelSpot {
   anchor: "start" | "end";
 }
 
-/** ラベル幅のざっくり見積り（font-size 11.5px） */
-function textWidth(text: string): number {
+/** ラベル幅のざっくり見積り */
+function textWidth(text: string, fontSize = 11.5): number {
   let w = 0;
   for (const ch of text) w += ch.codePointAt(0)! < 128 ? 6.1 : 11.5;
-  return w;
+  return (w * fontSize) / 11.5;
 }
 
 /**
