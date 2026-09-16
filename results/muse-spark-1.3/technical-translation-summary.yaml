@@ -3,6 +3,9 @@ problem_id: technical-translation-summary
 model: meta/muse-spark-1.3
 reasoning_effort: medium
 generated_at: 2026-09-12T07:43:36.799Z
+score: 0
+comment: 文章が不自然すぎる
+evaluated_at: 2026-09-16T12:10:06.513Z
 response: |-
   Gitホスティングが難しいのはpackfile＋DAG構造ゆえ。オブジェクトはSHAで引けるが、履歴操作はコミット→ツリー→親と逐一ポインタを辿るため分散KVS化すると往復が爆発する。ディスク上もサイズ最適のデルタ圧縮・ランダム配置で、NFSやブロックレプリケーションと極端に相性が悪い。
 

@@ -3,6 +3,11 @@ problem_id: short-short
 model: deepseek/deepseek-v4.1-flash
 reasoning_effort: medium
 generated_at: 2026-09-12T07:30:49.661Z
+score: 10
+comment: |-
+  意味が通っていない
+  「ショッピングサイト+南アメリカの密林」のありきたりすぎる組み合わせ
+evaluated_at: 2026-09-16T08:00:27.714Z
 response: |-
   「自由研究」
 

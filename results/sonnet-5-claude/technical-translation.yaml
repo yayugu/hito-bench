@@ -4,6 +4,11 @@ model: sonnet
 agent: claude
 reasoning_effort: high
 generated_at: 2026-09-11T14:33:46.604Z
+score: 40
+comment: |-
+  読みやすさ 20
+  誤訳ポイント部分点 20
+evaluated_at: 2026-09-16T08:13:22.667Z
 response: |-
   1月31日のデータベース障害の事後検証
 

@@ -3,6 +3,11 @@ problem_id: short-short
 model: meta/muse-spark-1.3
 reasoning_effort: medium
 generated_at: 2026-09-12T07:43:23.149Z
+score: 50
+comment: |-
+  意味は通る
+  「ショッピングサイト+南アメリカの密林」のありきたりすぎる組み合わせ
+evaluated_at: 2026-09-16T07:52:51.757Z
 response: |-
   **『アマゾンでアマゾンを注文』**
 

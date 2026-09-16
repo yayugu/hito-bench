@@ -4,6 +4,16 @@ model: fable
 agent: claude
 reasoning_effort: high
 generated_at: 2026-09-15T14:58:54.676Z
+score: 30
+comment: |-
+  要旨はなんとなく理解できる
+
+  文字数かなりオーバー（986文字）
+
+  > **Gitホスティングが難しい理由**
+  > Gitのオブジェクトは内容のSHA-1でアドレスされるため分散KVS
+  スケールさせる必要性の説明がすっ飛んでいる　
+evaluated_at: 2026-09-16T12:16:10.481Z
 response: |-
   Cursorが開発したGitストレージ「Continuity」の設計を解説した記事です。技術的に面白い点を要約します。
 

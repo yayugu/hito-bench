@@ -4,6 +4,11 @@ model: gpt-6-astra
 agent: codex
 reasoning_effort: medium
 generated_at: 2026-09-12T14:04:18.463Z
+score: 70
+comment: |-
+  読みやすさ 40
+  誤訳ポイント部分点 30
+evaluated_at: 2026-09-16T11:43:33.496Z
 response: |-
   1月31日に発生したデータベース障害の事後検証
 

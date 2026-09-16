@@ -3,6 +3,9 @@ problem_id: technical-translation-summary
 model: moonshotai/kimi-k3
 reasoning_effort: medium
 generated_at: 2026-09-15T13:35:34.029Z
+score: 0
+comment: 伝わらない
+evaluated_at: 2026-09-16T12:21:36.222Z
 response: |-
   ## 要約：Gitホスティングをスケールさせる技術的挑戦と「Continuity」の設計
 

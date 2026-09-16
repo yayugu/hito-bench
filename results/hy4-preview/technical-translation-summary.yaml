@@ -3,6 +3,9 @@ problem_id: technical-translation-summary
 model: tencent/hy4-preview
 reasoning_effort: medium
 generated_at: 2026-09-15T13:24:27.991Z
+score: 0
+comment: 説明になっていない、要約として抜き出す箇所を失敗している
+evaluated_at: 2026-09-16T12:06:58.929Z
 response: |-
   Gitの大規模ホスティングは、差分圧縮されたDAG（パックファイル）によるランダムアクセスが多く、単なる分散FSやオブジェクトのDHT化ではネットワーク遅延が致命的です。
   従来のGitHub「Spokes」は、NVMe上のリポジトリを3PC（三層コミット）で複製し強い整合性を確保しましたが、モノレポ等のスケール限界と厳密な状態管理が課題でした。

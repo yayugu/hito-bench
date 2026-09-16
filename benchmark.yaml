@@ -10,14 +10,14 @@ runners:
     provider: venice/bf16
     timeout_seconds: 600
 
-  # - id: gemma-4-26b-a4b-it
-  #   adapter: openai-compatible
-  #   model: google/gemma-4-26b-a4b-it
-  #   reasoning_effort: medium
-  #   endpoint: https://openrouter.ai/api/v1/chat/completions
-  #   api_key_env: OPENROUTER_API_KEY
-  #   provider: google-vertex/global
-  #   timeout_seconds: 600
+  - id: gemma-4-26b-a4b-it
+    adapter: openai-compatible
+    model: google/gemma-4-26b-a4b-it
+    reasoning_effort: medium
+    endpoint: https://openrouter.ai/api/v1/chat/completions
+    api_key_env: OPENROUTER_API_KEY
+    provider: google-vertex/global
+    timeout_seconds: 600
 
   - id: qwen3.8-27b
     adapter: openai-compatible

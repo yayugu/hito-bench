@@ -4,6 +4,9 @@ model: gpt-6-astra
 agent: codex
 reasoning_effort: medium
 generated_at: 2026-09-12T14:03:40.147Z
+score: 80
+comment: 成立している。独自性がある
+evaluated_at: 2026-09-16T07:54:47.629Z
 response: |-
   ### お届け予定日
 

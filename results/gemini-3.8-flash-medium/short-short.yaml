@@ -3,6 +3,11 @@ problem_id: short-short
 model: gemini-3.8-flash
 reasoning_effort: medium
 generated_at: 2026-09-12T15:15:48.320Z
+score: 50
+comment: |-
+  意味は通る
+  「ショッピングサイト+南アメリカの密林」のありきたりすぎる組み合わせ
+evaluated_at: 2026-09-16T07:41:10.131Z
 response: |-
   『お取り寄せ』
 

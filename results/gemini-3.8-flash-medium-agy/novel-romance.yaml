@@ -4,6 +4,12 @@ model: gemini-3.8-flash
 agent: agy
 reasoning_effort: medium
 generated_at: 2026-09-16T07:33:24.000Z
+score: 65
+comment: |-
+  ベース 70
+
+  指示を無視して呼称を変える展開をつくっている -5
+evaluated_at: 2026-09-16T07:35:57.651Z
 response: |-
   ### 第34話　お風呂上がりの熱と、名前の呼び方
 

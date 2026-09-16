@@ -3,6 +3,9 @@ problem_id: short-short
 model: qwen/qwen3.8-27b
 reasoning_effort: medium
 generated_at: 2026-09-12T13:56:01.003Z
+score: 0
+comment: 成立していない
+evaluated_at: 2026-09-16T07:41:44.889Z
 response: |-
   # 緑の牢
 

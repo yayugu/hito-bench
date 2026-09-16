@@ -4,6 +4,11 @@ model: gpt-6-astra
 agent: codex
 reasoning_effort: medium
 generated_at: 2026-09-12T14:03:51.070Z
+score: 80
+comment: |-
+  良く書けている
+  過剰翻訳がある（正本・原子的・複製通知）
+evaluated_at: 2026-09-16T11:58:15.097Z
 response: |-
   Gitの大規模ホスティングが難しいのは、履歴のDAGを順にたどる論理アクセスと、packfile内の差分圧縮を復元する物理アクセスが重なり、ネットワーク越しの読み出しが高コストになるためだ。オブジェクト単位の分散KV化も、ファイルシステムの分散化も、この構造が壁になる。
 

@@ -4,6 +4,11 @@ model: opus
 agent: claude
 reasoning_effort: high
 generated_at: 2026-09-11T15:11:59.672Z
+score: 70
+comment: |-
+  読みやすさ 40
+  誤訳ポイント部分点 30
+evaluated_at: 2026-09-16T11:45:02.721Z
 response: |-
   1月31日のデータベース障害のポストモーテム
 

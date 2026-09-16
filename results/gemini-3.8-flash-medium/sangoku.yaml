@@ -3,6 +3,9 @@ problem_id: sangoku
 model: gemini-3.8-flash
 reasoning_effort: medium
 generated_at: 2026-09-16T07:26:18.463Z
+score: 30
+comment: エンタメを多少理解している
+evaluated_at: 2026-09-16T07:37:39.002Z
 response: |-
   **【神威轟く、至高の義刃】**
 

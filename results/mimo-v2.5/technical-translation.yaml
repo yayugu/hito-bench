@@ -3,6 +3,12 @@ problem_id: technical-translation
 model: xiaomi/mimo-v2.5
 reasoning_effort: medium
 generated_at: 2026-09-15T13:31:34.512Z
+score: 30
+comment: |-
+  読みやすさ 20
+  誤訳ポイント部分点 20
+  - 中国語文字や未翻訳（有意义な出力は何も Produced されませんでした） -10
+evaluated_at: 2026-09-16T11:50:04.108Z
 response: |-
   2017年1月31日のデータベース障害に関する事後分析
 

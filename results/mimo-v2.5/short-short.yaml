@@ -3,6 +3,12 @@ problem_id: short-short
 model: xiaomi/mimo-v2.5
 reasoning_effort: medium
 generated_at: 2026-09-15T13:30:17.504Z
+score: 10
+comment: |-
+  なんとなくやりたいことはわかる
+  「ショッピングサイト+南アメリカの密林」のありきたりすぎる組み合わせ
+  中国語やハングルが混じっている
+evaluated_at: 2026-09-16T07:42:46.631Z
 response: |-
   # ショートショート「アマゾン」
 

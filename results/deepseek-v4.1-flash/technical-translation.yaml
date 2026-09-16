@@ -3,6 +3,11 @@ problem_id: technical-translation
 model: deepseek/deepseek-v4.1-flash
 reasoning_effort: medium
 generated_at: 2026-09-12T07:31:17.741Z
+score: 25
+comment: |-
+  読みやすさ 20
+  誤訳ポイント部分点 5
+evaluated_at: 2026-09-16T11:51:33.445Z
 response: |-
   1月31日のデータベース障害のポストモーテム
 

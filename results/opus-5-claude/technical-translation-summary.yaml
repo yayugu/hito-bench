@@ -4,6 +4,11 @@ model: opus
 agent: claude
 reasoning_effort: high
 generated_at: 2026-09-11T15:11:29.190Z
+score: 30
+comment: |-
+  要旨はなんとなく理解できる
+  文字数わりとオーバー（920文字）
+evaluated_at: 2026-09-16T12:17:20.302Z
 response: |-
   **Gitホスティングの難しさとCursorの「Continuity」**
 

@@ -3,6 +3,9 @@ problem_id: short-short
 model: z-ai/glm-5.3-flash
 reasoning_effort: medium
 generated_at: 2026-09-12T07:29:11.770Z
+score: 0
+comment: 長い。意味が通っていない
+evaluated_at: 2026-09-16T07:48:00.111Z
 response: |-
   # 最後の注文
 

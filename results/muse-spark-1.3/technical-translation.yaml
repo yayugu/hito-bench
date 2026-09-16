@@ -3,6 +3,11 @@ problem_id: technical-translation
 model: meta/muse-spark-1.3
 reasoning_effort: medium
 generated_at: 2026-09-12T07:43:55.322Z
+score: 55
+comment: |-
+  読みやすさ 30
+  誤訳ポイント部分点 25
+evaluated_at: 2026-09-16T08:07:11.437Z
 response: |-
   1月31日のデータベース障害のポストモーテム
 

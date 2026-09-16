@@ -4,6 +4,12 @@ model: sonnet
 agent: claude
 reasoning_effort: high
 generated_at: 2026-09-11T14:54:59.585Z
+score: 30
+comment: |-
+  要旨はなんとなく理解できる
+
+  本質的でないキーワードや、内容的に適当ではない表現が多い
+evaluated_at: 2026-09-16T12:00:16.303Z
 response: |-
   ## 要約
 

@@ -3,6 +3,11 @@ problem_id: technical-translation-summary
 model: z-ai/glm-5.3-flash
 reasoning_effort: medium
 generated_at: 2026-09-12T07:29:22.093Z
+score: 0
+comment: |-
+  指定文字数大幅オーバー（1187文字）
+  読みにくい
+evaluated_at: 2026-09-16T12:12:00.713Z
 response: |-
   # 要約：技術的に面白いポイント
 

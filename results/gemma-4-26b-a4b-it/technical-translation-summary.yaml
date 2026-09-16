@@ -3,6 +3,9 @@ problem_id: technical-translation-summary
 model: google/gemma-4-26b-a4b-it
 reasoning_effort: medium
 generated_at: 2026-09-12T14:40:05.209Z
+score: 70
+comment: ""
+evaluated_at: 2026-09-16T11:56:27.380Z
 response: |-
   Gitのホスティングは、分散型設計ゆえに大規模化が極めて難しい。パックファイルという巨大なバイナリ形式と、DAG（有向非巡回グラフ）構造によるランダムなアクセスパターンが、ネットワーク経由の分散ファイルシステムやDHT（分散ハッシュテーブル）での運用を困難にするからだ。
 

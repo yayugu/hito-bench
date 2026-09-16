@@ -3,6 +3,11 @@ problem_id: technical-translation
 model: qwen/qwen3.8-27b
 reasoning_effort: medium
 generated_at: 2026-09-12T13:57:34.563Z
+score: 30
+comment: |-
+  読みやすさ 15
+  誤訳ポイント部分点 15
+evaluated_at: 2026-09-16T08:15:47.996Z
 response: |-
   1月31日 データベース障害の事後解析（Postmortem）
 

@@ -3,6 +3,9 @@ problem_id: technical-translation-summary
 model: deepseek/deepseek-v4.1-flash
 reasoning_effort: medium
 generated_at: 2026-09-12T07:30:56.685Z
+score: 0
+comment: 要旨が理解できない
+evaluated_at: 2026-09-16T11:59:09.447Z
 response: |-
   大規模Gitホスティングの難しさは、分散VCSなのに実運用は中央集権で、packfileとDAGのランダム参照がスケールを阻む点にある。既存Spokesは各リポジトリをNVMe上の実体として複製し、packfileと参照トランザクションを分け、3PCで多数決同期。強整合だが、レプリカ数に比例してpush遅延が増え、全コピーが真実なので運用が重い。
 

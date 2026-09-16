@@ -4,6 +4,12 @@ model: opus
 agent: claude
 reasoning_effort: high
 generated_at: 2026-09-11T15:11:09.694Z
+score: 70
+comment: |-
+  わりとおもしろい
+  星新一すぎる
+  「ショッピングサイト+南アメリカの密林」のありきたりすぎる組み合わせ
+evaluated_at: 2026-09-16T07:47:11.223Z
 response: |-
   # アマゾン
 
