@@ -3,6 +3,8 @@ import { join } from "node:path";
 import YAML from "yaml";
 
 export const REPO_URL = "https://github.com/yayugu/hito-bench";
+/** 総合スコアの見出し。ページと README 用 SVG で共有する */
+export const OVERALL_TITLE = "日本語能力 スコア";
 export const REPO_BLOB = `${REPO_URL}/blob/main`;
 
 export interface ProblemMeta {

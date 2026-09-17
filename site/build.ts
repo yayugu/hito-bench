@@ -11,7 +11,7 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { overallBarChart } from "./src/charts";
-import { loadDataset } from "./src/data";
+import { OVERALL_TITLE, loadDataset } from "./src/data";
 import { renderPage } from "./src/page";
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -31,7 +31,7 @@ writeFileSync(outFile, html);
 
 // README に貼る用の単体 SVG。GitHub がサニタイズしても崩れないよう、
 // style/class を使わず全部プレゼンテーション属性で塗ってある。
-const svg = overallBarChart(data.models, { standalone: true });
+const svg = overallBarChart(data.models, { standalone: true, title: OVERALL_TITLE });
 const svgFile = join(here, "overall-score.svg");
 writeFileSync(svgFile, svg);
 

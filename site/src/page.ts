@@ -1,5 +1,5 @@
 import type { Dataset } from "./data";
-import { REPO_URL } from "./data";
+import { OVERALL_TITLE, REPO_URL } from "./data";
 import {
   CREATOR_COLORS,
   brandMarkHtml,
@@ -119,7 +119,7 @@ ${brandSymbols()}
 
 <section id="overall">
   <div class="sec-head">
-    <h2>日本語能力 スコア</h2>
+    <h2>${OVERALL_TITLE}</h2>
   </div>
   <div class="card">${overallBarChart(models)}</div>
 </section>

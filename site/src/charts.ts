@@ -47,6 +47,7 @@ const INK = {
   label: 'fill="#0b0b0b" font-size="14"',
   valueInside: 'fill="#ffffff" font-size="19" font-weight="700"',
   valueOutside: 'fill="#0b0b0b" font-size="13" font-weight="700"',
+  title: 'fill="#0b0b0b" font-size="30" font-weight="700"',
   watermark: 'fill="#0b0b0b" fill-opacity="0.09" font-size="30" font-weight="700"',
 };
 
@@ -62,6 +63,8 @@ function watermark(x: number, y: number, alone = false): string {
 
 export interface BarChartOptions {
   valueSuffix?: string;
+  /** 単体 SVG の左上に入れる見出し（standalone のときだけ使う） */
+  title?: string;
   /**
    * 単体の .svg として書き出すモード。GitHub は README 内の SVG から
    * <style> と class を落とすので、すべてプレゼンテーション属性で塗り、
@@ -152,11 +155,16 @@ export function barChart(data: BarDatum[], opts: BarChartOptions = {}): string {
 
   if (alone) {
     const pad = 18;
+    // 見出しを入れるぶんだけ上を空ける（ページ側は h2 があるので不要）
+    const titleH = opts.title ? 40 : 0;
     const totalW = width + pad * 2;
-    const totalH = height + pad * 2;
+    const totalH = height + pad * 2 + titleH;
+    const title = opts.title
+      ? `  <text ${INK.title} x="${pad + 76}" y="${pad + 32}">${esc(opts.title)}</text>\n`
+      : "";
     return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${totalW} ${totalH}" width="${totalW}" height="${totalH}" font-family="system-ui, -apple-system, 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif" role="img">
   <rect x="0" y="0" width="${totalW}" height="${totalH}" fill="#fcfcfb" stroke="#e5e4de"/>
-  <g transform="translate(${pad} ${pad})">
+${title}  <g transform="translate(${pad} ${pad + titleH})">
 ${grid}
 ${axis}
 ${watermark(labelW + plotW - 14, padTop + data.length * band - 12, true)}
