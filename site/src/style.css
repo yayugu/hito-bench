@@ -148,13 +148,6 @@ h2 {
   letter-spacing: -0.02em;
 }
 
-h2 .num {
-  margin-right: 10px;
-  color: var(--text-muted);
-  font-variant-numeric: tabular-nums;
-  font-weight: 500;
-}
-
 .sec-head p {
   max-width: 68ch;
   margin: 6px 0 0;
@@ -201,6 +194,14 @@ h2 .num {
 .axis-title {
   fill: var(--text-secondary);
   font-size: 12px;
+}
+
+/* グラフ単体をスクショされても出どころが分かるように敷いている名前 */
+.watermark {
+  fill: var(--text-primary);
+  fill-opacity: 0.09;
+  font-size: 30px;
+  font-weight: 700;
 }
 
 .bar-hit {

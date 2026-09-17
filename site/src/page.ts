@@ -66,9 +66,9 @@ export function renderPage(data: Dataset, css: string): string {
 
   const problemSections = problems
     .map(
-      (p, i) => `<section id="problem-${esc(p.id)}">
+      (p) => `<section id="problem-${esc(p.id)}">
   <div class="sec-head">
-    <h2><span class="num">${i + 3}</span><a href="${esc(
+    <h2><a href="${esc(
       p.githubUrl,
     )}" target="_blank" rel="noopener">${esc(p.title)}</a></h2>
   </div>
@@ -119,14 +119,14 @@ ${brandSymbols()}
 
 <section id="overall">
   <div class="sec-head">
-    <h2><span class="num">1</span>総合スコア</h2>
+    <h2>日本語能力 スコア</h2>
   </div>
   <div class="card">${overallBarChart(models)}</div>
 </section>
 
 <section id="cost">
   <div class="sec-head">
-    <h2><span class="num">2</span>スコアとコストパフォーマンス</h2>
+    <h2>日本語スコアとコストパフォーマンス</h2>
   </div>
   <div class="card">${scatterChart(models)}</div>
 </section>
@@ -135,7 +135,7 @@ ${problemSections}
 
 <section id="table">
   <div class="sec-head">
-    <h2><span class="num">${problems.length + 3}</span>全結果</h2>
+    <h2>全結果</h2>
   </div>
   <div class="table-scroll">
     <table>

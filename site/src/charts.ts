@@ -47,7 +47,18 @@ const INK = {
   label: 'fill="#0b0b0b" font-size="14"',
   valueInside: 'fill="#ffffff" font-size="19" font-weight="700"',
   valueOutside: 'fill="#0b0b0b" font-size="13" font-weight="700"',
+  watermark: 'fill="#0b0b0b" fill-opacity="0.09" font-size="30" font-weight="700"',
 };
+
+/**
+ * 描画エリアの右下にうっすら入れる名前。
+ * スクショをそのまま貼っても出どころが分かるように。
+ */
+function watermark(x: number, y: number, alone = false): string {
+  return `<text ${
+    alone ? INK.watermark : 'class="watermark"'
+  } x="${fmt1(x)}" y="${fmt1(y)}" text-anchor="end">HitoBench</text>`;
+}
 
 export interface BarChartOptions {
   valueSuffix?: string;
@@ -144,10 +155,11 @@ export function barChart(data: BarDatum[], opts: BarChartOptions = {}): string {
     const totalW = width + pad * 2;
     const totalH = height + pad * 2;
     return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${totalW} ${totalH}" width="${totalW}" height="${totalH}" font-family="system-ui, -apple-system, 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif" role="img">
-  <rect x="0" y="0" width="${totalW}" height="${totalH}" rx="14" fill="#fcfcfb" stroke="#e5e4de"/>
+  <rect x="0" y="0" width="${totalW}" height="${totalH}" fill="#fcfcfb" stroke="#e5e4de"/>
   <g transform="translate(${pad} ${pad})">
 ${grid}
 ${axis}
+${watermark(labelW + plotW - 14, padTop + data.length * band - 12, true)}
 ${bars}
   </g>
 </svg>
@@ -157,6 +169,7 @@ ${bars}
   return `<div class="chart-scroll"><svg class="chart" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" role="img">
 ${grid}
 ${axis}
+${watermark(labelW + plotW - 14, padTop + data.length * band - 12)}
 ${bars}
 </svg></div>`;
 }
@@ -296,8 +309,8 @@ export function scatterChart(models: ModelRow[]): string {
     .map((m, i) => `${i === 0 ? "M" : "L"}${fmt1(x(m.costPerTask))} ${fmt1(y(m.score))}`)
     .join(" ");
   // 線そのものに直接ラベルを付けると点のラベルとぶつかるので、
-  // 右下にライン見本つきのキーを置く
-  const keyY = pad.top + plotH - 16;
+  // 点の来ない右上にライン見本つきのキーを置く
+  const keyY = pad.top + 14;
   const keyX = pad.left + plotW - 12;
   const pareto =
     front.length > 1
@@ -351,6 +364,7 @@ export function scatterChart(models: ModelRow[]): string {
 ${quadrant}
 ${grid}
 ${axes}
+${watermark(pad.left + plotW - 16, pad.top + plotH - 12)}
 ${pareto}
 ${dots}
 </svg></div>`;
