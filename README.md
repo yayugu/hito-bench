@@ -2,6 +2,8 @@
 
 <img src="site/overall-score.svg" alt="HitoBench 総合スコア" width="100%">
 
+## [詳細な結果はこちら](https://yayugu.github.io/hito-bench/)
+
 ### これは何
 
 人間が官能評価（＝好み）で判定するLLMのベンチマークです。
