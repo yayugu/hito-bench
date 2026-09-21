@@ -1,0 +1,11 @@
+version: 1
+problem_id: novel-romance
+model: x-ai/grok-4.7
+agent: codex
+generated_at: 2026-09-21T16:49:29.122Z
+score: 0
+comment: ""
+evaluated_at: 2026-09-21T16:49:29.122Z
+response: |-
+  # 下記メッセージでそもそもレスポンスが帰らず。リトライしてこの指示のみこのエラーとなることを確認
+  {"message":"Provider returned error","code":403,"metadata":{"raw":"{\"code\":\"permission-denied\",\"error\":\"I can't help with that request.\"}"
