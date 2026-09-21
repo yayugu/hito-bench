@@ -195,3 +195,13 @@ models:
     input: 0.10
     output: 0.20
     note: benchmark.yaml が request_model に指定している contributor 版の価格
+
+  - id: grok-4.7
+    label: Grok 4.7
+    creator: xAI
+    price_source: openrouter
+    openrouter_slug: x-ai/grok-4.7
+    openrouter_provider: xai
+    source_url: https://openrouter.ai/x-ai/grok-4.7
+    input: 0.14
+    output: 0.28

@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1054 884" width="1054" height="884" font-family="system-ui, -apple-system, 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif" role="img">
-  <rect x="0" y="0" width="1054" height="884" fill="#fcfcfb" stroke="#e5e4de"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1054 928" width="1054" height="928" font-family="system-ui, -apple-system, 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif" role="img">
+  <rect x="0" y="0" width="1054" height="928" fill="#fcfcfb" stroke="#e5e4de"/>
   <text fill="#0b0b0b" font-size="30" font-weight="700" x="94" y="50">日本語能力 スコア</text>
   <g transform="translate(18 58)">
-<line stroke="#e1e0d9" stroke-width="1" x1="232.0" y1="20" x2="232.0" y2="776"/><line stroke="#e1e0d9" stroke-width="1" x1="417.0" y1="20" x2="417.0" y2="776"/><line stroke="#e1e0d9" stroke-width="1" x1="602.0" y1="20" x2="602.0" y2="776"/><line stroke="#e1e0d9" stroke-width="1" x1="787.0" y1="20" x2="787.0" y2="776"/><line stroke="#e1e0d9" stroke-width="1" x1="972.0" y1="20" x2="972.0" y2="776"/>
-<text fill="#898781" font-size="11" x="232.0" y="794" text-anchor="middle">0</text><text fill="#898781" font-size="11" x="417.0" y="794" text-anchor="middle">20</text><text fill="#898781" font-size="11" x="602.0" y="794" text-anchor="middle">40</text><text fill="#898781" font-size="11" x="787.0" y="794" text-anchor="middle">60</text><text fill="#898781" font-size="11" x="972.0" y="794" text-anchor="middle">80</text>
-<text fill="#0b0b0b" fill-opacity="0.09" font-size="30" font-weight="700" x="958.0" y="764.0" text-anchor="end">HitoBench</text>
+<line stroke="#e1e0d9" stroke-width="1" x1="232.0" y1="20" x2="232.0" y2="820"/><line stroke="#e1e0d9" stroke-width="1" x1="417.0" y1="20" x2="417.0" y2="820"/><line stroke="#e1e0d9" stroke-width="1" x1="602.0" y1="20" x2="602.0" y2="820"/><line stroke="#e1e0d9" stroke-width="1" x1="787.0" y1="20" x2="787.0" y2="820"/><line stroke="#e1e0d9" stroke-width="1" x1="972.0" y1="20" x2="972.0" y2="820"/>
+<text fill="#898781" font-size="11" x="232.0" y="838" text-anchor="middle">0</text><text fill="#898781" font-size="11" x="417.0" y="838" text-anchor="middle">20</text><text fill="#898781" font-size="11" x="602.0" y="838" text-anchor="middle">40</text><text fill="#898781" font-size="11" x="787.0" y="838" text-anchor="middle">60</text><text fill="#898781" font-size="11" x="972.0" y="838" text-anchor="middle">80</text>
+<text fill="#0b0b0b" fill-opacity="0.09" font-size="30" font-weight="700" x="958.0" y="808.0" text-anchor="end">HitoBench</text>
 <g>
   <path transform="translate(206.0 42.5) scale(0.6250)" fill="#3b7ded" d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/>
   <text fill="#0b0b0b" font-size="14" x="198" y="50" text-anchor="end" dominant-baseline="central">Gemini 3.8 Flash</text>
@@ -72,40 +72,46 @@
   <text fill="#ffffff" font-size="19" font-weight="700" x="366.1" y="490" text-anchor="middle" dominant-baseline="central">29</text>
 </g>
 <g>
-  <rect x="207.9" y="528.5" width="11.1" height="11.1" rx="3.3" fill="#8a6a00"/>
-  <text fill="#0b0b0b" font-size="14" x="198" y="534" text-anchor="end" dominant-baseline="central">Qwen3.8 27B</text>
-  <path fill="#8a6a00" d="M232.0 519.0 H431.5 a4 4 0 0 1 4 4 V545.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
-  <text fill="#ffffff" font-size="19" font-weight="700" x="333.8" y="534" text-anchor="middle" dominant-baseline="central">22</text>
+  <rect x="207.9" y="528.5" width="11.1" height="11.1" rx="3.3" fill="#8f8d85"/>
+  <text fill="#0b0b0b" font-size="14" x="198" y="534" text-anchor="end" dominant-baseline="central">Grok 4.7</text>
+  <path fill="#8f8d85" d="M232.0 519.0 H450.0 a4 4 0 0 1 4 4 V545.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
+  <text fill="#ffffff" font-size="19" font-weight="700" x="343.0" y="534" text-anchor="middle" dominant-baseline="central">24</text>
 </g>
 <g>
-  <path transform="translate(206.0 570.5) scale(0.6250)" fill="#d97757" d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/>
-  <text fill="#0b0b0b" font-size="14" x="198" y="578" text-anchor="end" dominant-baseline="central">Claude Fable 5.1</text>
-  <path fill="#d97757" d="M232.0 563.0 H422.3 a4 4 0 0 1 4 4 V589.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
-  <text fill="#ffffff" font-size="19" font-weight="700" x="329.1" y="578" text-anchor="middle" dominant-baseline="central">21</text>
+  <rect x="207.9" y="572.5" width="11.1" height="11.1" rx="3.3" fill="#8a6a00"/>
+  <text fill="#0b0b0b" font-size="14" x="198" y="578" text-anchor="end" dominant-baseline="central">Qwen3.8 27B</text>
+  <path fill="#8a6a00" d="M232.0 563.0 H431.5 a4 4 0 0 1 4 4 V589.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
+  <text fill="#ffffff" font-size="19" font-weight="700" x="333.8" y="578" text-anchor="middle" dominant-baseline="central">22</text>
 </g>
 <g>
-  <rect x="207.9" y="616.5" width="11.1" height="11.1" rx="3.3" fill="#8f8d85"/>
-  <text fill="#0b0b0b" font-size="14" x="198" y="622" text-anchor="end" dominant-baseline="central">DeepSeek V4.1 Flash</text>
-  <path fill="#8f8d85" d="M232.0 607.0 H413.0 a4 4 0 0 1 4 4 V633.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
-  <text fill="#ffffff" font-size="19" font-weight="700" x="324.5" y="622" text-anchor="middle" dominant-baseline="central">20</text>
+  <path transform="translate(206.0 614.5) scale(0.6250)" fill="#d97757" d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/>
+  <text fill="#0b0b0b" font-size="14" x="198" y="622" text-anchor="end" dominant-baseline="central">Claude Fable 5.1</text>
+  <path fill="#d97757" d="M232.0 607.0 H422.3 a4 4 0 0 1 4 4 V633.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
+  <text fill="#ffffff" font-size="19" font-weight="700" x="329.1" y="622" text-anchor="middle" dominant-baseline="central">21</text>
 </g>
 <g>
   <rect x="207.9" y="660.5" width="11.1" height="11.1" rx="3.3" fill="#8f8d85"/>
-  <text fill="#0b0b0b" font-size="14" x="198" y="666" text-anchor="end" dominant-baseline="central">Kimi K3</text>
-  <path fill="#8f8d85" d="M232.0 651.0 H385.3 a4 4 0 0 1 4 4 V677.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
-  <text fill="#ffffff" font-size="19" font-weight="700" x="310.6" y="666" text-anchor="middle" dominant-baseline="central">17</text>
+  <text fill="#0b0b0b" font-size="14" x="198" y="666" text-anchor="end" dominant-baseline="central">DeepSeek V4.1 Flash</text>
+  <path fill="#8f8d85" d="M232.0 651.0 H413.0 a4 4 0 0 1 4 4 V677.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
+  <text fill="#ffffff" font-size="19" font-weight="700" x="324.5" y="666" text-anchor="middle" dominant-baseline="central">20</text>
 </g>
 <g>
   <rect x="207.9" y="704.5" width="11.1" height="11.1" rx="3.3" fill="#8f8d85"/>
-  <text fill="#0b0b0b" font-size="14" x="198" y="710" text-anchor="end" dominant-baseline="central">GLM 5.3 Flash</text>
-  <path fill="#8f8d85" d="M232.0 695.0 H329.8 a4 4 0 0 1 4 4 V721.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
-  <text fill="#ffffff" font-size="19" font-weight="700" x="282.9" y="710" text-anchor="middle" dominant-baseline="central">11</text>
+  <text fill="#0b0b0b" font-size="14" x="198" y="710" text-anchor="end" dominant-baseline="central">Kimi K3</text>
+  <path fill="#8f8d85" d="M232.0 695.0 H385.3 a4 4 0 0 1 4 4 V721.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
+  <text fill="#ffffff" font-size="19" font-weight="700" x="310.6" y="710" text-anchor="middle" dominant-baseline="central">17</text>
 </g>
 <g>
   <rect x="207.9" y="748.5" width="11.1" height="11.1" rx="3.3" fill="#8f8d85"/>
-  <text fill="#0b0b0b" font-size="14" x="198" y="754" text-anchor="end" dominant-baseline="central">MiMo V2.5</text>
-  <path fill="#8f8d85" d="M232.0 739.0 H320.5 a4 4 0 0 1 4 4 V765.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
-  <text fill="#ffffff" font-size="19" font-weight="700" x="278.3" y="754" text-anchor="middle" dominant-baseline="central">10</text>
+  <text fill="#0b0b0b" font-size="14" x="198" y="754" text-anchor="end" dominant-baseline="central">GLM 5.3 Flash</text>
+  <path fill="#8f8d85" d="M232.0 739.0 H329.8 a4 4 0 0 1 4 4 V765.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
+  <text fill="#ffffff" font-size="19" font-weight="700" x="282.9" y="754" text-anchor="middle" dominant-baseline="central">11</text>
+</g>
+<g>
+  <rect x="207.9" y="792.5" width="11.1" height="11.1" rx="3.3" fill="#8f8d85"/>
+  <text fill="#0b0b0b" font-size="14" x="198" y="798" text-anchor="end" dominant-baseline="central">MiMo V2.5</text>
+  <path fill="#8f8d85" d="M232.0 783.0 H320.5 a4 4 0 0 1 4 4 V809.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
+  <text fill="#ffffff" font-size="19" font-weight="700" x="278.3" y="798" text-anchor="middle" dominant-baseline="central">10</text>
 </g>
   </g>
 </svg>

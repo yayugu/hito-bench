@@ -3,6 +3,11 @@ problem_id: technical-translation
 model: x-ai/grok-4.7
 reasoning_effort: medium
 generated_at: 2026-09-21T16:51:42.193Z
+score: 60
+comment: |-
+  読みやすさ 30
+  誤訳ポイント部分点 30
+evaluated_at: 2026-09-21T17:05:38.883Z
 response: |-
   2017年1月31日のデータベース障害に関する事後分析
 
