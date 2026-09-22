@@ -1,0 +1,14 @@
+version: 1
+problem_id: technical-translation-summary
+model: xiaomi/mimo-v2.6-pro
+reasoning_effort: medium
+generated_at: 2026-09-22T04:14:46.561Z
+score: 20
+comment: 要旨が理解できなくもない
+evaluated_at: 2026-09-22T05:05:07.796Z
+response: |-
+  ## 要約：Git大規模ホスティングの技術的課題とContinuityの革新的な設計
+
+  Gitの分散設計は大規模ホスティングでは大きな障壁となる。リポジトリのDAG（有向非巡回グラフ）構造はオブジェクト単位の分散KVSに悪く、DHTへの格納試み（GoogleのJGit基盤）はclone性能の劣化で失敗した。packfileのランダムアクセスパターンはネットワークファイルシステムとも相性が悪く、GitHubもNFS・DRBD等を試行錯誤した末、RPC方式に移行した。Spokesはアプリレベルレプリケーション＋3PCコンセンサスで一貫性を実現したが、3PCの遅延が複製数に比例して悪化する根本的なスケーラビリティ制約を持つ。
+
+  CursorのContinuityはこの課題をS3のWrite-Ahead Log（WAL）で解決する。pushをWALエントリとしてS3に永続化し、リファレンストランザクションをCAS操作で線形化する。コンセンサスも選挙も不要で、任意のサーバーがプライマリになれ、ディスク上のリポジトリはWALから再構築可能な「ウォームキャッシュ」に過ぎない。レプリケーションは不安定なUDP gossipで通知し、各レプリカはS3の条件付きGET（ETag検証、10ms未満）で即座に整合性を確認する。コンパクションはプライマリのみが実施し、結果をS3経由で全レプリカに伝播。100レプリカで線形な読み取りスケーリングを確認し、pushスループットはS3 Express One Zoneで300 pushes/s以上を達成している。

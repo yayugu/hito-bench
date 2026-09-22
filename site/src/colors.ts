@@ -1,22 +1,17 @@
 /**
  * 会社ごとの色とロゴ。
  *
- * 色: Anthropic / OpenAI / Google はブランドカラー、Alibaba / Tencent / Meta は
- * 空いている色相を割り当て。スコアが振るわない4社（Xiaomi / Z.ai / Moonshot AI /
- * DeepSeek）は目立たせず FALLBACK のグレーにしている。
+ * 色: Anthropic / OpenAI / Google はブランドカラー、Tencent / Xiaomi / Meta は
+ * 空いている色相を割り当て。それ以外は目立たせず FALLBACK のグレーにしている。
  *
- * dataviz の validate_palette.js（--pairs all, light）では明度帯・彩度・
- * 白地コントラスト・通常色覚の分離がすべて PASS、CVD 分離だけが 6.0（Meta の紫 ↔
- * Google の青）で 6–8 の floor band に入る。この band は「直接ラベルなどの
- * 二次エンコードがあれば可」なので、棒と点にはすべてモデル名を直接書き、
- * 凡例と全結果の表も併置している。
+ * 棒と点には色だけでなくモデル名を直接書き、凡例と全結果の表も併置している。
  */
 export const CREATOR_COLORS: Record<string, string> = {
   Anthropic: "#d97757",
   OpenAI: "#10a37f",
   Google: "#3b7ded",
-  Alibaba: "#8a6a00",
   Tencent: "#ad2f63",
+  Xiaomi: "#087f8c",
   Meta: "#a13cc9",
 };
 
