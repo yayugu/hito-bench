@@ -1,11 +1,11 @@
-# HitoBench — モデル価格表（手動メンテ）
+# HitoBench — グラフ設定・モデル価格表（手動メンテ）
 #
-# ここは事前に取得した価格を書き置きしておくファイル。ビルド時にネットへは出ない。
+# グラフの表示設定と事前に取得した価格を書き置く。ビルド時にネットへは出ない。
 #
 # 取得方針:
 #   - 大手三社（Anthropic / OpenAI / Google）は各社の公式 API 料金
-#   - それ以外は OpenRouter の、benchmark.yaml で指定している provider の
-#     長期 effective price（期間限定の割引・プロモを含まない定価）
+#   - それ以外は OpenRouter の指定 provider の長期 effective price
+#     （期間限定の割引・プロモを含まない定価）
 #
 # unit: USD / 1M tokens
 # fetched_at: 2026-09-23
@@ -14,6 +14,15 @@ version: 1
 fetched_at: "2026-09-23"
 currency: USD
 unit: per_1m_tokens
+
+# README と結果ページ冒頭の総合スコアグラフでだけ非表示にするモデル。
+# 他のグラフと「全結果」表には表示する。
+overall:
+  hidden_model_ids:
+    - mimo-v2.5
+    - glm-5.3-flash
+    - kimi-k3
+    - fable-5-claude
 
 # 1回答あたりのコスト推定に使う係数。
 # トークン数はログに残していないので、実際の入出力テキストの文字数から推定する。

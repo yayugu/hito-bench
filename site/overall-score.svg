@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1054 1016" width="1054" height="1016" font-family="system-ui, -apple-system, 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif" role="img">
-  <rect x="0" y="0" width="1054" height="1016" fill="#fcfcfb" stroke="#e5e4de"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1054 972" width="1054" height="972" font-family="system-ui, -apple-system, 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif" role="img">
+  <rect x="0" y="0" width="1054" height="972" fill="#fcfcfb" stroke="#e5e4de"/>
   <text fill="#0b0b0b" font-size="30" font-weight="700" x="94" y="50">日本語能力 スコア</text>
   <g transform="translate(18 58)">
-<line stroke="#e1e0d9" stroke-width="1" x1="232.0" y1="20" x2="232.0" y2="908"/><line stroke="#e1e0d9" stroke-width="1" x1="417.0" y1="20" x2="417.0" y2="908"/><line stroke="#e1e0d9" stroke-width="1" x1="602.0" y1="20" x2="602.0" y2="908"/><line stroke="#e1e0d9" stroke-width="1" x1="787.0" y1="20" x2="787.0" y2="908"/><line stroke="#e1e0d9" stroke-width="1" x1="972.0" y1="20" x2="972.0" y2="908"/>
-<text fill="#898781" font-size="11" x="232.0" y="926" text-anchor="middle">0</text><text fill="#898781" font-size="11" x="417.0" y="926" text-anchor="middle">20</text><text fill="#898781" font-size="11" x="602.0" y="926" text-anchor="middle">40</text><text fill="#898781" font-size="11" x="787.0" y="926" text-anchor="middle">60</text><text fill="#898781" font-size="11" x="972.0" y="926" text-anchor="middle">80</text>
-<text fill="#0b0b0b" fill-opacity="0.09" font-size="30" font-weight="700" x="958.0" y="896.0" text-anchor="end">HitoBench</text>
+<line stroke="#e1e0d9" stroke-width="1" x1="232.0" y1="20" x2="232.0" y2="864"/><line stroke="#e1e0d9" stroke-width="1" x1="417.0" y1="20" x2="417.0" y2="864"/><line stroke="#e1e0d9" stroke-width="1" x1="602.0" y1="20" x2="602.0" y2="864"/><line stroke="#e1e0d9" stroke-width="1" x1="787.0" y1="20" x2="787.0" y2="864"/><line stroke="#e1e0d9" stroke-width="1" x1="972.0" y1="20" x2="972.0" y2="864"/>
+<text fill="#898781" font-size="11" x="232.0" y="882" text-anchor="middle">0</text><text fill="#898781" font-size="11" x="417.0" y="882" text-anchor="middle">20</text><text fill="#898781" font-size="11" x="602.0" y="882" text-anchor="middle">40</text><text fill="#898781" font-size="11" x="787.0" y="882" text-anchor="middle">60</text><text fill="#898781" font-size="11" x="972.0" y="882" text-anchor="middle">80</text>
+<text fill="#0b0b0b" fill-opacity="0.09" font-size="30" font-weight="700" x="958.0" y="852.0" text-anchor="end">HitoBench</text>
 <g>
   <path transform="translate(206.0 42.5) scale(0.6250)" fill="#3b7ded" d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/>
   <text fill="#0b0b0b" font-size="14" x="198" y="50" text-anchor="end" dominant-baseline="central">Gemini 3.8 Flash</text>
@@ -48,82 +48,76 @@
   <text fill="#ffffff" font-size="19" font-weight="700" x="444.8" y="314" text-anchor="middle" dominant-baseline="central">46</text>
 </g>
 <g>
-  <rect x="207.9" y="352.4" width="11.1" height="11.1" rx="3.3" fill="#087f8c"/>
-  <text fill="#0b0b0b" font-size="14" x="198" y="358" text-anchor="end" dominant-baseline="central">MiMo V2.6 Flash</text>
-  <path fill="#087f8c" d="M232.0 343.0 H588.8 a4 4 0 0 1 4 4 V369.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
-  <text fill="#ffffff" font-size="19" font-weight="700" x="412.4" y="358" text-anchor="middle" dominant-baseline="central">39</text>
+  <path transform="translate(206.0 350.5) scale(0.6250)" fill="#d97757" d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/>
+  <text fill="#0b0b0b" font-size="14" x="198" y="358" text-anchor="end" dominant-baseline="central">Claude Opus 5.5</text>
+  <path fill="#d97757" d="M232.0 343.0 H598.0 a4 4 0 0 1 4 4 V369.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
+  <text fill="#ffffff" font-size="19" font-weight="700" x="417.0" y="358" text-anchor="middle" dominant-baseline="central">40</text>
 </g>
 <g>
-  <path transform="translate(206.0 394.5) scale(0.6250)" fill="#10a37f" d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/>
-  <text fill="#0b0b0b" font-size="14" x="198" y="402" text-anchor="end" dominant-baseline="central">GPT-5.6 Sol</text>
-  <path fill="#10a37f" d="M232.0 387.0 H561.0 a4 4 0 0 1 4 4 V413.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
-  <text fill="#ffffff" font-size="19" font-weight="700" x="398.5" y="402" text-anchor="middle" dominant-baseline="central">36</text>
+  <rect x="207.9" y="396.4" width="11.1" height="11.1" rx="3.3" fill="#087f8c"/>
+  <text fill="#0b0b0b" font-size="14" x="198" y="402" text-anchor="end" dominant-baseline="central">MiMo V2.6 Flash</text>
+  <path fill="#087f8c" d="M232.0 387.0 H588.8 a4 4 0 0 1 4 4 V413.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
+  <text fill="#ffffff" font-size="19" font-weight="700" x="412.4" y="402" text-anchor="middle" dominant-baseline="central">39</text>
 </g>
 <g>
-  <path transform="translate(206.0 438.5) scale(0.6250)" fill="#d97757" d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/>
-  <text fill="#0b0b0b" font-size="14" x="198" y="446" text-anchor="end" dominant-baseline="central">Claude Sonnet 5</text>
-  <path fill="#d97757" d="M232.0 431.0 H533.3 a4 4 0 0 1 4 4 V457.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
-  <text fill="#ffffff" font-size="19" font-weight="700" x="384.6" y="446" text-anchor="middle" dominant-baseline="central">33</text>
+  <path transform="translate(206.0 438.5) scale(0.6250)" fill="#10a37f" d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/>
+  <text fill="#0b0b0b" font-size="14" x="198" y="446" text-anchor="end" dominant-baseline="central">GPT-6 Luna</text>
+  <path fill="#10a37f" d="M232.0 431.0 H570.3 a4 4 0 0 1 4 4 V457.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
+  <text fill="#ffffff" font-size="19" font-weight="700" x="403.1" y="446" text-anchor="middle" dominant-baseline="central">37</text>
 </g>
 <g>
-  <rect x="207.9" y="484.4" width="11.1" height="11.1" rx="3.3" fill="#087f8c"/>
-  <text fill="#0b0b0b" font-size="14" x="198" y="490" text-anchor="end" dominant-baseline="central">MiMo V2.6 Pro</text>
-  <path fill="#087f8c" d="M232.0 475.0 H533.3 a4 4 0 0 1 4 4 V501.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
-  <text fill="#ffffff" font-size="19" font-weight="700" x="384.6" y="490" text-anchor="middle" dominant-baseline="central">33</text>
+  <path transform="translate(206.0 482.5) scale(0.6250)" fill="#10a37f" d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/>
+  <text fill="#0b0b0b" font-size="14" x="198" y="490" text-anchor="end" dominant-baseline="central">GPT-5.6 Sol</text>
+  <path fill="#10a37f" d="M232.0 475.0 H561.0 a4 4 0 0 1 4 4 V501.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
+  <text fill="#ffffff" font-size="19" font-weight="700" x="398.5" y="490" text-anchor="middle" dominant-baseline="central">36</text>
 </g>
 <g>
-  <rect x="207.9" y="528.5" width="11.1" height="11.1" rx="3.3" fill="#a13cc9"/>
-  <text fill="#0b0b0b" font-size="14" x="198" y="534" text-anchor="end" dominant-baseline="central">Muse Spark 1.3</text>
-  <path fill="#a13cc9" d="M232.0 519.0 H514.8 a4 4 0 0 1 4 4 V545.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
-  <text fill="#ffffff" font-size="19" font-weight="700" x="375.4" y="534" text-anchor="middle" dominant-baseline="central">31</text>
+  <path transform="translate(206.0 526.5) scale(0.6250)" fill="#10a37f" d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/>
+  <text fill="#0b0b0b" font-size="14" x="198" y="534" text-anchor="end" dominant-baseline="central">GPT-6 Sol</text>
+  <path fill="#10a37f" d="M232.0 519.0 H551.8 a4 4 0 0 1 4 4 V545.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
+  <text fill="#ffffff" font-size="19" font-weight="700" x="393.9" y="534" text-anchor="middle" dominant-baseline="central">35</text>
 </g>
 <g>
   <path transform="translate(206.0 570.5) scale(0.6250)" fill="#d97757" d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/>
-  <text fill="#0b0b0b" font-size="14" x="198" y="578" text-anchor="end" dominant-baseline="central">Claude Fable 5</text>
-  <path fill="#d97757" d="M232.0 563.0 H496.3 a4 4 0 0 1 4 4 V589.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
-  <text fill="#ffffff" font-size="19" font-weight="700" x="366.1" y="578" text-anchor="middle" dominant-baseline="central">29</text>
+  <text fill="#0b0b0b" font-size="14" x="198" y="578" text-anchor="end" dominant-baseline="central">Claude Sonnet 5</text>
+  <path fill="#d97757" d="M232.0 563.0 H533.3 a4 4 0 0 1 4 4 V589.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
+  <text fill="#ffffff" font-size="19" font-weight="700" x="384.6" y="578" text-anchor="middle" dominant-baseline="central">33</text>
 </g>
 <g>
-  <rect x="207.9" y="616.5" width="11.1" height="11.1" rx="3.3" fill="#8f8d85"/>
-  <text fill="#0b0b0b" font-size="14" x="198" y="622" text-anchor="end" dominant-baseline="central">Grok 4.7</text>
-  <path fill="#8f8d85" d="M232.0 607.0 H450.0 a4 4 0 0 1 4 4 V633.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
-  <text fill="#ffffff" font-size="19" font-weight="700" x="343.0" y="622" text-anchor="middle" dominant-baseline="central">24</text>
+  <rect x="207.9" y="616.5" width="11.1" height="11.1" rx="3.3" fill="#087f8c"/>
+  <text fill="#0b0b0b" font-size="14" x="198" y="622" text-anchor="end" dominant-baseline="central">MiMo V2.6 Pro</text>
+  <path fill="#087f8c" d="M232.0 607.0 H524.0 a4 4 0 0 1 4 4 V633.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
+  <text fill="#ffffff" font-size="19" font-weight="700" x="380.0" y="622" text-anchor="middle" dominant-baseline="central">32</text>
 </g>
 <g>
-  <rect x="207.9" y="660.5" width="11.1" height="11.1" rx="3.3" fill="#8f8d85"/>
-  <text fill="#0b0b0b" font-size="14" x="198" y="666" text-anchor="end" dominant-baseline="central">Qwen3.8 27B</text>
-  <path fill="#8f8d85" d="M232.0 651.0 H431.5 a4 4 0 0 1 4 4 V677.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
-  <text fill="#ffffff" font-size="19" font-weight="700" x="333.8" y="666" text-anchor="middle" dominant-baseline="central">22</text>
+  <rect x="207.9" y="660.5" width="11.1" height="11.1" rx="3.3" fill="#a13cc9"/>
+  <text fill="#0b0b0b" font-size="14" x="198" y="666" text-anchor="end" dominant-baseline="central">Muse Spark 1.3</text>
+  <path fill="#a13cc9" d="M232.0 651.0 H514.8 a4 4 0 0 1 4 4 V677.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
+  <text fill="#ffffff" font-size="19" font-weight="700" x="375.4" y="666" text-anchor="middle" dominant-baseline="central">31</text>
 </g>
 <g>
-  <path transform="translate(206.0 702.5) scale(0.6250)" fill="#d97757" d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/>
-  <text fill="#0b0b0b" font-size="14" x="198" y="710" text-anchor="end" dominant-baseline="central">Claude Fable 5.1</text>
-  <path fill="#d97757" d="M232.0 695.0 H422.3 a4 4 0 0 1 4 4 V721.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
-  <text fill="#ffffff" font-size="19" font-weight="700" x="329.1" y="710" text-anchor="middle" dominant-baseline="central">21</text>
+  <rect x="207.9" y="704.5" width="11.1" height="11.1" rx="3.3" fill="#8f8d85"/>
+  <text fill="#0b0b0b" font-size="14" x="198" y="710" text-anchor="end" dominant-baseline="central">Grok 4.7</text>
+  <path fill="#8f8d85" d="M232.0 695.0 H450.0 a4 4 0 0 1 4 4 V721.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
+  <text fill="#ffffff" font-size="19" font-weight="700" x="343.0" y="710" text-anchor="middle" dominant-baseline="central">24</text>
 </g>
 <g>
   <rect x="207.9" y="748.5" width="11.1" height="11.1" rx="3.3" fill="#8f8d85"/>
-  <text fill="#0b0b0b" font-size="14" x="198" y="754" text-anchor="end" dominant-baseline="central">DeepSeek V4.1 Flash</text>
-  <path fill="#8f8d85" d="M232.0 739.0 H413.0 a4 4 0 0 1 4 4 V765.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
-  <text fill="#ffffff" font-size="19" font-weight="700" x="324.5" y="754" text-anchor="middle" dominant-baseline="central">20</text>
+  <text fill="#0b0b0b" font-size="14" x="198" y="754" text-anchor="end" dominant-baseline="central">Qwen3.8 27B</text>
+  <path fill="#8f8d85" d="M232.0 739.0 H431.5 a4 4 0 0 1 4 4 V765.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
+  <text fill="#ffffff" font-size="19" font-weight="700" x="333.8" y="754" text-anchor="middle" dominant-baseline="central">22</text>
 </g>
 <g>
-  <rect x="207.9" y="792.5" width="11.1" height="11.1" rx="3.3" fill="#8f8d85"/>
-  <text fill="#0b0b0b" font-size="14" x="198" y="798" text-anchor="end" dominant-baseline="central">Kimi K3</text>
-  <path fill="#8f8d85" d="M232.0 783.0 H385.3 a4 4 0 0 1 4 4 V809.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
-  <text fill="#ffffff" font-size="19" font-weight="700" x="310.6" y="798" text-anchor="middle" dominant-baseline="central">17</text>
+  <path transform="translate(206.0 790.5) scale(0.6250)" fill="#d97757" d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/>
+  <text fill="#0b0b0b" font-size="14" x="198" y="798" text-anchor="end" dominant-baseline="central">Claude Fable 5.1</text>
+  <path fill="#d97757" d="M232.0 783.0 H422.3 a4 4 0 0 1 4 4 V809.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
+  <text fill="#ffffff" font-size="19" font-weight="700" x="329.1" y="798" text-anchor="middle" dominant-baseline="central">21</text>
 </g>
 <g>
   <rect x="207.9" y="836.5" width="11.1" height="11.1" rx="3.3" fill="#8f8d85"/>
-  <text fill="#0b0b0b" font-size="14" x="198" y="842" text-anchor="end" dominant-baseline="central">GLM 5.3 Flash</text>
-  <path fill="#8f8d85" d="M232.0 827.0 H329.8 a4 4 0 0 1 4 4 V853.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
-  <text fill="#ffffff" font-size="19" font-weight="700" x="282.9" y="842" text-anchor="middle" dominant-baseline="central">11</text>
-</g>
-<g>
-  <rect x="207.9" y="880.5" width="11.1" height="11.1" rx="3.3" fill="#087f8c"/>
-  <text fill="#0b0b0b" font-size="14" x="198" y="886" text-anchor="end" dominant-baseline="central">MiMo V2.5</text>
-  <path fill="#087f8c" d="M232.0 871.0 H320.5 a4 4 0 0 1 4 4 V897.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
-  <text fill="#ffffff" font-size="19" font-weight="700" x="278.3" y="886" text-anchor="middle" dominant-baseline="central">10</text>
+  <text fill="#0b0b0b" font-size="14" x="198" y="842" text-anchor="end" dominant-baseline="central">DeepSeek V4.1 Flash</text>
+  <path fill="#8f8d85" d="M232.0 827.0 H413.0 a4 4 0 0 1 4 4 V853.0 a4 4 0 0 1 -4 4 H232.0 Z"/>
+  <text fill="#ffffff" font-size="19" font-weight="700" x="324.5" y="842" text-anchor="middle" dominant-baseline="central">20</text>
 </g>
   </g>
 </svg>

@@ -26,7 +26,7 @@ export interface PriceEntry {
   note?: string;
 }
 
-export interface Pricing {
+export interface ChartConfig {
   version: number;
   fetched_at: string;
   token_estimate: {
@@ -35,6 +35,9 @@ export interface Pricing {
     includes_reasoning: boolean;
   };
   models: PriceEntry[];
+  overall: {
+    hidden_model_ids: string[];
+  };
 }
 
 export interface Cell {
@@ -63,7 +66,7 @@ export interface ModelRow {
 export interface Dataset {
   problems: ProblemMeta[];
   models: ModelRow[];
-  pricing: Pricing;
+  charts: ChartConfig;
   generatedAt: string;
 }
 
@@ -73,7 +76,7 @@ export interface Dataset {
  */
 export function estimateTokens(
   text: string,
-  cfg: Pricing["token_estimate"],
+  cfg: ChartConfig["token_estimate"],
 ): number {
   let ascii = 0;
   let wide = 0;
@@ -89,8 +92,16 @@ function readYaml<T>(path: string): T {
 }
 
 export function loadDataset(root: string): Dataset {
-  const pricing = readYaml<Pricing>(join(root, "site", "pricing.yaml"));
-  const priceById = new Map(pricing.models.map((m) => [m.id, m]));
+  const charts = readYaml<ChartConfig>(join(root, "site", "charts.yaml"));
+  if (
+    !Array.isArray(charts?.overall?.hidden_model_ids) ||
+    !charts.overall.hidden_model_ids.every((id) => typeof id === "string")
+  ) {
+    throw new Error(
+      "site/charts.yaml: overall.hidden_model_ids はモデル ID の配列にしてください",
+    );
+  }
+  const priceById = new Map(charts.models.map((m) => [m.id, m]));
 
   const problemsDir = join(root, "problems");
   const promptById = new Map<string, string>();
@@ -117,7 +128,7 @@ export function loadDataset(root: string): Dataset {
     const price = priceById.get(dir);
     if (!price) {
       console.warn(
-        `[skip] results/${dir}: site/pricing.yaml に価格エントリがありません`,
+        `[skip] results/${dir}: site/charts.yaml に価格エントリがありません`,
       );
       continue;
     }
@@ -134,11 +145,11 @@ export function loadDataset(root: string): Dataset {
 
       const inTokens = estimateTokens(
         promptById.get(problem.id) ?? "",
-        pricing.token_estimate,
+        charts.token_estimate,
       );
       const outTokens = estimateTokens(
         raw.response ?? "",
-        pricing.token_estimate,
+        charts.token_estimate,
       );
       const cost =
         (inTokens * price.input + outTokens * price.output) / 1_000_000;
@@ -173,7 +184,7 @@ export function loadDataset(root: string): Dataset {
   return {
     problems,
     models,
-    pricing,
+    charts,
     generatedAt: new Date().toISOString(),
   };
 }

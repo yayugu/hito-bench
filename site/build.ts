@@ -1,6 +1,6 @@
 #!/usr/bin/env bun
 /**
- * problems/ と results/ と site/pricing.yaml から生成する:
+ * problems/ と results/ と site/charts.yaml から生成する:
  *
  *   - site/dist/index.html      … 結果ページ（1枚もの）
  *   - site/overall-score.svg    … 総合スコアのグラフ単体。README に貼る用
@@ -31,7 +31,11 @@ writeFileSync(outFile, html);
 
 // README に貼る用の単体 SVG。GitHub がサニタイズしても崩れないよう、
 // style/class を使わず全部プレゼンテーション属性で塗ってある。
-const svg = overallBarChart(data.models, { standalone: true, title: OVERALL_TITLE });
+const svg = overallBarChart(data.models, {
+  standalone: true,
+  title: OVERALL_TITLE,
+  hiddenModelIds: data.charts.overall.hidden_model_ids,
+});
 const svgFile = join(here, "overall-score.svg");
 writeFileSync(svgFile, svg);
 

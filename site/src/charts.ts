@@ -73,6 +73,10 @@ export interface BarChartOptions {
   standalone?: boolean;
 }
 
+export interface OverallBarChartOptions extends BarChartOptions {
+  hiddenModelIds?: readonly string[];
+}
+
 /**
  * 横棒グラフ。棒の色は提供元の会社ごと（凡例はページ上部に1つ置く）。
  */
@@ -199,10 +203,11 @@ function roundedBar(x: number, y: number, w: number, h: number): string {
 
 export function overallBarChart(
   models: ModelRow[],
-  opts: BarChartOptions = {},
+  opts: OverallBarChartOptions = {},
 ): string {
+  const hiddenModelIds = new Set(opts.hiddenModelIds ?? []);
   return barChart(
-    models.map((m) => ({
+    models.filter((m) => !hiddenModelIds.has(m.id)).map((m) => ({
       label: m.label,
       value: m.score,
       href: m.githubUrl,

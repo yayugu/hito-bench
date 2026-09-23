@@ -17,7 +17,7 @@ import {
 const fmtScore = (n: number) => (Number.isInteger(n) ? String(n) : n.toFixed(1));
 
 export function renderPage(data: Dataset, css: string): string {
-  const { problems, models, pricing } = data;
+  const { problems, models, charts } = data;
   const anyIncomplete = models.some((m) => !m.complete);
 
   // 凡例はロゴのある会社 -> 色を付けた会社 -> グレーの会社（まとめて「その他」）
@@ -121,7 +121,9 @@ ${brandSymbols()}
   <div class="sec-head">
     <h2>${OVERALL_TITLE}</h2>
   </div>
-  <div class="card">${overallBarChart(models)}</div>
+  <div class="card">${overallBarChart(models, {
+    hiddenModelIds: charts.overall.hidden_model_ids,
+  })}</div>
 </section>
 
 <section id="cost">
@@ -198,9 +200,9 @@ ${problemSections}
   <h2>このページについて</h2>
   <ul>
     <li>コストは1問あたりの推定額です。実行時のトークン数は記録していないため、実際の入力プロンプトと回答本文の文字数からトークン数を推定して計算しています（ASCII ${
-      pricing.token_estimate.ascii_chars_per_token
+      charts.token_estimate.ascii_chars_per_token
     }文字 = 1 token、それ以外 1文字 = ${
-      pricing.token_estimate.wide_tokens_per_char
+      charts.token_estimate.wide_tokens_per_char
     } token）。<strong>reasoning / thinking トークンは含みません</strong>ので、推論を回すモデルでは実額より安く出ます。</li>
     <li>単価は大手三社（Anthropic / OpenAI / Google）は各社の公式 API 料金、それ以外は OpenRouter で <code>benchmark.yaml</code> に指定している provider の長期 effective price（期間限定の割引を含まない定価）です。</li>
   </ul>
