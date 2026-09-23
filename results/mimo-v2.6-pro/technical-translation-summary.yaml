@@ -3,7 +3,7 @@ problem_id: technical-translation-summary
 model: xiaomi/mimo-v2.6-pro
 reasoning_effort: medium
 generated_at: 2026-09-22T04:14:46.561Z
-score: 20
+score: 15
 comment: 要旨が理解できなくもない
 evaluated_at: 2026-09-22T05:05:07.796Z
 response: |-
