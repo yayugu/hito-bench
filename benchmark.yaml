@@ -41,7 +41,7 @@ runners:
     reasoning_effort: medium
     timeout_seconds: 600
 
-  - id: sonnet-5-claude
+  - id: sonnet-5.5-claude
     adapter: claude
     model: sonnet
     reasoning_effort: high

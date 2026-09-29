@@ -23,6 +23,7 @@ overall:
     - glm-5.3-flash
     - kimi-k3
     - fable-5-claude
+    - opus-5-claude
 
 # 1回答あたりのコスト推定に使う係数。
 # トークン数はログに残していないので、実際の入出力テキストの文字数から推定する。
@@ -69,6 +70,14 @@ models:
 
   - id: sonnet-5-claude
     label: Claude Sonnet 5
+    creator: Anthropic
+    price_source: anthropic
+    source_url: https://claude.com/pricing
+    input: 2.00
+    output: 10.00
+
+  - id: sonnet-5.5-claude
+    label: Claude Sonnet 5.5
     creator: Anthropic
     price_source: anthropic
     source_url: https://claude.com/pricing
