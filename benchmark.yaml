@@ -118,6 +118,12 @@ runners:
     timeout_seconds: 600
 
   # High
+  - id: gpt-6.1-sol-codex
+    adapter: codex
+    model: gpt-6.1-sol
+    reasoning_effort: medium
+    timeout_seconds: 600
+
   - id: gpt-6-sol-codex
     adapter: codex
     model: gpt-6-sol

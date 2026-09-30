@@ -11,7 +11,7 @@
 # fetched_at: 2026-09-23
 
 version: 1
-fetched_at: "2026-09-23"
+fetched_at: "2026-9-30"
 currency: USD
 unit: per_1m_tokens
 
@@ -24,6 +24,9 @@ overall:
     - kimi-k3
     - fable-5-claude
     - opus-5-claude
+    - gpt-5.6-sol-codex
+    - gpt-5.6-luna-codex
+    - gpt-6-sol-codex
 
 # 1回答あたりのコスト推定に使う係数。
 # トークン数はログに残していないので、実際の入出力テキストの文字数から推定する。
@@ -85,6 +88,14 @@ models:
     output: 10.00
 
   # ---- OpenAI (公式 API 料金 / short context の standard tier) ----
+  - id: gpt-6.1-sol-codex
+    label: GPT-6.1 Sol
+    creator: OpenAI
+    price_source: openai
+    source_url: https://developers.openai.com/api/docs/pricing
+    input: 2.00
+    output: 10.00
+
   - id: gpt-6-sol-codex
     label: GPT-6 Sol
     creator: OpenAI
