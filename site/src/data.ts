@@ -6,6 +6,13 @@ export const REPO_URL = "https://github.com/yayugu/hito-bench";
 /** 総合スコアの見出し。ページと README 用 SVG で共有する */
 export const OVERALL_TITLE = "日本語能力 スコア";
 export const REPO_BLOB = `${REPO_URL}/blob/main`;
+/** 公開先。OGP の og:url / og:image は絶対 URL でないといけない */
+export const SITE_URL = "https://yayugu.github.io/hito-bench/";
+export const PAGE_TITLE = "AIが出力する日本語の自然さを比較 HitoBench";
+export const PAGE_DESCRIPTION =
+  "LLMが生成した日本語の表現力と自然さを、人間がモデル名を伏せて採点したベンチマーク。総合スコア、問題ごとの点数、コストパフォーマンスを比較できます。";
+/** site/dist に書き出すリンクカード画像 */
+export const OGP_IMAGE_FILE = "ogp.png";
 
 export interface ProblemMeta {
   id: string;

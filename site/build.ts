@@ -11,7 +11,8 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { overallBarChart } from "./src/charts";
-import { OVERALL_TITLE, loadDataset } from "./src/data";
+import { OGP_IMAGE_FILE, OVERALL_TITLE, PAGE_TITLE, loadDataset } from "./src/data";
+import { renderOgpImage } from "./src/ogp";
 import { renderPage } from "./src/page";
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -39,9 +40,14 @@ const svg = overallBarChart(data.models, {
 const svgFile = join(here, "overall-score.svg");
 writeFileSync(svgFile, svg);
 
+// X などのリンクカード用
+const ogpFile = join(outDir, OGP_IMAGE_FILE);
+writeFileSync(ogpFile, renderOgpImage(data, PAGE_TITLE));
+
 console.log(
   `built ${outFile}  (${data.models.length} models × ${data.problems.length} problems, ${
     (html.length / 1024) | 0
   } KB)`,
 );
 console.log(`built ${svgFile}  (${(svg.length / 1024) | 0} KB)`);
+console.log(`built ${ogpFile}`);

@@ -1,5 +1,13 @@
 import type { Dataset } from "./data";
-import { OVERALL_TITLE, REPO_URL } from "./data";
+import {
+  OGP_IMAGE_FILE,
+  OVERALL_TITLE,
+  PAGE_DESCRIPTION,
+  PAGE_TITLE,
+  REPO_URL,
+  SITE_URL,
+} from "./data";
+import { OGP_HEIGHT, OGP_WIDTH } from "./ogp";
 import {
   CREATOR_COLORS,
   brandMarkHtml,
@@ -19,6 +27,10 @@ const fmtScore = (n: number) => (Number.isInteger(n) ? String(n) : n.toFixed(1))
 export function renderPage(data: Dataset, css: string): string {
   const { problems, models, charts } = data;
   const anyIncomplete = models.some((m) => !m.complete);
+  // X などはカード画像を長くキャッシュするので、結果を更新したら URL を変える
+  const ogImage = esc(
+    `${SITE_URL}${OGP_IMAGE_FILE}?v=${data.generatedAt.slice(0, 10).replace(/-/g, "")}`,
+  );
 
   // 凡例はロゴのある会社 -> 色を付けた会社 -> グレーの会社（まとめて「その他」）
   const byCreator = new Map<string, number>();
@@ -82,7 +94,26 @@ export function renderPage(data: Dataset, css: string): string {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AIが出力する日本語の自然さを比較 HitoBench</title>
+<title>${PAGE_TITLE}</title>
+<meta name="description" content="${esc(PAGE_DESCRIPTION)}">
+<link rel="canonical" href="${SITE_URL}">
+<meta name="theme-color" content="#f9f9f7">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HitoBench">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:url" content="${SITE_URL}">
+<meta property="og:title" content="${esc(PAGE_TITLE)}">
+<meta property="og:description" content="${esc(PAGE_DESCRIPTION)}">
+<meta property="og:image" content="${ogImage}">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="${OGP_WIDTH}">
+<meta property="og:image:height" content="${OGP_HEIGHT}">
+<meta property="og:image:alt" content="${esc(OVERALL_TITLE)}の各社トップモデル">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(PAGE_TITLE)}">
+<meta name="twitter:description" content="${esc(PAGE_DESCRIPTION)}">
+<meta name="twitter:image" content="${ogImage}">
+<meta name="twitter:image:alt" content="${esc(OVERALL_TITLE)}の各社トップモデル">
 <link rel="icon" href="data:image/svg+xml,${encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><text y="13" font-size="14">人</text></svg>',
   )}">
@@ -96,7 +127,7 @@ ${brandSymbols()}
 
 <header class="site-head">
   <div>
-    <h1>AIが出力する日本語の自然さを比較 HitoBench</h1>
+    <h1>${PAGE_TITLE}</h1>
     <p class="lede">LLMが生成した日本語の表現力と自然さを判定するベンチマークです。問題やお題を出して人間がていねいに採点しています。採点時はどのモデルの出力かを知らない状態で実施しました。100点満点。</p>
   </div>
   <div class="head-actions">
