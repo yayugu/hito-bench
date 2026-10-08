@@ -1,0 +1,12 @@
+version: 1
+problem_id: technical-translation-summary
+model: mistralai/mistral-large-4-0
+reasoning_effort: medium
+generated_at: 2026-10-07T14:26:02.113Z
+score: 60
+comment: ""
+evaluated_at: 2026-10-08T07:53:32.265Z
+response: |-
+  Gitの分散設計は大規模ホスティングを困難にしている。packfileは圧縮バイナリで、DAG（有向非巡回グラフ）構造のオブジェクトがランダムに配置され、デルタ圧縮も使われるため、オブジェクト単位での分散ストレージ（DHTなど）はネットワークラウンドトリップが多発し実用に耐えない。GitHubの「Spokes」はpackfileレベルでレプリカし、3フェーズコミット（3PC）で参照更新を同期する巧妙な設計だが、レプリカ増加時のテールレイテンシ悪化や、全レプリカを「pet（ペット）」として扱う運用コスト、巨大なルーティングテーブルの管理がボトルネックとなった。
+
+  Cursorが開発した「Continuity」はこれを根本から変える。S3上のWAL（Write-Ahead Log）を唯一の「真実の源（source of truth）」とし、コンセンサスアルゴリズムを不要にした。プッシュはWAL永続化後、S3のCAS（Compare-And-Swap）で原子的に線形化され、どのサーバもプライマリとなり得るstateless設計。レプリカはディスク上のwarm cacheに過ぎず、rendezvous hashingによりルーティング状態を持たない。レプリケーションはUDP gossipで楽観的に行い、読み取り時にS3のETagによる条件付きGET（304 Not Modified）で整合性を検証するため、パケットロスがあっても常に強い一貫性を保つ。コンパクションはプライマリのみが実行し、WAL経由で全レプリカに伝播。これにより、モノレポは数百レプリカへ、小規模リポジトリは1レプリカ（あるいはアイドル時は0）で運用可能となり、読み取り性能がレプリカ数に線形スケールする。

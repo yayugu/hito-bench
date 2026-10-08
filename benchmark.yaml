@@ -29,6 +29,12 @@ runners:
     timeout_seconds: 600
 
   # Low
+  - id: haiku-5.5-claude
+    adapter: claude
+    model: haiku
+    reasoning_effort: high
+    timeout_seconds: 600
+
   - id: gpt-6-luna-codex
     adapter: codex
     model: gpt-6-luna
@@ -118,6 +124,14 @@ runners:
     timeout_seconds: 600
 
   # High
+  - id: mistral-large-4-0
+    adapter: openai-compatible
+    model: mistralai/mistral-large-4-0
+    reasoning_effort: medium
+    endpoint: https://openrouter.ai/api/v1/chat/completions
+    api_key_env: OPENROUTER_API_KEY
+    timeout_seconds: 600
+
   - id: gpt-6.1-sol-codex
     adapter: codex
     model: gpt-6.1-sol

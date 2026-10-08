@@ -27,6 +27,8 @@ overall:
     - sonnet-5-claude
     - gpt-5.6-sol-codex
     - gpt-5.6-luna-codex
+    - gpt-6-sol-codex
+    - mimo-v2.6-pro
 
 # 1回答あたりのコスト推定に使う係数。
 # トークン数はログに残していないので、実際の入出力テキストの文字数から推定する。
@@ -39,6 +41,15 @@ token_estimate:
 
 models:
   # ---- Anthropic (公式 API 料金) ----
+  - id: haiku-5.5-claude
+    label: Claude Haiku 5.5
+    creator: Anthropic
+    price_source: anthropic
+    source_url: https://platform.claude.com/docs/en/models/haiku-5-5/overview
+    input: 0.10
+    output: 0.50
+    note: 100K tokens 以下のプロンプトの価格。100K 超は $0.50 / $2.50
+
   - id: fable-5.1-claude
     label: Claude Fable 5.1
     creator: Anthropic
@@ -278,3 +289,14 @@ models:
     source_url: https://openrouter.ai/x-ai/grok-4.7
     input: 0.14
     output: 0.28
+
+  - id: mistral-large-4-0
+    label: Mistral Large 4
+    creator: Mistral AI
+    price_source: openrouter
+    openrouter_slug: mistralai/mistral-large-4-0
+    openrouter_provider: mistral
+    source_url: https://openrouter.ai/mistralai/mistral-large-4-0
+    input: 0.68
+    output: 2.09
+    note: 2026-10-08 時点の価格。OpenRouter 上で discount 0.5 が付いており、定価ではない可能性あり
