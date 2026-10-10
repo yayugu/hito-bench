@@ -7,14 +7,13 @@
     "generate": "bun run src/generate.ts",
     "serve": "bun run src/server.ts",
     "build:site": "bun run site/build.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "bun check"
   },
   "dependencies": {
     "@resvg/resvg-js": "^2.6.2",
     "yaml": "^2.8.1"
   },
   "devDependencies": {
-    "@types/bun": "latest",
-    "typescript": "^5.9.2"
+    "@types/bun": "latest"
   }
 }
