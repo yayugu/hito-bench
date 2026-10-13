@@ -124,6 +124,15 @@ runners:
     timeout_seconds: 600
 
   # High
+  - id: step-5-preview
+    adapter: openai-compatible
+    model: stepfun/step-5-preview
+    reasoning_effort: medium
+    endpoint: https://openrouter.ai/api/v1/chat/completions
+    api_key_env: OPENROUTER_API_KEY
+    provider: stepfun/fp8
+    timeout_seconds: 600
+
   - id: mistral-large-4-0
     adapter: openai-compatible
     model: mistralai/mistral-large-4-0
@@ -184,6 +193,15 @@ runners:
     timeout_seconds: 600
 
   # Frontier
+  - id: muse-wonder
+    adapter: openai-compatible
+    model: meta/muse-wonder
+    reasoning_effort: medium
+    endpoint: https://openrouter.ai/api/v1/chat/completions
+    api_key_env: OPENROUTER_API_KEY
+    provider: meta
+    timeout_seconds: 600
+
   - id: gpt-6-astra-codex
     adapter: codex
     model: gpt-6-astra

@@ -1,0 +1,12 @@
+version: 1
+problem_id: technical-translation-summary
+model: stepfun/step-5-preview
+reasoning_effort: medium
+generated_at: 2026-10-13T13:21:33.028Z
+score: 0
+comment: 初見でこれを見ても理解できない
+evaluated_at: 2026-10-13T14:26:16.999Z
+response: |-
+  Gitホスティングの難しさは、圧縮・デルタ化されたパックファイルへのランダムアクセスにある。オブジェクト単位の分散ストアはDAG巡回のラウンドトリップで破綻し、分散FSも同様に失敗した。GitHubのSpokesは、NVMe上の素のGitと3PCで強い整合性を担保し標準となったが、3PCは最遅ノードに律速され、レプリカ増設でpush性能が頭打ちになる。さらに全リポジトリの配置管理・修復が必要で、リポジトリを「ペット」として扱う運用負荷が大きかった。
+
+  CursorのContinuityは、S3にWALを置きack前に永続化する。NVMe上には素のGitを置き、参照更新のみS3のCASで線形化。任意ノードがプライマリになれるためステートレスで、rendezvous hashingで「おおよそ」配置すればよい。複製通知はUDPゴシップ、各レプリカはS3への条件付きGETで整合性を確認。真実は常にS3のWALにあるため、モノレポは100レプリカ、小リポジトリは1レプリカやGCまで可能。コンパクションはプライマリのみが実施し結果をWALに流す。外部DB不要で、強い整合性と水平スケーラビリティ、運用性を両立する。

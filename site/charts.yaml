@@ -300,3 +300,23 @@ models:
     input: 0.68
     output: 2.09
     note: 2026-10-08 時点の価格。OpenRouter 上で discount 0.5 が付いており、定価ではない可能性あり
+
+  - id: muse-wonder
+    label: Muse Wonder
+    creator: Meta
+    price_source: openrouter
+    openrouter_slug: meta/muse-wonder
+    openrouter_provider: meta
+    source_url: https://openrouter.ai/meta/muse-wonder
+    input: 4.00
+    output: 20.00
+
+  - id: step-5-preview
+    label: Step 5 Preview
+    creator: StepFun
+    price_source: openrouter
+    openrouter_slug: stepfun/step-5-preview
+    openrouter_provider: stepfun/fp8
+    source_url: https://openrouter.ai/stepfun/step-5-preview
+    input: 1.00
+    output: 2.70
