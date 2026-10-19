@@ -86,6 +86,15 @@ runners:
     provider: deepseek
     timeout_seconds: 600
 
+  - id: deepseek-v4.1-flash-1017
+    adapter: openai-compatible
+    model: deepseek/deepseek-v4.1-flash-1017
+    reasoning_effort: medium
+    endpoint: https://openrouter.ai/api/v1/chat/completions
+    api_key_env: OPENROUTER_API_KEY
+    provider: deepseek
+    timeout_seconds: 600
+
   - id: muse-spark-1.3
     adapter: openai-compatible
     model: meta/muse-spark-1.3

@@ -221,6 +221,17 @@ models:
     output: 0.60
     note: off-peak 定価。UTC 01-04 / 06-10 の平日ピーク帯は $0.30 / $1.20
 
+  - id: deepseek-v4.1-flash-1017
+    label: DeepSeek V4.1 Flash 1017
+    creator: DeepSeek
+    price_source: openrouter
+    openrouter_slug: deepseek/deepseek-v4.1-flash-1017
+    openrouter_provider: deepseek
+    source_url: https://openrouter.ai/deepseek/deepseek-v4.1-flash-1017
+    input: 0.15
+    output: 0.60
+    note: off-peak 定価。UTC 01-04 / 06-10 の平日ピーク帯は $0.30 / $1.20
+
   - id: glm-5.3-flash
     label: GLM 5.3 Flash
     creator: Z.ai

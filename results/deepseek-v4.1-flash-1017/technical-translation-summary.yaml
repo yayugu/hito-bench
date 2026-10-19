@@ -1,0 +1,9 @@
+version: 1
+problem_id: technical-translation-summary
+model: deepseek/deepseek-v4.1-flash-1017
+reasoning_effort: medium
+generated_at: 2026-10-19T01:52:23.972Z
+score: 15
+comment: 要約自体には成功しているが、初見で読む人のことをまったく考えていない。通じないだろう。
+evaluated_at: 2026-10-19T08:39:23.131Z
+response: Git大規模ホスティングの難点は、packfileとDAGの参照がランダムI/Oを伴い、単純な分散FSやオブジェクトKVでは遅くなること。SpokesはNVMe上の実Gitリポジトリを複数レプリカで保持し、packfile配布と参照トランザクションを分離、3PCで全レプリカを同期して完全一貫性を確保した。だがレプリカ増でpush遅延が増え、全リポジトリの位置管理・検査・修復が必要で運用負荷が高い。ContinuityはS3上のWALを唯一の真実とし、pushをWAL永続化後に線形化。ノードは通常のGitリポジトリをローカルキャッシュとして持ち、欠損時はWALから再生成する。状態レスでprimaryも任意、更新はS3のCASで安全。UDPゴシップで複製を通知し、読み取り時はETag付き条件GETでS3に検証するため、通知損失でも完全一貫。compactionはprimaryのみが行い、他は圧縮済みpackをS3から取得。読み取りはレプリカ数で線形スケールし、S3 Expressで300 push/s超。
