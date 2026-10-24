@@ -1,0 +1,15 @@
+version: 1
+problem_id: technical-translation-summary
+model: moonshotai/kimi-k3.1-pro
+reasoning_effort: medium
+generated_at: 2026-10-24T08:17:46.459Z
+score: 0
+comment: |+
+  > GitHubは断念した。
+  何を？
+
+  > ルーティング表や修復運用も重い。
+  ?
+
+evaluated_at: 2026-10-24T08:27:30.387Z
+response: Gitの大規模ホスティングが難しい本質は、packfile設計にある。オブジェクトはSHA-1でアドレス可能だが、実際の操作はDAGを逐次辿る必要があり、分散KVS化では往復遅延が致命的。またpackfile内ではデルタ圧縮によりオブジェクトがランダム配置され、ランダムリードが多発するためNFSやDRBDなどの分散ファイルシステムでも性能が出ず、GitHubは断念した。GitHubのSpokesはNVMe上の通常リポジトリをpackfileレベルで複製し、参照更新だけを3PCで同期して強一貫性を実現したが、レプリカ増でpushが遅くなり、ルーティング表や修復運用も重い。CursorのContinuityは、S3上のWALを正とし、CASでpushを線形化。ローカルリポジトリはキャッシュ扱いで状態・合意形成を排除し、読み出しはETag付き条件GETでS3と照合して一貫性を保つ。コンパクションはプライマリのみが行い、結果を配布してCPUを節約。100レプリカで読み取りが線形スケールし、S3 Expressで300 push/s超を達成した、という内容。
