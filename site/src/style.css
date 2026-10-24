@@ -293,13 +293,15 @@ h2 {
 }
 
 .leader {
-  stroke: var(--grid);
+  stroke: var(--text-muted);
+  stroke-opacity: 0.6;
   stroke-width: 1;
 }
 
 .dot-row:hover .leader,
 .dot-row:focus-visible .leader {
-  stroke: var(--text-muted);
+  stroke: var(--text-primary);
+  stroke-opacity: 1;
 }
 
 .dot-row:hover .dot,

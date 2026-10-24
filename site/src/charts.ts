@@ -342,6 +342,7 @@ export function scatterChart(models: ModelRow[]): string {
       text: m.label,
     })),
     { left: pad.left, right: pad.left + plotW, top: pad.top, bottom: pad.top + plotH },
+    [front.map((m) => ({ x: x(m.costPerTask), y: y(m.score) }))],
   );
 
   const dots = pts
@@ -350,9 +351,9 @@ export function scatterChart(models: ModelRow[]): string {
       const cy = y(m.score);
       const onFront = front.includes(m);
       const lab = placed.get(m.id)!;
-      // ラベルを縦にずらした点だけ引き出し線を足す
+      // ラベルを点の真横から動かしたときだけ引き出し線を足す
       const leader =
-        Math.abs(lab.y - cy) > 1
+        Math.abs(lab.y - cy) > 1 || Math.abs(Math.abs(lab.x - cx) - 12) > 1
           ? `<line class="leader" x1="${fmt1(cx)}" y1="${fmt1(cy)}" x2="${fmt1(
               lab.anchor === "start" ? lab.x - 4 : lab.x + 4,
             )}" y2="${fmt1(lab.y)}"/>`
@@ -409,49 +410,89 @@ function textWidth(text: string, fontSize = 11.5): number {
 
 /**
  * 散布図の点ラベルを、重ならない位置に貪欲に置く。
- * 右→左→斜め上下の順に候補を試し、全滅したら右に置く。
+ *
+ * - 全部の点とパレート線を最初から障害物として登録しておく
+ *   （後から置かれる点の上にラベルがかぶらないように）
+ * - 候補は点の左右に、近い順で縦横にずらした位置を並べる
+ * - どこにも空きがなければ、重なりが一番小さい候補を選ぶ
  */
 function placeLabels(
   items: { key: string; cx: number; cy: number; text: string }[],
   bounds: { left: number; right: number; top: number; bottom: number },
+  lines: { x: number; y: number }[][] = [],
 ): Map<string, LabelSpot> {
-  const H = 13;
-  const GAP = 13;
-  const taken: { x1: number; y1: number; x2: number; y2: number }[] = [];
+  type Rect = { x1: number; y1: number; x2: number; y2: number };
+  const H = 14;
+  const GAP = 12;
+  const DOT = 10;
+  const taken: Rect[] = [];
   const out = new Map<string, LabelSpot>();
 
-  const overlaps = (r: { x1: number; y1: number; x2: number; y2: number }) =>
-    taken.some((t) => r.x1 < t.x2 && t.x1 < r.x2 && r.y1 < t.y2 && t.y1 < r.y2);
+  for (const it of items) {
+    taken.push({ x1: it.cx - DOT, y1: it.cy - DOT, x2: it.cx + DOT, y2: it.cy + DOT });
+  }
+  // 線は細かい矩形の列として扱う
+  for (const line of lines) {
+    for (let i = 1; i < line.length; i++) {
+      const a = line[i - 1];
+      const b = line[i];
+      const n = Math.max(1, Math.ceil(Math.hypot(b.x - a.x, b.y - a.y) / 4));
+      for (let k = 0; k <= n; k++) {
+        const px = a.x + ((b.x - a.x) * k) / n;
+        const py = a.y + ((b.y - a.y) * k) / n;
+        taken.push({ x1: px - 1.5, y1: py - 1.5, x2: px + 1.5, y2: py + 1.5 });
+      }
+    }
+  }
+
+  const overlapArea = (r: Rect) => {
+    let a = 0;
+    for (const t of taken) {
+      const w = Math.min(r.x2, t.x2) - Math.max(r.x1, t.x1);
+      const h = Math.min(r.y2, t.y2) - Math.max(r.y1, t.y1);
+      if (w > 0 && h > 0) a += w * h;
+    }
+    return a;
+  };
+
+  // 近い順に並べた候補のずらし量
+  const offsets: { dx: number; dy: number }[] = [];
+  for (const dx of [0, 16, 36, 60]) {
+    for (const dy of [0, -14, 14, -28, 28, -42, 42]) offsets.push({ dx, dy });
+  }
+  offsets.sort((a, b) => Math.hypot(a.dx, a.dy * 1.4) - Math.hypot(b.dx, b.dy * 1.4));
 
   // 上の点から順に置くと、上位モデルが素直な位置を取れる
   const order = [...items].sort((a, b) => a.cy - b.cy || a.cx - b.cx);
 
   for (const it of order) {
     const w = textWidth(it.text);
-    const candidates: LabelSpot[] = [];
-    for (const dy of [0, -14, 14, -27, 27]) {
-      candidates.push({ x: it.cx + GAP, y: it.cy + dy, anchor: "start" });
-      candidates.push({ x: it.cx - GAP, y: it.cy + dy, anchor: "end" });
+    let best: { spot: LabelSpot; rect: Rect; cost: number } | null = null;
+
+    for (const { dx, dy } of offsets) {
+      for (const anchor of ["start", "end"] as const) {
+        const x = anchor === "start" ? it.cx + GAP + dx : it.cx - GAP - dx;
+        const y = it.cy + dy;
+        const x1 = anchor === "start" ? x : x - w;
+        const rect = { x1, y1: y - H / 2, x2: x1 + w, y2: y + H / 2 };
+        if (rect.x1 < bounds.left - 4 || rect.x2 > bounds.right + 108) continue;
+        if (rect.y1 < bounds.top || rect.y2 > bounds.bottom) continue;
+        // 重なり優先、同じなら近い方（候補の並び順）
+        const cost = overlapArea(rect);
+        if (!best || cost < best.cost) best = { spot: { x, y, anchor }, rect, cost };
+        if (cost === 0) break;
+      }
+      if (best && best.cost === 0) break;
     }
 
-    let chosen = candidates[0];
-    for (const c of candidates) {
-      const x1 = c.anchor === "start" ? c.x : c.x - w;
-      const rect = { x1, y1: c.y - H / 2, x2: x1 + w, y2: c.y + H / 2 };
-      if (rect.x1 < bounds.left - 4 || rect.x2 > bounds.right + 108) continue;
-      if (rect.y1 < bounds.top || rect.y2 > bounds.bottom) continue;
-      if (overlaps(rect)) continue;
-      chosen = c;
-      break;
-    }
-
-    const cx1 = chosen.anchor === "start" ? chosen.x : chosen.x - w;
-    taken.push({ x1: cx1, y1: chosen.y - H / 2, x2: cx1 + w, y2: chosen.y + H / 2 });
-    // 点そのものも占有扱いにして、ラベルが他の点にかぶらないようにする
-    taken.push({ x1: it.cx - 11, y1: it.cy - 11, x2: it.cx + 11, y2: it.cy + 11 });
-    out.set(it.key, chosen);
+    const chosen = best ?? {
+      spot: { x: it.cx + GAP, y: it.cy, anchor: "start" as const },
+      rect: { x1: it.cx + GAP, y1: it.cy - H / 2, x2: it.cx + GAP + w, y2: it.cy + H / 2 },
+      cost: 0,
+    };
+    taken.push(chosen.rect);
+    out.set(it.key, chosen.spot);
   }
 
   return out;
 }
-
