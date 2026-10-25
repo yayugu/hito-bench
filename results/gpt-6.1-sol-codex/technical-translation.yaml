@@ -4,11 +4,9 @@ model: gpt-6.1-sol
 agent: codex
 reasoning_effort: medium
 generated_at: 2026-09-30T03:23:49.719Z
-score: 70
-comment: |-
-  読みやすさ 30
-  パート点 40
-evaluated_at: 2026-09-30T04:20:04.266Z
+score: 67.6
+comment: "LLM as Judge（gpt-6.1-sol）。詳細: llm-judge/verdicts/technical-translation/gpt-6.1-sol-codex.yaml"
+evaluated_at: 2026-10-25T16:08:08.413Z
 response: |-
   1月31日のデータベース障害に関する事後検証
 

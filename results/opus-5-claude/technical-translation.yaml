@@ -4,11 +4,9 @@ model: opus
 agent: claude
 reasoning_effort: high
 generated_at: 2026-09-11T15:11:59.672Z
-score: 75
-comment: |-
-  読みやすさ 40
-  誤訳ポイント部分点 35
-evaluated_at: 2026-09-16T11:45:02.721Z
+score: 41.2
+comment: "LLM as Judge（gpt-6.1-sol）。詳細: llm-judge/verdicts/technical-translation/opus-5-claude.yaml"
+evaluated_at: 2026-10-25T16:15:13.938Z
 response: |-
   1月31日のデータベース障害のポストモーテム
 

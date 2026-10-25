@@ -3,11 +3,9 @@ problem_id: technical-translation
 model: moonshotai/kimi-k3.1-pro
 reasoning_effort: medium
 generated_at: 2026-10-24T08:18:20.990Z
-score: 65
-comment: |-
-  読みやすさ 25
-  パート: 40
-evaluated_at: 2026-10-24T08:26:22.022Z
+score: 47.9
+comment: "LLM as Judge（gpt-6.1-sol）。詳細: llm-judge/verdicts/technical-translation/kimi-k3.1-pro.yaml"
+evaluated_at: 2026-10-25T16:10:41.899Z
 response: |-
   # 1月31日のデータベース障害に関する事後検証
 

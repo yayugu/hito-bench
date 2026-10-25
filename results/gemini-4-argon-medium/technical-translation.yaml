@@ -3,11 +3,9 @@ problem_id: technical-translation
 model: google/gemini-4-argon
 reasoning_effort: medium
 generated_at: 2026-10-14T04:21:02.268Z
-score: 70
-comment: |-
-  読みやすさ 30
-  ポイント 40
-evaluated_at: 2026-10-14T04:44:17.173Z
+score: 50
+comment: "LLM as Judge（gpt-6.1-sol）。詳細: llm-judge/verdicts/technical-translation/gemini-4-argon-medium.yaml"
+evaluated_at: 2026-10-25T16:03:50.044Z
 response: |-
   1月31日のデータベース障害に関する事後調査（ポストモーテム）
 

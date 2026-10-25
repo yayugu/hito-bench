@@ -4,11 +4,9 @@ model: haiku
 agent: claude
 reasoning_effort: high
 generated_at: 2026-10-08T02:47:10.158Z
-score: 40
-comment: |-
-  読みやすさ15
-  部分点25
-evaluated_at: 2026-10-08T07:30:31.722Z
+score: 47.1
+comment: "LLM as Judge（gpt-6.1-sol）。詳細: llm-judge/verdicts/technical-translation/haiku-5.5-claude.yaml"
+evaluated_at: 2026-10-25T16:10:08.069Z
 response: |-
   2017年1月31日のデータベース障害に関する事後検証
 

@@ -4,11 +4,9 @@ model: gpt-5.6-sol
 agent: codex
 reasoning_effort: medium
 generated_at: 2026-09-11T15:10:26.411Z
-score: 50
-comment: |-
-  読みやすさ 20
-  誤訳ポイント部分点 30
-evaluated_at: 2026-09-16T11:54:52.392Z
+score: 52.9
+comment: "LLM as Judge（gpt-6.1-sol）。詳細: llm-judge/verdicts/technical-translation/gpt-5.6-sol-codex.yaml"
+evaluated_at: 2026-10-25T16:06:13.002Z
 response: |-
   1月31日に発生したデータベース障害の事後分析
 

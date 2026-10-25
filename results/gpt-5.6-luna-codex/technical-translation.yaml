@@ -4,11 +4,9 @@ model: gpt-5.6-luna
 agent: codex
 reasoning_effort: medium
 generated_at: 2026-09-11T14:33:23.727Z
-score: 70
-comment: |-
-  読みやすさ 40
-  誤訳ポイント部分点 
-evaluated_at: 2026-09-16T11:46:46.946Z
+score: 44.1
+comment: "LLM as Judge（gpt-6.1-sol）。詳細: llm-judge/verdicts/technical-translation/gpt-5.6-luna-codex.yaml"
+evaluated_at: 2026-10-25T16:05:51.637Z
 response: |-
   1月31日のデータベース障害に関する事後分析
 

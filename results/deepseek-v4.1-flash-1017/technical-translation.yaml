@@ -3,11 +3,9 @@ problem_id: technical-translation
 model: deepseek/deepseek-v4.1-flash-1017
 reasoning_effort: medium
 generated_at: 2026-10-19T01:52:36.444Z
-score: 45
-comment: |-
-  読みやすさ20
-  パート点25
-evaluated_at: 2026-10-19T08:36:01.341Z
+score: 20.6
+comment: "LLM as Judge（gpt-6.1-sol）。詳細: llm-judge/verdicts/technical-translation/deepseek-v4.1-flash-1017.yaml"
+evaluated_at: 2026-10-25T16:02:08.544Z
 response: |-
   2017年1月31日のデータベース障害の事後分析
 

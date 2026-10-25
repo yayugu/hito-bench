@@ -3,11 +3,9 @@ problem_id: technical-translation
 model: qwen/qwen3.8-27b
 reasoning_effort: medium
 generated_at: 2026-09-12T13:57:34.563Z
-score: 30
-comment: |-
-  読みやすさ 15
-  誤訳ポイント部分点 15
-evaluated_at: 2026-09-16T08:15:47.996Z
+score: 23.5
+comment: "LLM as Judge（gpt-6.1-sol）。詳細: llm-judge/verdicts/technical-translation/qwen3.8-27b.yaml"
+evaluated_at: 2026-10-25T16:16:24.989Z
 response: |-
   1月31日 データベース障害の事後解析（Postmortem）
 

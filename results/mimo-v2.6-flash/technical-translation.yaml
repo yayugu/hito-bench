@@ -3,11 +3,9 @@ problem_id: technical-translation
 model: xiaomi/mimo-v2.6-flash
 reasoning_effort: medium
 generated_at: 2026-09-22T04:08:57.894Z
-score: 35
-comment: |-
-  ベース 20
-  ポイント点 15
-evaluated_at: 2026-09-22T05:00:28.158Z
+score: 15.6
+comment: "LLM as Judge（gpt-6.1-sol）。詳細: llm-judge/verdicts/technical-translation/mimo-v2.6-flash.yaml"
+evaluated_at: 2026-10-25T16:13:01.613Z
 response: |-
   2017年1月31日 データベース障害の事後報告
 

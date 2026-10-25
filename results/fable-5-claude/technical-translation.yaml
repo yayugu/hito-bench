@@ -4,11 +4,9 @@ model: fable
 agent: claude
 reasoning_effort: high
 generated_at: 2026-09-15T13:39:06.660Z
-score: 55
-comment: |-
-  読みやすさ 30
-  誤訳ポイント部分点 25
-evaluated_at: 2026-09-16T08:03:48.641Z
+score: 29.4
+comment: "LLM as Judge（gpt-6.1-sol）。詳細: llm-judge/verdicts/technical-translation/fable-5-claude.yaml"
+evaluated_at: 2026-10-25T16:02:12.831Z
 response: |-
   1月31日のデータベース障害に関するポストモーテム
 

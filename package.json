@@ -7,6 +7,7 @@
     "generate": "bun run src/generate.ts",
     "serve": "bun run src/server.ts",
     "build:site": "bun run site/build.ts",
+    "llm-judge": "bun run src/llm-judge.ts",
     "typecheck": "bun check"
   },
   "dependencies": {

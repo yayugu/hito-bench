@@ -3,11 +3,9 @@ problem_id: technical-translation
 model: google/gemma-4-26b-a4b-it
 reasoning_effort: medium
 generated_at: 2026-09-12T14:41:53.558Z
-score: 45
-comment: |-
-  読みやすさ 20
-  誤訳ポイント部分点 25
-evaluated_at: 2026-09-16T11:53:02.512Z
+score: 41.2
+comment: "LLM as Judge（gpt-6.1-sol）。詳細: llm-judge/verdicts/technical-translation/gemma-4-26b-a4b-it.yaml"
+evaluated_at: 2026-10-25T16:04:10.260Z
 response: |-
   1月31日のデータベース障害に関する事後分析報告書
 

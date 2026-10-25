@@ -3,11 +3,9 @@ problem_id: technical-translation
 model: stepfun/step-5-preview
 reasoning_effort: medium
 generated_at: 2026-10-13T13:21:46.275Z
-score: 40
-comment: |-
-  読みやすさ 15
-  ポイント25
-evaluated_at: 2026-10-13T14:22:44.305Z
+score: 18.5
+comment: "LLM as Judge（gpt-6.1-sol）。詳細: llm-judge/verdicts/technical-translation/step-5-preview.yaml"
+evaluated_at: 2026-10-25T16:17:36.011Z
 response: |-
   1月31日のデータベース障害に関する事後報告
 

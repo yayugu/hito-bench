@@ -4,11 +4,9 @@ model: gpt-6-astra
 agent: codex
 reasoning_effort: medium
 generated_at: 2026-09-12T14:04:18.463Z
-score: 75
-comment: |-
-  読みやすさ 40
-  誤訳ポイント部分点 35
-evaluated_at: 2026-09-16T11:43:33.496Z
+score: 82.4
+comment: "LLM as Judge（gpt-6.1-sol）。詳細: llm-judge/verdicts/technical-translation/gpt-6-astra-codex.yaml"
+evaluated_at: 2026-10-25T16:06:15.430Z
 response: |-
   1月31日に発生したデータベース障害の事後検証
 

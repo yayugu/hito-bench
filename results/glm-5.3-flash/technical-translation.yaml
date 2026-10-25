@@ -3,11 +3,9 @@ problem_id: technical-translation
 model: z-ai/glm-5.3-flash
 reasoning_effort: medium
 generated_at: 2026-09-12T07:29:35.571Z
-score: 45
-comment: |-
-  読みやすさ 30
-  誤訳ポイント部分点 15
-evaluated_at: 2026-09-16T11:48:14.175Z
+score: 13.5
+comment: "LLM as Judge（gpt-6.1-sol）。詳細: llm-judge/verdicts/technical-translation/glm-5.3-flash.yaml"
+evaluated_at: 2026-10-25T16:05:58.792Z
 response: |-
   # 1月31日のデータベース障害の事後検証
 

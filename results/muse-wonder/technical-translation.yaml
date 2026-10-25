@@ -3,11 +3,9 @@ problem_id: technical-translation
 model: meta/muse-wonder
 reasoning_effort: medium
 generated_at: 2026-10-13T13:23:52.365Z
-score: 55
-comment: |-
-  読みやすさ20
-  ポイント25
-evaluated_at: 2026-10-13T14:21:34.257Z
+score: 29.4
+comment: "LLM as Judge（gpt-6.1-sol）。詳細: llm-judge/verdicts/technical-translation/muse-wonder.yaml"
+evaluated_at: 2026-10-25T16:14:12.051Z
 response: |-
   1月31日のデータベース障害に関するポストモーテム
 

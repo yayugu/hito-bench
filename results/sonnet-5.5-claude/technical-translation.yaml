@@ -4,11 +4,9 @@ model: sonnet
 agent: claude
 reasoning_effort: high
 generated_at: 2026-09-29T07:36:45.933Z
-score: 55
-comment: |-
-  読みやすさ 20
-  パート点 25
-evaluated_at: 2026-09-29T11:39:58.053Z
+score: 17.6
+comment: "LLM as Judge（gpt-6.1-sol）。詳細: llm-judge/verdicts/technical-translation/sonnet-5.5-claude.yaml"
+evaluated_at: 2026-10-25T16:17:17.033Z
 response: |-
   1月31日のデータベース障害に関する事後検証
 

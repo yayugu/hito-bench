@@ -3,11 +3,9 @@ problem_id: technical-translation
 model: mistralai/mistral-large-4-0
 reasoning_effort: medium
 generated_at: 2026-10-07T14:29:02.990Z
-score: 35
-comment: |-
-  読みやすさ20
-  部分点15
-evaluated_at: 2026-10-08T07:31:25.364Z
+score: 9.7
+comment: "LLM as Judge（gpt-6.1-sol）。詳細: llm-judge/verdicts/technical-translation/mistral-large-4-0.yaml"
+evaluated_at: 2026-10-25T16:13:04.503Z
 response: |-
   1月31日のデータベース障害に関する事後分析
 

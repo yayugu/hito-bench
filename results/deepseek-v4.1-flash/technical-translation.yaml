@@ -3,11 +3,9 @@ problem_id: technical-translation
 model: deepseek/deepseek-v4.1-flash
 reasoning_effort: medium
 generated_at: 2026-09-12T07:31:17.741Z
-score: 35
-comment: |-
-  読みやすさ 20
-  誤訳ポイント部分点 15
-evaluated_at: 2026-09-16T11:51:33.445Z
+score: 3.8
+comment: "LLM as Judge（gpt-6.1-sol）。詳細: llm-judge/verdicts/technical-translation/deepseek-v4.1-flash.yaml"
+evaluated_at: 2026-10-25T16:01:55.828Z
 response: |-
   1月31日のデータベース障害のポストモーテム
 

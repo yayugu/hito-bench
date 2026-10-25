@@ -1,0 +1,110 @@
+# technical-translation の LLM as Judge 用の配点表
+#
+# 判定基準の本文は problems/technical-translation.yaml の kijun をそのままプロンプトに入れる。
+# ここでは kijun の各チェック項目に ID を振り、LLM の判定（水準名）を点数に換算する。
+# kijun を編集して項目を増減したら、このファイルも合わせて更新すること。
+#
+# 方針:
+#   - チェック項目は均等配点。1つの文脈での1つの意味＝1項目（同じ文を2項目で重複判定しない）
+#   - 致命的な誤訳・異物混入・訳抜け・装飾の追加は得点項目にせず減点とする
+#
+# 総合点 = sum(level.value) / 項目数 * 100 - 減点の種類数 * penalty_per_item（0 未満は 0）
+problem_id: technical-translation
+
+penalty_per_item: 5
+
+items:
+  - id: unable_to_recover
+    source: We also lost some production data that we were eventually unable to recover.
+    label: 時系列に沿って頭から訳し下ろせているか
+    levels: { NG: 0, 中間: 0.5, OK: 1 }
+
+  - id: went_to_secondary
+    source: One of the engineers went to the secondary
+    label: 物理的な移動ではなく接続・作業として訳せているか
+    levels: { NG: 0, OK: 1 }
+
+  - id: no_meaningful_output
+    source: producing no meaningful output
+    label: produce の「生成」直訳や no の過剰訳を避けられているか
+    levels: { NG: 0, 中間: 0.5, 最高評価: 1 }
+
+  - id: would_hang
+    source: pg_basebackup would hang
+    label: 「止まったように見えた」というニュアンスまで汲めているか
+    levels: { 標準: 0, 最高評価: 1 }
+
+  - id: sit_wait_silently
+    source: it will sit and wait silently until that time
+    label: silently / sit の擬人化直訳を排除できているか
+    levels: { NG: 0, やや減点: 0.5, OK: 1 }
+
+  - id: finding_and_using
+    source: the process of both finding and using backups failed completely
+    label: 名詞構文を動詞・並列構造に展開できているか
+    levels: { NG: 0, OK: 1 }
+
+  - id: they_pronoun
+    source: we found out they were not there
+    label: they を「それら」と機械的に訳していないか
+    levels: { NG: 0, OK: 1 }
+
+  - id: while_notifications
+    source: While notifications are enabled for any cronjobs that error, these notifications are sent by email.
+    label: 逆接の焦点を「手段がメールだった」に置けているか
+    levels: { NG: 0, OK: 1 }
+
+  - id: while_snapshots
+    source: While enabled for the NFS servers, these snapshots were not enabled
+    label: 主語を先頭に出し、長い理由節を整理できているか
+    levels: { NG: 0, OK: 1 }
+
+  - id: colon_two_problems
+    source: "We'll break up the incident into 2 main problems: GitLab.com being down, ..."
+    label: コロンを消し、日本語の語順に組み替えられているか
+    levels: { NG: 0, 中間: 0.5, 最高評価: 1 }
+
+  - id: procedure_shori
+    source: This procedure failed silently ... / Why did the backup procedure fail silently?
+    label: procedure を「手順」ではなく「処理」と訳せているか（両文共通）
+    levels: { NG: 0, OK: 1 }
+
+  - id: failed_silently_manner
+    source: This procedure failed silently because it was using PostgreSQL 9.2, while GitLab.com runs on PostgreSQL 9.6.
+    label: 前の文の failed silently（様態）を直訳せずに訳せているか。この文だけを判定し、問いの文は見ない
+    levels: { NG: 0, 中間: 0.5, OK: 1 }
+
+  - id: fail_silently_focus
+    source: Why did the backup procedure fail silently?
+    label: 問いの焦点を「失敗が伝わらなかった」に置けているか。この問いの文だけを判定する
+    levels: { NG: 0, 中間: 0.5, 最高評価: 1 }
+
+  - id: unacceptable
+    source: Losing production data is unacceptable.
+    label: is unacceptable を当事者の自戒として自然な述語にできているか
+    levels: { NG: 0, OK: 1 }
+
+  - id: ensure_not_again
+    source: To ensure this does not happen again
+    label: 「これが」の直訳を避け「このような事態」「再発防止」等にできているか
+    levels: { NG: 0, OK: 1 }
+
+  - id: we_omitted
+    source: we're working on multiple improvements
+    label: 主語の「私たち」「当社」を省略できているか
+    levels: { NG: 0, OK: 1 }
+
+  - id: working_on_tense
+    source: we're working on multiple improvements
+    label: 「〜してまいります」のような再発防止の表明として結べているか
+    levels: { NG: 0, OK: 1 }
+
+# LLM に判定させる減点項目
+# （中国語の文字の混入と Markdown 装飾の追加は src/llm-judge.ts で機械的に検出し、同じく減点する）
+llm_penalties:
+  - id: accidental_removal
+    label: 「The outage was caused by an accidental removal of data」を「偶発的な削除」のように、人為的な操作ミス（誤削除）と読めない訳にしている（致命的な誤訳）
+  - id: untranslated_english
+    label: 未翻訳の英単語・英文が混入している（固有名詞・コマンド名・技術用語として英字のまま残すのが自然なものは除く）
+  - id: omission
+    label: 訳抜け（原文の段落・文・意味のある語句の欠落）がある

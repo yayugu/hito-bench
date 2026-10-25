@@ -3,11 +3,9 @@ problem_id: technical-translation
 model: google/gemma-4-31b-it
 reasoning_effort: medium
 generated_at: 2026-09-12T14:39:34.745Z
-score: 35
-comment: |-
-  読みやすさ 10
-  誤訳ポイント部分点 25
-evaluated_at: 2026-09-16T11:41:39.888Z
+score: 36.2
+comment: "LLM as Judge（gpt-6.1-sol）。詳細: llm-judge/verdicts/technical-translation/gemma-4-31b-it.yaml"
+evaluated_at: 2026-10-25T16:04:26.732Z
 response: |-
   1月31日のデータベース停止に関する事後分析
 

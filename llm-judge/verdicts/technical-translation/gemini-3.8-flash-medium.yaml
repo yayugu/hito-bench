@@ -1,0 +1,349 @@
+version: 1
+problem_id: technical-translation
+runner_id: gemini-3.8-flash-medium
+judge:
+  api: codex-subscription
+  model: gpt-6.1-sol
+  reasoning_effort: high
+prompt_hash: a90683356039
+judged_at: 2026-10-25T16:03:58.423Z
+score: 41.2
+breakdown:
+  points: 41.2
+  earned: 7
+  items: 17
+  penalty: 0
+penalties: []
+items:
+  unable_to_recover:
+    verdict: 中間
+    earned: 0.5
+    quote: また、最終的に復旧できなかった本番データも一部失われました。
+    reason: 復旧できなかったという結果を先に修飾節として置いており、喪失から復旧不能へという時間順の訳にはなっていません。ただし、喪失を主節で述べる受け身の構造であり、中間水準に当たります。
+  went_to_secondary:
+    verdict: OK
+    earned: 1
+    quote: エンジニアの1人がセカンダリにアクセスして
+    reason: 物理的な移動ではなく、サーバーへのアクセスとして適切に訳しています。
+  no_meaningful_output:
+    verdict: 中間
+    earned: 0.5
+    quote: 有意な出力を一切行いませんでした。
+    reason: produceを「生成する」と直訳することは避けていますが、「一切」によって否定を過剰に強調しています。
+  would_hang:
+    verdict: 標準
+    earned: 0
+    quote: pg_basebackup はハングアップし
+    reason: ハングアップしたと断定しており、当時は停止したように見えたという文脈上のニュアンスまでは表現していません。
+  sit_wait_silently:
+    verdict: やや減点
+    earned: 0.5
+    quote: その時が来るまで何も出力せず静かに待機する仕様だったのです。
+    reason: 「何も出力せず」と技術的な意味を明示していますが、擬人化的な直訳である「静かに」が残っています。
+  finding_and_using:
+    verdict: NG
+    earned: 0
+    quote: 残念なことに、バックアップの検索および利用プロセスの両方が完全に失敗しました。
+    reason: 検索と利用を名詞化したまま「プロセスの両方が失敗」としており、自然な動詞の並列構造に展開できていません。
+  they_pronoun:
+    verdict: OK
+    earned: 1
+    quote: pg_dumpによるバックアップを探しに行ったところ、バックアップが存在しないことが判明しました。
+    reason: theyを「それら」とせず、「バックアップ」という名詞を復元して自然に訳しています。
+  while_notifications:
+    verdict: NG
+    earned: 0
+    quote: エラーが発生したcronジョブに対する通知は有効化されていたものの、それらの通知はメールで送信されていました。
+    reason: 通知の有効化とメール送信をそのまま逆接で結んでいます。「通知手段がメールだった」という点に焦点を置く構文にできていません。
+  while_snapshots:
+    verdict: NG
+    earned: 0
+    quote: NFSサーバー向けには有効化されていたものの、他のバックアップ手順で十分であると思い込んでいたため、データベースサーバーのいずれに対してもこれらのスナップショットは有効化されていませんでした。
+    reason: 主語の「これらのスナップショット」が文末近くまで現れず、途中に長い理由節も挟まれています。主語の先出しや理由節の整理ができていません。
+  colon_two_problems:
+    verdict: 最高評価
+    earned: 1
+    quote: 今回のインシデントを「GitLab.comがダウンしたこと」と「GitLab.comの復旧に長い時間がかかったこと」という2つの主要な問題に分解して分析します。
+    reason: コロンを使わず、列挙した内容を「という2つの主要な問題」に係る修飾構造へ組み替え、自然な一文に統合しています。
+  procedure_shori:
+    verdict: NG
+    earned: 0
+    quote: |-
+      この処理はエラーを通知することなく暗黙的に失敗していました。
+
+      なぜバックアップ手順は暗黙的に失敗したのか？
+    reason: 前の文では「処理」としていますが、問いでは「バックアップ手順」としています。両文を通じた自動実行処理としての訳し分けはできていません。
+  failed_silently_manner:
+    verdict: 中間
+    earned: 0.5
+    quote: しかし、GitLab.comがPostgreSQL 9.6で動作しているのに対し、バックアップ手順ではPostgreSQL 9.2が使用されていたため、この処理はエラーを通知することなく暗黙的に失敗していました。
+    reason: 「エラーを通知することなく」と意味を適切に説明する一方、「暗黙的に」という不適切な直訳も併記しています。適切な説明と直訳ノイズが混在しているため、中間水準です。
+  fail_silently_focus:
+    verdict: NG
+    earned: 0
+    quote: なぜバックアップ手順は暗黙的に失敗したのか？
+    reason: 「暗黙的に失敗した」という直訳になっており、失敗が通知・認識されなかった理由を問う構造に変換できていません。
+  unacceptable:
+    verdict: OK
+    earned: 1
+    quote: 本番データの喪失は決して許されることではありません。
+    reason: 当事者としての自戒を示す、障害報告に適した述語表現になっています。
+  ensure_not_again:
+    verdict: OK
+    earned: 1
+    quote: このような事態の再発を防ぐため
+    reason: 事象全体を「このような事態」と受け、「再発を防ぐ」と自然に表現しています。
+  we_omitted:
+    verdict: NG
+    earned: 0
+    quote: 当社はGitLab.comの運用および復旧手順に関して複数の改善に取り組んでいます。
+    reason: 省略できる一人称複数の主語を「当社は」と明示しています。
+  working_on_tense:
+    verdict: NG
+    earned: 0
+    quote: 複数の改善に取り組んでいます。
+    reason: 現在進行の説明にとどまり、「取り組んでまいります」のような再発防止の表明として結んでいません。
+runs:
+  - items:
+      unable_to_recover:
+        quote: また、最終的に復旧できなかった本番データも一部失われました。
+        reason: 復旧できなかったという結果を先に修飾節として置いており、喪失から復旧不能へという時間順の訳にはなっていません。ただし、喪失を主節で述べる受け身の構造であり、中間水準に当たります。
+        verdict: 中間
+      went_to_secondary:
+        quote: エンジニアの1人がセカンダリにアクセスして
+        reason: 物理的な移動ではなく、サーバーへのアクセスとして適切に訳しています。
+        verdict: OK
+      no_meaningful_output:
+        quote: 有意な出力を一切行いませんでした。
+        reason: produceを「生成する」と直訳することは避けていますが、「一切」によって否定を過剰に強調しています。
+        verdict: 中間
+      would_hang:
+        quote: pg_basebackup はハングアップし
+        reason: ハングアップしたと断定しており、当時は停止したように見えたという文脈上のニュアンスまでは表現していません。
+        verdict: 標準
+      sit_wait_silently:
+        quote: その時が来るまで何も出力せず静かに待機する仕様だったのです。
+        reason: 「何も出力せず」と技術的な意味を明示していますが、擬人化的な直訳である「静かに」が残っています。
+        verdict: やや減点
+      finding_and_using:
+        quote: 残念なことに、バックアップの検索および利用プロセスの両方が完全に失敗しました。
+        reason: 検索と利用を名詞化したまま「プロセスの両方が失敗」としており、自然な動詞の並列構造に展開できていません。
+        verdict: NG
+      they_pronoun:
+        quote: pg_dumpによるバックアップを探しに行ったところ、バックアップが存在しないことが判明しました。
+        reason: theyを「それら」とせず、「バックアップ」という名詞を復元して自然に訳しています。
+        verdict: OK
+      while_notifications:
+        quote: エラーが発生したcronジョブに対する通知は有効化されていたものの、それらの通知はメールで送信されていました。
+        reason: 通知の有効化とメール送信をそのまま逆接で結んでいます。「通知手段がメールだった」という点に焦点を置く構文にできていません。
+        verdict: NG
+      while_snapshots:
+        quote: NFSサーバー向けには有効化されていたものの、他のバックアップ手順で十分であると思い込んでいたため、データベースサーバーのいずれに対してもこれらのスナップショットは有効化されていませんでした。
+        reason: 主語の「これらのスナップショット」が文末近くまで現れず、途中に長い理由節も挟まれています。主語の先出しや理由節の整理ができていません。
+        verdict: NG
+      colon_two_problems:
+        quote: 今回のインシデントを「GitLab.comがダウンしたこと」と「GitLab.comの復旧に長い時間がかかったこと」という2つの主要な問題に分解して分析します。
+        reason: コロンを使わず、列挙した内容を「という2つの主要な問題」に係る修飾構造へ組み替え、自然な一文に統合しています。
+        verdict: 最高評価
+      procedure_shori:
+        quote: |-
+          この処理はエラーを通知することなく暗黙的に失敗していました。
+
+          なぜバックアップ手順は暗黙的に失敗したのか？
+        reason: 前の文では「処理」としていますが、問いでは「バックアップ手順」としています。両文を通じた自動実行処理としての訳し分けはできていません。
+        verdict: NG
+      failed_silently_manner:
+        quote: しかし、GitLab.comがPostgreSQL 9.6で動作しているのに対し、バックアップ手順ではPostgreSQL 9.2が使用されていたため、この処理はエラーを通知することなく暗黙的に失敗していました。
+        reason: 「エラーを通知することなく」と意味を適切に説明する一方、「暗黙的に」という不適切な直訳も併記しています。適切な説明と直訳ノイズが混在しているため、中間水準です。
+        verdict: 中間
+      fail_silently_focus:
+        quote: なぜバックアップ手順は暗黙的に失敗したのか？
+        reason: 「暗黙的に失敗した」という直訳になっており、失敗が通知・認識されなかった理由を問う構造に変換できていません。
+        verdict: NG
+      unacceptable:
+        quote: 本番データの喪失は決して許されることではありません。
+        reason: 当事者としての自戒を示す、障害報告に適した述語表現になっています。
+        verdict: OK
+      ensure_not_again:
+        quote: このような事態の再発を防ぐため
+        reason: 事象全体を「このような事態」と受け、「再発を防ぐ」と自然に表現しています。
+        verdict: OK
+      we_omitted:
+        quote: 当社はGitLab.comの運用および復旧手順に関して複数の改善に取り組んでいます。
+        reason: 省略できる一人称複数の主語を「当社は」と明示しています。
+        verdict: NG
+      working_on_tense:
+        quote: 複数の改善に取り組んでいます。
+        reason: 現在進行の説明にとどまり、「取り組んでまいります」のような再発防止の表明として結んでいません。
+        verdict: NG
+    penalties:
+      accidental_removal:
+        evidence: ""
+        found: false
+      untranslated_english:
+        evidence: ""
+        found: false
+      omission:
+        evidence: ""
+        found: false
+  - items:
+      unable_to_recover:
+        quote: また、最終的に復旧できなかった本番データも一部失われました。
+        reason: 復旧できなかったという結果を先に修飾節で示しており、喪失から復旧不能へという時間順には訳し下ろせていません。ただし、「本番データも一部失われました」という構造は中間水準に相当します。
+        verdict: 中間
+      went_to_secondary:
+        quote: エンジニアの1人がセカンダリにアクセスしてデータディレクトリを消去し、pg_basebackupを実行しました。
+        reason: 「アクセスして」と訳し、物理的な移動ではなくサーバーに接続して作業したことを明確にしています。
+        verdict: OK
+      no_meaningful_output:
+        quote: 有意な出力を一切行いませんでした。
+        reason: produceを「生成する」とは訳していませんが、「一切」によって否定を過剰に強めています。
+        verdict: 中間
+      would_hang:
+        quote: pg_basebackup はハングアップし
+        reason: ハングアップしたと断定しており、実際には正常に待機していたものが停止したように見えたというニュアンスは表現されていません。
+        verdict: 標準
+      sit_wait_silently:
+        quote: その時が来るまで何も出力せず静かに待機する仕様だったのです。
+        reason: 「何も出力せず」によって技術的な意味は補われていますが、「静かに」という擬人化的な直訳が残っています。
+        verdict: やや減点
+      finding_and_using:
+        quote: バックアップの検索および利用プロセスの両方が完全に失敗しました。
+        reason: 検索と利用を名詞のまま「プロセスの両方が失敗」とまとめており、自然な動詞・並列構造に展開できていません。
+        verdict: NG
+      they_pronoun:
+        quote: pg_dumpによるバックアップを探しに行ったところ、バックアップが存在しないことが判明しました。
+        reason: theyを「それら」とせず、「バックアップ」と名詞を復元して自然に訳しています。
+        verdict: OK
+      while_notifications:
+        quote: エラーが発生したcronジョブに対する通知は有効化されていたものの、それらの通知はメールで送信されていました。
+        reason: 通知の有効化とメール送信をそのまま逆接で結んでおり、逆接の焦点を「通知手段がメールだったこと」に置く構造にはできていません。
+        verdict: NG
+      while_snapshots:
+        quote: NFSサーバー向けには有効化されていたものの、他のバックアップ手順で十分であると思い込んでいたため、データベースサーバーのいずれに対してもこれらのスナップショットは有効化されていませんでした。
+        reason: 主語の「これらのスナップショット」が文末近くまで現れず、長い理由節も途中に挟まれています。原文の語順を引きずった読みにくい構造です。
+        verdict: NG
+      colon_two_problems:
+        quote: 今回のインシデントを「GitLab.comがダウンしたこと」と「GitLab.comの復旧に長い時間がかかったこと」という2つの主要な問題に分解して分析します。
+        reason: コロンを使わず、二つの問題の内容を「という2つの主要な問題」に前置修飾させ、日本語として自然な一文に統合しています。
+        verdict: 最高評価
+      procedure_shori:
+        quote: |-
+          この処理はエラーを通知することなく暗黙的に失敗していました。
+
+          なぜバックアップ手順は暗黙的に失敗したのか？
+        reason: 前の文では「この処理」としていますが、問いでは自動実行される処理を「バックアップ手順」と訳しています。両文共通の基準を満たしていません。
+        verdict: NG
+      failed_silently_manner:
+        quote: この処理はエラーを通知することなく暗黙的に失敗していました。
+        reason: 「エラーを通知することなく」で意味を補っていますが、不適切な直訳である「暗黙的に」も併記されています。適切な説明と直訳が混在しているため、中間水準と判定します。
+        verdict: 中間
+      fail_silently_focus:
+        quote: なぜバックアップ手順は暗黙的に失敗したのか？
+        reason: 「暗黙的に失敗した」という直訳になっており、問いの焦点である「なぜ失敗が通知・認識されなかったのか」が表現されていません。
+        verdict: NG
+      unacceptable:
+        quote: 本番データの喪失は決して許されることではありません。
+        reason: 「決して許されることではありません」によって、当事者としての自戒を自然に表しています。
+        verdict: OK
+      ensure_not_again:
+        quote: このような事態の再発を防ぐため
+        reason: 事象全体を「このような事態」と受け、「再発を防ぐ」と自然に表現しています。
+        verdict: OK
+      we_omitted:
+        quote: 当社はGitLab.comの運用および復旧手順に関して複数の改善に取り組んでいます。
+        reason: 主語として「当社は」を明示しており、不要な一人称複数の主語を省略できていません。
+        verdict: NG
+      working_on_tense:
+        quote: 複数の改善に取り組んでいます。
+        reason: 現在進行中の活動として結んでおり、求められている「取り組んでまいります」のような再発防止への表明になっていません。
+        verdict: NG
+    penalties:
+      accidental_removal:
+        evidence: ""
+        found: false
+      untranslated_english:
+        evidence: ""
+        found: false
+      omission:
+        evidence: ""
+        found: false
+  - items:
+      unable_to_recover:
+        quote: また、最終的に復旧できなかった本番データも一部失われました。
+        reason: 「本番データも一部失われました」という構成にはなっていますが、復旧不能という結果を前置修飾にしており、喪失から復旧不能へという時間順には訳せていません。
+        verdict: 中間
+      went_to_secondary:
+        quote: エンジニアの1人がセカンダリにアクセスしてデータディレクトリを消去し
+        reason: 「アクセスして」と訳し、物理的な移動ではなくサーバーへの接続・作業として表現できています。
+        verdict: OK
+      no_meaningful_output:
+        quote: 有意な出力を一切行いませんでした。
+        reason: produceを「生成する」とは訳していませんが、「一切」によって否定を過剰に強調しています。
+        verdict: 中間
+      would_hang:
+        quote: pg_basebackup はハングアップし
+        reason: ハングアップしたと断定しており、実際には正常に待機していたものが停止したように見えた、というニュアンスは反映されていません。
+        verdict: 標準
+      sit_wait_silently:
+        quote: その時が来るまで何も出力せず静かに待機する仕様だったのです。
+        reason: 「何も出力せず」によって技術的な意味は説明できていますが、「静かに」という擬人化的な直訳が残っています。
+        verdict: やや減点
+      finding_and_using:
+        quote: バックアップの検索および利用プロセスの両方が完全に失敗しました。
+        reason: 英語の名詞構文を「検索および利用プロセスの両方が失敗」として残しており、見つけることも使うこともできなかった、という自然な動詞の並列に展開できていません。
+        verdict: NG
+      they_pronoun:
+        quote: pg_dumpによるバックアップを探しに行ったところ、バックアップが存在しないことが判明しました。
+        reason: theyを「それら」とせず、「バックアップ」と名詞を復元して自然に訳しています。
+        verdict: OK
+      while_notifications:
+        quote: エラーが発生したcronジョブに対する通知は有効化されていたものの、それらの通知はメールで送信されていました。
+        reason: 通知の有効化とメールでの送信をそのまま逆接で結んでおり、対比の焦点を「通知手段がメールだったこと」に置く構成になっていません。
+        verdict: NG
+      while_snapshots:
+        quote: NFSサーバー向けには有効化されていたものの、他のバックアップ手順で十分であると思い込んでいたため、データベースサーバーのいずれに対してもこれらのスナップショットは有効化されていませんでした。
+        reason: 主語の「これらのスナップショット」が文末近くまで現れず、理由節も途中に挟まっています。原文の語順を引きずった読みにくい構成です。
+        verdict: NG
+      colon_two_problems:
+        quote: 今回のインシデントを「GitLab.comがダウンしたこと」と「GitLab.comの復旧に長い時間がかかったこと」という2つの主要な問題に分解して分析します。
+        reason: コロンを使わず、列挙した内容を「という2つの主要な問題」にかける日本語の語順で一文に統合しています。
+        verdict: 最高評価
+      procedure_shori:
+        quote: なぜバックアップ手順は暗黙的に失敗したのか？
+        reason: 説明文では「この処理」としていますが、問いでは自動実行されるバックアップ処理を「バックアップ手順」と訳しています。両文共通の訳し分け基準を満たしていません。
+        verdict: NG
+      failed_silently_manner:
+        quote: この処理はエラーを通知することなく暗黙的に失敗していました。
+        reason: 「エラーを通知することなく」と技術的な意味を補っていますが、不適切な直訳である「暗黙的に」も併記されています。適切な説明と直訳が混在する水準です。
+        verdict: 中間
+      fail_silently_focus:
+        quote: なぜバックアップ手順は暗黙的に失敗したのか？
+        reason: 「暗黙的に失敗した」という直訳であり、問いの焦点である「失敗が通知されなかった理由」に構造を変換できていません。
+        verdict: NG
+      unacceptable:
+        quote: 本番データの喪失は決して許されることではありません。
+        reason: 「決して許されることではありません」として、当事者の自戒にふさわしい述語を選べています。
+        verdict: OK
+      ensure_not_again:
+        quote: このような事態の再発を防ぐため
+        reason: 事象全体を「このような事態」と受け、「再発を防ぐ」と自然に表現しています。
+        verdict: OK
+      we_omitted:
+        quote: 当社はGitLab.comの運用および復旧手順に関して複数の改善に取り組んでいます。
+        reason: 主語として「当社は」を明示しており、この項目で求められる一人称複数主語の省略ができていません。
+        verdict: NG
+      working_on_tense:
+        quote: 複数の改善に取り組んでいます。
+        reason: 現在進行の「取り組んでいます」で結んでおり、「取り組んでまいります」のような再発防止に向けた表明になっていません。
+        verdict: NG
+    penalties:
+      accidental_removal:
+        evidence: ""
+        found: false
+      untranslated_english:
+        evidence: ""
+        found: false
+      omission:
+        evidence: ""
+        found: false

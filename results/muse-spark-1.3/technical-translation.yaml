@@ -3,11 +3,9 @@ problem_id: technical-translation
 model: meta/muse-spark-1.3
 reasoning_effort: medium
 generated_at: 2026-09-12T07:43:55.322Z
-score: 55
-comment: |-
-  読みやすさ 30
-  誤訳ポイント部分点 25
-evaluated_at: 2026-09-16T08:07:11.437Z
+score: 41.2
+comment: "LLM as Judge（gpt-6.1-sol）。詳細: llm-judge/verdicts/technical-translation/muse-spark-1.3.yaml"
+evaluated_at: 2026-10-25T16:14:43.993Z
 response: |-
   1月31日のデータベース障害のポストモーテム
 
