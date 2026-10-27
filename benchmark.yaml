@@ -1,4 +1,6 @@
 version: 1
+# OpenAI のモデルは adapter: codex-api（ChatGPT サブスクリプションのトークンで Responses API を直接呼ぶ。LLM as Judge と同じ経路）。
+# コメントアウトしている adapter: codex のランナーは削除済みの Codex CLI アダプタで生成した過去の結果（results/ に残してある）。
 runners:
   # Local 向け
   - id: gemma-4-31b-it
@@ -35,17 +37,17 @@ runners:
     reasoning_effort: high
     timeout_seconds: 600
 
-  - id: gpt-6-luna-codex
-    adapter: codex
-    model: gpt-6-luna
-    reasoning_effort: medium
-    timeout_seconds: 600
+  # - id: gpt-6-luna-codex
+  #   adapter: codex
+  #   model: gpt-6-luna
+  #   reasoning_effort: medium
+  #   timeout_seconds: 600
 
-  - id: gpt-5.6-luna-codex
-    adapter: codex
-    model: gpt-5.6-luna
-    reasoning_effort: medium
-    timeout_seconds: 600
+  # - id: gpt-5.6-luna-codex
+  #   adapter: codex
+  #   model: gpt-5.6-luna
+  #   reasoning_effort: medium
+  #   timeout_seconds: 600
 
   - id: sonnet-5.5-claude
     adapter: claude
@@ -150,23 +152,23 @@ runners:
     api_key_env: OPENROUTER_API_KEY
     timeout_seconds: 600
 
-  - id: gpt-6.1-sol-codex
-    adapter: codex
-    model: gpt-6.1-sol
-    reasoning_effort: medium
-    timeout_seconds: 600
+  # - id: gpt-6.1-sol-codex
+  #   adapter: codex
+  #   model: gpt-6.1-sol
+  #   reasoning_effort: medium
+  #   timeout_seconds: 600
 
-  - id: gpt-6-sol-codex
-    adapter: codex
-    model: gpt-6-sol
-    reasoning_effort: medium
-    timeout_seconds: 600
+  # - id: gpt-6-sol-codex
+  #   adapter: codex
+  #   model: gpt-6-sol
+  #   reasoning_effort: medium
+  #   timeout_seconds: 600
 
-  - id: gpt-5.6-sol-codex
-    adapter: codex
-    model: gpt-5.6-sol
-    reasoning_effort: medium
-    timeout_seconds: 600
+  # - id: gpt-5.6-sol-codex
+  #   adapter: codex
+  #   model: gpt-5.6-sol
+  #   reasoning_effort: medium
+  #   timeout_seconds: 600
 
   - id: opus-5.5-claude
     adapter: claude
@@ -220,11 +222,11 @@ runners:
     provider: meta
     timeout_seconds: 600
 
-  - id: gpt-6-astra-codex
-    adapter: codex
-    model: gpt-6-astra
-    reasoning_effort: medium
-    timeout_seconds: 600
+  # - id: gpt-6-astra-codex
+  #   adapter: codex
+  #   model: gpt-6-astra
+  #   reasoning_effort: medium
+  #   timeout_seconds: 600
 
   - id: fable-5.1-claude
     adapter: claude
@@ -240,6 +242,12 @@ runners:
     api_key_env: OPENROUTER_API_KEY
     provider: google-ai-studio/flex
     timeout_seconds: 600
+
+  # - id: example-openai-model
+  #   adapter: codex-api
+  #   model: gpt-example
+  #   reasoning_effort: medium
+  #   timeout_seconds: 600
 
   # - id: example-model-rest
   #   adapter: openai-compatible

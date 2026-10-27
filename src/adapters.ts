@@ -1,5 +1,6 @@
 import { mkdtemp, rm } from "node:fs/promises";
 import { join } from "node:path";
+import { callCodex } from "./codex-api";
 import type { RunnerConfig } from "./types";
 
 interface ProcessResult {
@@ -94,39 +95,24 @@ export async function invokeRunner(
 ): Promise<string> {
   const timeoutMs = (runner.timeout_seconds ?? 600) * 1000;
   if (runner.adapter === "openai-compatible") return (await runRest(runner, prompt, timeoutMs)).trim();
+  if (runner.adapter === "codex-api") {
+    // ChatGPT サブスクリプションのトークンで Responses API を直接呼ぶ（LLM as Judge と同じ経路）
+    try {
+      const { text } = await callCodex({
+        model: runner.request_model ?? runner.model,
+        reasoningEffort: runner.reasoning_effort,
+        instructions: "",
+        input: prompt,
+        timeoutMs,
+      });
+      return text.trim();
+    } catch (error) {
+      throw new Error(`${runner.id}: ${error instanceof Error ? error.message : error}`);
+    }
+  }
 
   const workspace = await mkdtemp(join(workspaceRoot, `${runner.adapter}-`));
   try {
-    if (runner.adapter === "codex") {
-      const outputPath = join(workspace, "final.txt");
-      const result = await runProcess(
-        [
-          "codex",
-          "exec",
-          "--model",
-          runner.model,
-          "--config",
-          `model_reasoning_effort=${JSON.stringify(runner.reasoning_effort)}`,
-          "--sandbox",
-          "read-only",
-          "--ephemeral",
-          "--skip-git-repo-check",
-          "--color",
-          "never",
-          "--output-last-message",
-          outputPath,
-          "-",
-        ],
-        workspace,
-        timeoutMs,
-        prompt,
-      );
-      if (result.exitCode !== 0) throw processError(runner, result);
-      const answer = await Bun.file(outputPath).text();
-      if (!answer.trim()) throw new Error(`${runner.id}: Codex returned an empty response`);
-      return answer.trim();
-    }
-
     if (runner.adapter === "claude") {
       const result = await runProcess(
         [

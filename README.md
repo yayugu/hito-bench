@@ -55,6 +55,9 @@ bun run generate
 
 [benchmark.yaml](benchmark.yaml)でモデルが設定できます
 
+- OpenAI のモデル（`adapter: codex-api`）は Codex エージェントではなく、ChatGPT サブスクリプションのトークンで API を直接呼びます（LLM as Judge と同じ経路）。以前の Codex エージェント経由の結果（`*-codex`）はそのまま残しています
+- 新しく生成した回答のうち LLM が採点する問題（後述）は、生成の直後にそのまま LLM as Judge で採点します。`--no-judge` で採点を飛ばせます
+
 ### 人間が採点する
 
 ```bash

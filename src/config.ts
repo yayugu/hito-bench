@@ -3,6 +3,7 @@ import { basename, join } from "node:path";
 import { parse } from "yaml";
 import type {
   AdapterName,
+  AgentName,
   Answer,
   BenchmarkConfig,
   EvaluatedResult,
@@ -13,13 +14,14 @@ import type {
 
 const SAFE_ID = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
 const ADAPTERS = new Set<AdapterName>([
-  "codex",
+  "codex-api",
   "claude",
   "agy",
   "openai-compatible",
 ]);
+const AGENTS = new Set<AgentName>(["codex", "claude", "agy"]);
 const REASONING_EFFORTS: Partial<Record<AdapterName, Set<string>>> = {
-  codex: new Set(["none", "minimal", "low", "medium", "high", "xhigh", "max", "ultra"]),
+  "codex-api": new Set(["none", "minimal", "low", "medium", "high", "xhigh", "max", "ultra"]),
   claude: new Set(["low", "medium", "high", "xhigh", "max"]),
   agy: new Set(["low", "medium", "high"]),
 };
@@ -79,6 +81,9 @@ export async function loadConfig(path: string): Promise<BenchmarkConfig> {
   const runners: RunnerConfig[] = raw.runners.map((item, index) => {
     const value = object(item, `${path}: runners[${index}]`);
     const adapter = string(value.adapter, `runners[${index}].adapter`) as AdapterName;
+    if ((adapter as string) === "codex") {
+      throw new Error(`runners[${index}]: adapter codex（Codex CLI）は削除しました。codex-api を使ってください`);
+    }
     if (!ADAPTERS.has(adapter)) throw new Error(`Unknown adapter: ${adapter}`);
 
     const runner: RunnerConfig = {
@@ -144,8 +149,8 @@ export async function loadProblems(directory: string): Promise<Problem[]> {
 export async function loadResult(path: string): Promise<Result> {
   const raw = object(await parseYamlFile(path), path);
   const agent =
-    raw.agent === undefined ? undefined : (string(raw.agent, `${path}: agent`) as AdapterName);
-  if (agent && !ADAPTERS.has(agent)) throw new Error(`${path}: unknown agent ${agent}`);
+    raw.agent === undefined ? undefined : (string(raw.agent, `${path}: agent`) as AgentName);
+  if (agent && !AGENTS.has(agent)) throw new Error(`${path}: unknown agent ${agent}`);
   const answer: Answer = {
     version: Number(raw.version),
     problem_id: safeId(raw.problem_id, `${path}: problem_id`),
