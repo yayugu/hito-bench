@@ -1,7 +1,7 @@
-export type AdapterName = "codex-api" | "claude" | "agy" | "openai-compatible";
+export type AdapterName = "codex-api" | "claude" | "openai-compatible";
 
 /** results に記録されるエージェント名。"codex" は削除済みの Codex CLI アダプタで生成した過去の結果 */
-export type AgentName = "codex" | "claude" | "agy";
+export type AgentName = "codex" | "claude";
 
 export interface Problem {
   id: string;

@@ -83,7 +83,7 @@ for (const runner of runners) {
         problem_id: problem.id,
         model: runner.model,
         // API 直呼び（openai-compatible / codex-api）は agent を記録しない
-        ...(runner.adapter === "claude" || runner.adapter === "agy" ? { agent: runner.adapter } : {}),
+        ...(runner.adapter === "claude" ? { agent: runner.adapter } : {}),
         reasoning_effort: runner.reasoning_effort,
         generated_at: new Date().toISOString(),
         response,

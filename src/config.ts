@@ -16,14 +16,12 @@ const SAFE_ID = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
 const ADAPTERS = new Set<AdapterName>([
   "codex-api",
   "claude",
-  "agy",
   "openai-compatible",
 ]);
-const AGENTS = new Set<AgentName>(["codex", "claude", "agy"]);
+const AGENTS = new Set<AgentName>(["codex", "claude"]);
 const REASONING_EFFORTS: Partial<Record<AdapterName, Set<string>>> = {
   "codex-api": new Set(["none", "minimal", "low", "medium", "high", "xhigh", "max", "ultra"]),
   claude: new Set(["low", "medium", "high", "xhigh", "max"]),
-  agy: new Set(["low", "medium", "high"]),
 };
 
 function object(value: unknown, label: string): Record<string, unknown> {

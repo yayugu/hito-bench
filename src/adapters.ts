@@ -113,46 +113,26 @@ export async function invokeRunner(
 
   const workspace = await mkdtemp(join(workspaceRoot, `${runner.adapter}-`));
   try {
-    if (runner.adapter === "claude") {
-      const result = await runProcess(
-        [
-          "claude",
-          "--model",
-          runner.model,
-          "--effort",
-          runner.reasoning_effort,
-          "--print",
-          "--tools",
-          "",
-          "--no-session-persistence",
-          "--output-format",
-          "text",
-          prompt,
-        ],
-        workspace,
-        timeoutMs,
-      );
-      if (result.exitCode !== 0) throw processError(runner, result);
-      if (!result.stdout.trim()) throw new Error(`${runner.id}: Claude returned an empty response`);
-      return result.stdout.trim();
-    }
-
     const result = await runProcess(
       [
-        "agy",
+        "claude",
         "--model",
         runner.model,
         "--effort",
         runner.reasoning_effort,
-        "--disable-slash-commands",
-        "--sandbox",
-        `--print=${prompt}`,
+        "--print",
+        "--tools",
+        "",
+        "--no-session-persistence",
+        "--output-format",
+        "text",
+        prompt,
       ],
       workspace,
       timeoutMs,
     );
     if (result.exitCode !== 0) throw processError(runner, result);
-    if (!result.stdout.trim()) throw new Error(`${runner.id}: Agy returned an empty response`);
+    if (!result.stdout.trim()) throw new Error(`${runner.id}: Claude returned an empty response`);
     return result.stdout.trim();
   } finally {
     await rm(workspace, { recursive: true, force: true });

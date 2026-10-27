@@ -64,12 +64,6 @@ runners:
     provider: google-ai-studio/flex
     timeout_seconds: 600
 
-  # - id: gemini-3.8-flash-medium-agy
-  #   adapter: agy
-  #   model: gemini-3.8-flash
-  #   reasoning_effort: medium
-  #   timeout_seconds: 600
-
   - id: glm-5.3-flash
     adapter: openai-compatible
     model: z-ai/glm-5.3-flash

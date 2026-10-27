@@ -162,15 +162,6 @@ models:
     output: 3.75
     note: 2026-12-31 までの価格。2027-01-01 以降は $1.50 / $7.50
 
-  - id: gemini-3.8-flash-medium-agy
-    label: Gemini 3.8 Flash (agy)
-    creator: Google
-    price_source: google
-    source_url: https://ai.google.dev/gemini-api/docs/pricing
-    input: 0.75
-    output: 3.75
-    note: 2026-12-31 までの価格。2027-01-01 以降は $1.50 / $7.50
-
   - id: gemini-4-argon-medium
     label: Gemini 4 Argon
     creator: Google
