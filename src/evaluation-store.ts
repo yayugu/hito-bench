@@ -31,14 +31,18 @@ export class EvaluationStore {
   private constructor(
     private readonly resultsDirectory: string,
     private readonly problemById: Map<string, AnswerEntry["problem"]>,
+    /** LLM as Judge で採点する問題（llm-judge/rubrics/ に配点表がある）。人間の採点には出さない */
+    private readonly llmJudgedProblemIds: Set<string>,
   ) {}
 
   static async create(root: string): Promise<EvaluationStore> {
     const resultsDirectory = join(root, "results");
     const problems = await loadProblems(join(root, "problems"));
+    const rubrics = await readdir(join(root, "llm-judge", "rubrics"));
     const store = new EvaluationStore(
       resultsDirectory,
       new Map(problems.map((problem) => [problem.id, problem])),
+      new Set(rubrics.filter((name) => /\.ya?ml$/i.test(name)).map((name) => name.replace(/\.ya?ml$/i, ""))),
     );
     await mkdir(store.resultsDirectory, { recursive: true });
     await store.refresh();
@@ -62,6 +66,7 @@ export class EvaluationStore {
           throw new Error(`${path}: problem_id must match filename`);
         }
         this.loadedRefs.add(answerRef);
+        if (this.llmJudgedProblemIds.has(answer.problem_id)) continue;
         if (isEvaluated(answer)) {
           this.completedRefs.add(answerRef);
           continue;
