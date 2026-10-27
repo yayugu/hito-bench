@@ -103,6 +103,14 @@ models:
     output: 10.00
 
   # ---- OpenAI (公式 API 料金 / short context の standard tier) ----
+  - id: gpt-6.1-terra
+    label: GPT-6.1 Terra
+    creator: OpenAI
+    price_source: openai
+    source_url: https://developers.openai.com/api/docs/pricing
+    input: 1.00
+    output: 5.00
+
   - id: gpt-6.1-sol-codex
     label: GPT-6.1 Sol
     creator: OpenAI
