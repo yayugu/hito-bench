@@ -1,0 +1,16 @@
+version: 1
+problem_id: technical-translation-summary
+model: tencent/hy4
+reasoning_effort: medium
+generated_at: 2026-11-06T04:48:56.619Z
+score: 0
+comment: |-
+  「面白いのは」を最初にもってきてしまったため意味不明
+  それ以降の文章もワードサラダになっている
+evaluated_at: 2026-11-06T05:05:07.464Z
+response: |-
+  面白いのは「サーバ内は自由だが、クライアントとは必ず packfile で話す」という非対称制約だ。Git は SHA キーの KV に見えて、実は DAG を「取って初めて次のポインタが分かる」順次ウォークなので、DHT 化はラウンドトリップで死ぬ。packfile も容量優先で delta 圧縮・ランダム配置だから、論理ホップと物理ホップの二重ランダム読込みが起き、NFS や DRBD は破綻しローカル NVMe が必須になる。
+
+  Spokes は push を「重い packfile の非同期 fan-out」と「軽い ref トランザクションの 3PC」に分離した。ref が更新されるまでコミットが reachable にならない Git の性質を、そのままコンセンサスに転用するのは美しい。ただし最遅ノード律速でレプリカを増やすほど push が遅く、disk が真実ゆえ経路表・チェックサム・修復が要り、リポジトリが pets 化する。
+
+  Continuity は真実を S3 の WAL に移し、ディスクを warm cache へ格下げした。packfile 永続化 → ローカル ref の prepare → WAL index へ CAS でポイント記録、この瞬間だけ公開して linearizable にする。選挙も固定 primary も不要で、rendezvous hashing は単なる高速化にすぎない。白眉は、複製が信頼性ゼロの UDP gossip でも、読み取り時に S3 へ ETag 付き conditional GET を撃つだけ（304 なら即応答、200 なら追従）で全レプリカが強整合になること。輸送を信じず、真実だけを確認する反転だ。compaction も primary が一度だけ repack し完成 pack を WAL 経由で配るため、CPU を帯域に替えられる。結果 100 レプリカで read が線形に伸び、アイドル repo は GC して都度 materialize、S3 Express で 300 pushes/s 超を出している。
